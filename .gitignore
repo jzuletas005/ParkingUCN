@@ -37,5 +37,3 @@ parkingScraping/**/build
 parkingScraping/captures
 .externalNativeBuild
 .cxx
-
-parkingScraping/personasucn.db
