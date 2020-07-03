@@ -61,7 +61,7 @@ public class ScrapperData {
                 if(!lblNombre.text().isEmpty()) {
 
                     //And we add the desired elements to our .csv
-                    //fw.append(String.valueOf(i) + ",");
+                    fw.append(String.valueOf(i) + ",");
                     fw.append(lblNombre.text() + ",");
                     fw.append(lblCargo.text() + ",");
                     fw.append(lblUnidad.text() + ",");
