@@ -1,0 +1,41 @@
+# Idea files
+*.iml
+
+# Gradle stuff
+.gradle
+
+# Local
+parkingScraping/local.properties
+
+# Idea
+parkingScraping/.idea/caches
+parkingScraping/.idea/libraries
+parkingScraping/.idea/modules.xml
+parkingScraping/.idea/workspace.xml
+parkingScraping/.idea/navEditor.xml
+parkingScraping/.idea/assetWizardSettings.xml
+parkingScraping/.idea/misc.xml
+# parkingScraping/.idea/codeStyles/
+parkingScraping/.idea/runConfigurations.xml
+parkingScraping/.idea/vcs.xml
+parkingScraping/.idea/gradle.xml
+parkingScraping/.idea/.name
+# parkingScraping/.idea/inspectionProfiles/
+# parkingScraping/.idea/copyright/
+parkingScraping/.idea/kotlinCodeInsightSettings.xml
+parkingScraping/.idea/.gitignore
+parkingScraping/.idea/render.experimental.xml
+parkingScraping/.idea/$CACHE_FILE$
+parkingScraping/.idea/checkstyle-idea.xml
+parkingScraping/.idea/dictionaries
+parkingScraping/.idea/jarRepositories.xml
+parkingScraping/.idea/compiler.xml
+
+# Trashy-trashy
+.DS_Store
+parkingScraping/**/build
+parkingScraping/captures
+.externalNativeBuild
+.cxx
+
+parkingScraping/personasucn.db
