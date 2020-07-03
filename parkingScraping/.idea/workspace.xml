@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6527e54a-9e90-4d96-831a-93a2bc2b0de2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cl/ucn/disc/pdis/scrapper/ScrapperSQLite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cl/ucn/disc/pdis/scrapper/ScrapperSQLite.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -39,10 +41,18 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.idea" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\proyectos\ParkingUCN\parkingScraping" />
+      <recent name="E:\proyectos\ParkingUCN\parkingScraping\.idea" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="ScrapperData" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -73,6 +83,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="1251" y="262" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1593738359013" />
+    <state x="733" y="274" key="FileChooserDialogImpl" timestamp="1593740425401">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="733" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1593740425401" />
     <state width="964" height="228" key="GridCell.Tab.0.bottom" timestamp="1593738682326">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
