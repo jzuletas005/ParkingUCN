@@ -34,5 +34,5 @@ hs_err_pid*
 
 # Default ignored files
 /shelf/
-/.idea/workspace.xml
-/build
+parkingScraping/.idea/workspace.xml
+parkingScraping/build
