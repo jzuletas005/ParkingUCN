@@ -2,14 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6527e54a-9e90-4d96-831a-93a2bc2b0de2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cl/ucn/disc/pdis/scrapper/Academic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cl/ucn/disc/pdis/scrapper/ScrapperData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cl/ucn/disc/pdis/scrapper/ScrapperData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cl/ucn/disc/pdis/scrapper/ScrapperSQLite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cl/ucn/disc/pdis/scrapper/ScrapperSQLite.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
