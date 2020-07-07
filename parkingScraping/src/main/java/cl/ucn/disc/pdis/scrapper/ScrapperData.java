@@ -29,6 +29,8 @@ import org.jsoup.nodes.Element;
 import java.util.Random;
 import java.io.IOException;
 import java.io.FileWriter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ScrapperData {
 
@@ -37,6 +39,9 @@ public class ScrapperData {
      * @param args
      * @throws IOException
      */
+
+    private static final Logger log = LoggerFactory.getLogger(ScrapperData.class);
+
     public static void main (String[] args) throws IOException{
 
         /**
@@ -49,32 +54,32 @@ public class ScrapperData {
          * where "ini" is first on the list and "end" is last on the list
          */
         int ini = 0;
-        int end = 29730;
+        int end = 30000;
+        int counter = 0;
 
         /**
          * Creator of the .csv file
          */
-        FileWriter fw = new FileWriter("./src/main/resources/datos.csv");
+        FileWriter fw = new FileWriter("./src/main/resources/datos.csv", true);
 
-        for(int i = ini; i <= end; i++){
+        for (int i = ini; i <= end; i++){
+            try {
+                //  The Jsoup is used to make a connection to the URL and obtain the JSON from the web page
+                Document doc = Jsoup.connect("http://online.ucn.cl/directoriotelefonicoemail/fichaGenerica/?cod="+i)
+                        .get();
+                log.debug("Page number: " + i);
+                Element lblNombre =  doc.getElementById("lblNombre");
 
-            //The Jsoup is used to make a connection to the URL and obtain the JSON from the web page
-            Document doc = Jsoup.connect("http://online.ucn.cl/directoriotelefonicoemail/fichaGenerica/?cod="+i).get();
-
-            //We name as elements the parameters that we want to search within the JSON to use them
-            Element lblNombre =  doc.getElementById("lblNombre");
-            Element lblCargo =  doc.getElementById("lblCargo");
-            Element lblUnidad =  doc.getElementById("lblUnidad");
-            Element lblEmail =  doc.getElementById("lblEmail");
-            Element lblTelefono =  doc.getElementById("lblTelefono");
-            Element lblOficina =  doc.getElementById("lblOficina");
-            Element lblDireccion =  doc.getElementById("lblDireccion");
-
-            //System.out.println(lblNombre.text());
-
-            try{
                 //Then we validate that the data is not null or empty
-                if(!lblNombre.text().isEmpty()) {
+                if (!lblNombre.text().isEmpty()) {
+                    counter++;
+
+                    Element lblCargo =  doc.getElementById("lblCargo");
+                    Element lblUnidad =  doc.getElementById("lblUnidad");
+                    Element lblEmail =  doc.getElementById("lblEmail");
+                    Element lblTelefono =  doc.getElementById("lblTelefono");
+                    Element lblOficina =  doc.getElementById("lblOficina");
+                    Element lblDireccion =  doc.getElementById("lblDireccion");
 
                     //And we add the desired elements to our .csv
                     fw.append(String.valueOf(i) + ",");
@@ -86,18 +91,29 @@ public class ScrapperData {
                     fw.append(lblOficina.text() + ",");
                     fw.append(lblDireccion.text());
                     fw.append("\n");
+                    fw.flush();
+
+                    log.debug("Person data " + counter + " added!");
                 }
 
                 //A deleay is created in order not to overload the server
-                Thread.sleep(1000+random.nextInt(1000));
-            }catch (InterruptedException e){
-                e.printStackTrace();
+                try {
+                    Thread.sleep(1000+random.nextInt(1000));
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }catch (IOException h){
+                i = i - 1;
+                log.debug("Error: " + h);
+                log.debug("Connecting again...");
+                try {
+                    Thread.sleep(7500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
-
-        //Finally we paste the data to the file and close it
-        fw.flush();
         fw.close();
-        System.out.println("Done....");
+        log.debug("Done!");
     }
 }
