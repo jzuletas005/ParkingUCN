@@ -60,7 +60,7 @@ public class ScrapperData {
         /**
          * Creator of the .csv file
          */
-        FileWriter fw = new FileWriter("./src/main/resources/datos.csv", true);
+        FileWriter fw = new FileWriter("./datos.csv", true);
 
         for (int i = ini; i <= end; i++){
             try {
