@@ -38,4 +38,5 @@
 .externalNativeBuild
 .cxx
 
-src/main/resources
+# Others
+/src/main/resources/
