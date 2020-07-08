@@ -7,6 +7,6 @@
 java, zeroIce y android para su desarrollo. 
 
 ## Developers
- - [Javier Zuleta-Silva]().
- - [Beatriz Álvarez-Rojas]().
- - [Gonzalo Nieto-Berrios]().
+ - [Javier Zuleta-Silva -Jzuletas005@gmail.com]().
+ - [Beatriz Álvarez-Rojas - Bar011@Alumnos.ucn.cl]().
+ - [Gonzalo Nieto-Berrios -gnb001@alumnos.ucn.cl ]().
