@@ -57,6 +57,9 @@ public final class Person {
     @DatabaseField(canBeNull = true)
     private String address;
 
+    @DatabaseField(canBeNull = true)
+    private String country;
+
     /**
      * ORMLite Constructor
      */
@@ -74,9 +77,10 @@ public final class Person {
      * @param phone
      * @param office
      * @param address
+     * @param country
      */
     public Person(int id, String name,String rut, String wposition, String unit, String email, String phone,
-                  String office, String address) {
+                  String office, String address, String country) {
         this.id = id;
         this.name = name;
         this.rut = rut;
@@ -86,6 +90,7 @@ public final class Person {
         this.phone = phone;
         this.office = office;
         this.address = address;
+        this.country = country;
     }
 
     public int getId() {
@@ -120,6 +125,10 @@ public final class Person {
 
     public String getAddress() {
         return address;
+    }
+
+    public String getCountry() {
+        return country;
     }
 
 }

@@ -89,12 +89,13 @@ public class ScrapperSQLite {
                     String phone = record.get(6);
                     String office = record.get(7);
                     String address = record.get(8);
+                    String country = record.get(9);
 
                     int id = Integer.parseInt(aux);
 
 
                     personDao.create(new Person(id, name, rut, wposition, unit, email,
-                            phone, office, address));
+                            phone, office, address, country));
                 }
                 log.debug("Done ....");
             }catch (SQLException e){
