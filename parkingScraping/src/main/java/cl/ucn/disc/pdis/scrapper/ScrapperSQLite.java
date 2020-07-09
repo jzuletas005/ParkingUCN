@@ -39,16 +39,26 @@ import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
+import javax.swing.text.html.parser.Parser;
+
 public class ScrapperSQLite {
 
+    /**
+     * Logger
+     */
     private static final Logger log = LoggerFactory.getLogger(ScrapperSQLite.class);
 
+    /**
+     * Main
+     * @param args
+     * @throws IOException
+     */
     public static void main (String[] args) throws IOException {
 
         String databaseUrl = "jdbc:sqlite:personasucn.db";
 
         //  CSV file path
-        File csvFile = new File("./src/main/resources/datos.csv");
+        File csvFile = new File("./datosconrut.csv");
 
         //  Check if CSV file exists
         if (!csvFile.isFile()){
@@ -70,18 +80,23 @@ public class ScrapperSQLite {
                 for (CSVRecord record : records){
 
                     //We collect the .csv data
-                    int id = Integer.parseInt(record.get(0));
+                    String aux = record.get(0);
                     String name = record.get(1);
-                    String wposition = record.get(2);
-                    String unit = record.get(3);
-                    String email = record.get(4);
-                    String phone = record.get(5);
-                    String office = record.get(6);
-                    String address = record.get(7);
+                    String rut = record.get(2);
+                    String wposition = record.get(3);
+                    String unit = record.get(4);
+                    String email = record.get(5);
+                    String phone = record.get(6);
+                    String office = record.get(7);
+                    String address = record.get(8);
 
-                    personDao.createIfNotExists(new Person(id, name, wposition, unit, email,
+                    int id = Integer.parseInt(aux);
+
+
+                    personDao.create(new Person(id, name, rut, wposition, unit, email,
                             phone, office, address));
                 }
+                log.debug("Done ....");
             }catch (SQLException e){
                 log.error("Error: ", e);
             }

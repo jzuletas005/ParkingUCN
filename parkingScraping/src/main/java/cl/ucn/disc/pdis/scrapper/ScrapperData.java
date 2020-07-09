@@ -44,23 +44,17 @@ public class ScrapperData {
 
     public static void main (String[] args) throws IOException{
 
-        /**
-         * Random number creator for delay use in queries
-         */
+        //Random number creator for delay use in queries
         Random random = new Random();
 
-        /**
-         * Academic Id's
-         * where "ini" is first on the list and "end" is last on the list
-         */
+        //Academic Id's
+        //where "ini" is first on the list and "end" is last on the list
         int ini = 0;
         int end = 30000;
         int counter = 0;
 
-        /**
-         * Creator of the .csv file
-         */
-        FileWriter fw = new FileWriter("./datos.csv", true);
+        //Creator of the .csv file
+        FileWriter fw = new FileWriter("./datos.csv");
 
         for (int i = ini; i <= end; i++){
             try {
