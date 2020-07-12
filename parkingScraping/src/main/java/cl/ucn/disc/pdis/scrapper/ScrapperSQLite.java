@@ -23,9 +23,8 @@
  */
 package cl.ucn.disc.pdis.scrapper;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.Reader;
+import java.util.ArrayList;
+import java.io.*;
 import java.nio.file.Files;
 import java.sql.SQLException;
 import java.nio.file.Paths;
@@ -45,13 +44,14 @@ public class ScrapperSQLite {
 
     public static void main (String[] args) throws IOException {
 
+        //  Create data base
         String databaseUrl = "jdbc:sqlite:personasucn.db";
 
         //  CSV file path
-        File csvFile = new File("./src/main/resources/datos.csv");
+        FileReader csvFile = new FileReader("./datos.csv");
 
         //  Check if CSV file exists
-        if (!csvFile.isFile()){
+        if (csvFile == null){
             log.debug("Error locating CSV file");
         } else {
             try (ConnectionSource connectionSource = new JdbcConnectionSource(databaseUrl)){
@@ -62,26 +62,66 @@ public class ScrapperSQLite {
                 //  Create Dao
                 Dao<Person, Long> personDao = DaoManager.createDao(connectionSource, Person.class);
 
-                //  Assign CSV file to reader object and extract the records.
-                Reader reader = Files.newBufferedReader(Paths.get(csvFile.getPath()));
-                Iterable<CSVRecord> records = CSVFormat.RFC4180.parse(reader);
+                //  Buffer that read CSV file
+                BufferedReader br = new BufferedReader(csvFile);
 
-                //  Insert person information into the database.
-                for (CSVRecord record : records){
+                //  String helper for read CSV line by line
+                String line;
+                while ((line = br.readLine()) != null){
 
-                    //We collect the .csv data
-                    int id = Integer.parseInt(record.get(0));
-                    String name = record.get(1);
-                    String wposition = record.get(2);
-                    String unit = record.get(3);
-                    String email = record.get(4);
-                    String phone = record.get(5);
-                    String office = record.get(6);
-                    String address = record.get(7);
+                    //  Vector string for every data in a line
+                    String[] data = new String[8];
+                    int dataNumber = 0;
 
-                    personDao.createIfNotExists(new Person(id, name, wposition, unit, email,
-                            phone, office, address));
+                    //  String builder that record char by char
+                    StringBuilder charCollector = new StringBuilder();
+
+                    //  Identifying every char in line
+                    for (int i = 0; i < line.length(); i++){
+
+                        //  If it's the last data, it read until the last char and save it
+                        if (dataNumber == 7){
+                            charCollector.append(line.charAt(i));
+                            if (i == line.length() - 1){
+                                data[dataNumber] = charCollector.toString();
+                            }
+                        }else{
+
+                            //  If a comma exists in the current char it saves the previous data.
+                            //  and also it checks if it is not de last char of the line to prevent
+                            //  possible errors
+                            if (String.valueOf(line.charAt(i)).equals(",") &&
+                                    i != line.length() - 1){
+
+                                //  It checks if the next char is not a whitespace,
+                                //  to ensure that is an end of the current data
+                                if (!String.valueOf(line.charAt(i + 1)).isBlank()){
+
+                                    //  It checks if a data is empty to prevent record a whitespace
+                                    if (charCollector.length() != 0){
+                                        data[dataNumber] = charCollector.toString();
+
+                                        //  if a data is complete, then it clears the string builder
+                                        charCollector.delete(0, charCollector.length());
+                                    }else{
+                                        charCollector.delete(0, charCollector.length());
+                                    }
+                                    dataNumber = dataNumber + 1;
+                                }
+                            }else{
+                                charCollector.append(line.charAt(i));
+                            }
+                        }
+                    }
+                    log.debug("Person: "+Integer.parseInt(data[0])+", "+data[1]+", "+data[2]+", "+data[3]
+                            +", "+data[4]+", "+data[5]+", "+data[6]+", "+data[7]);
+
+                    //  Add new person to database
+                    personDao.createIfNotExists(new Person(Integer.parseInt(data[0]), data[1], data[2], data[3],
+                            data[4], data[5], data[6], data[7]));
+                    log.debug("Person added !");
                 }
+                log.debug("Persons Table created !");
             }catch (SQLException e){
                 log.error("Error: ", e);
             }

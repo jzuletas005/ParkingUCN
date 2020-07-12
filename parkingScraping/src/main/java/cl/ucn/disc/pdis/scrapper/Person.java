@@ -30,8 +30,8 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "Persons")
 public final class Person {
 
-    @DatabaseField(canBeNull = false)
-    private int id;
+    @DatabaseField(id = true, canBeNull = false)
+    private int code;
 
     @DatabaseField(canBeNull = false)
     private String name;
@@ -54,9 +54,6 @@ public final class Person {
     @DatabaseField(canBeNull = true)
     private String address;
 
-    //@DatabaseField(canBeNull = true)
-    //private String rut;
-
     /**
      * ORMLite Constructor
      */
@@ -66,7 +63,7 @@ public final class Person {
     /**
      * Constructor
      *
-     * @param id
+     * @param code
      * @param name
      * @param wposition
      * @param unit
@@ -75,9 +72,9 @@ public final class Person {
      * @param office
      * @param address
      */
-    public Person(int id, String name, String wposition, String unit, String email, String phone,
+    public Person(int code, String name, String wposition, String unit, String email, String phone,
                   String office, String address) {
-        this.id = id;
+        this.code = code;
         this.name = name;
         this.wposition = wposition;
         this.unit = unit;
@@ -87,8 +84,8 @@ public final class Person {
         this.address = address;
     }
 
-    public int getId() {
-        return id;
+    public int getCode() {
+        return code;
     }
 
     public String getName() {
@@ -119,7 +116,4 @@ public final class Person {
         return address;
     }
 
-    //public String getRut() {return rut;}
-
-   // public void setRut(String rut) {this.rut = rut;}
 }
