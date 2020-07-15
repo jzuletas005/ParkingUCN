@@ -24,13 +24,15 @@
 package cl.ucn.disc.pdis.scrapper;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.Reader;
-import java.nio.file.Files;
 import java.sql.SQLException;
-import java.nio.file.Paths;
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVRecord;
+
+
+import com.opencsv.CSVParser;
+import com.opencsv.CSVParserBuilder;
+import com.opencsv.CSVReaderBuilder;
+import com.opencsv.exceptions.CsvValidationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.j256.ormlite.dao.Dao;
@@ -38,8 +40,10 @@ import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
+import com.opencsv.CSVReader;
 
-import javax.swing.text.html.parser.Parser;
+
+
 
 public class ScrapperSQLite {
 
@@ -57,11 +61,21 @@ public class ScrapperSQLite {
 
         String databaseUrl = "jdbc:sqlite:personasucn.db";
 
+        // Create an object of file reader class with CSV file as a parameter.
+        FileReader filereader = new FileReader("./datos.csv");
+
+        CSVParser parser = new CSVParserBuilder()
+                .withSeparator(',')
+                .withIgnoreQuotations(true)
+                .build();
+
         //  CSV file path
-        File csvFile = new File("./datosconrut.csv");
+        CSVReader reader = new CSVReaderBuilder(filereader)
+                .withCSVParser(parser)
+                .build();
 
         //  Check if CSV file exists
-        if (!csvFile.isFile()){
+        if (!reader.verifyReader()){
             log.debug("Error locating CSV file");
         } else {
             try (ConnectionSource connectionSource = new JdbcConnectionSource(databaseUrl)){
@@ -72,33 +86,44 @@ public class ScrapperSQLite {
                 //  Create Dao
                 Dao<Person, Long> personDao = DaoManager.createDao(connectionSource, Person.class);
 
-                //  Assign CSV file to reader object and extract the records.
-                Reader reader = Files.newBufferedReader(Paths.get(csvFile.getPath()));
-                Iterable<CSVRecord> records = CSVFormat.RFC4180.parse(reader);
+                String[] nextRecord;
 
-                //  Insert person information into the database.
-                for (CSVRecord record : records){
+                //  Assign CSV file to reader object and extract the records.
+                while ((nextRecord = reader.readNext()) != null) {
+
+
+                    //  Insert person information into the database.
 
                     //We collect the .csv data
-                    String aux = record.get(0);
-                    String name = record.get(1);
-                    String rut = record.get(2);
-                    String wposition = record.get(3);
-                    String unit = record.get(4);
-                    String email = record.get(5);
-                    String phone = record.get(6);
-                    String office = record.get(7);
-                    String address = record.get(8);
-                    String country = record.get(9);
+                    String aux = nextRecord[0];
+                    String name = nextRecord[1];
+                    String rut = nextRecord[2];
+                    String sex = nextRecord[3];
+                    String wposition = nextRecord[4];
+                    String unit = nextRecord[5];
+                    String email = nextRecord[6];
+                    String phone = nextRecord[7];
+                    String office = nextRecord[8];
+                    String address = nextRecord[9];
+                    String country = "";
+
+                    if(nextRecord.length == 10){
+                        country="";
+                    }else {
+                        if(nextRecord.length == 11){
+                            country = nextRecord[10];
+                        }
+
+                    }
 
                     int id = Integer.parseInt(aux);
 
-
-                    personDao.create(new Person(id, name, rut, wposition, unit, email,
-                            phone, office, address, country));
+                    personDao.create(new Person(id, name, rut, sex, wposition, unit, email, phone, office, address, country));
+                    log.debug(aux);
                 }
                 log.debug("Done ....");
-            }catch (SQLException e){
+            }catch (SQLException | CsvValidationException e){
+
                 log.error("Error: ", e);
             }
         }
