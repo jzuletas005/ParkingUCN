@@ -28,7 +28,7 @@ namespace ServerParkingUCN
         private readonly Communicator _communicator;
 
         // The Contracts
-        //private readonly ContratosDisp_ _contratos;
+        //private readonly theContratosDisp_ _theContratos; // linea problema 
 
         /// <summary>
         /// The ParkingUCNService 
@@ -38,7 +38,7 @@ namespace ServerParkingUCN
         {
             _logger = logger;
             _logger.LogDebug("Building the Parking UCN Service ..");
-            //_contratos = contratos;
+            //_thecontratos = theContratos; // linea problema
             _communicator = buildCommunicator();
         }
 
@@ -54,7 +54,7 @@ namespace ServerParkingUCN
             var adapter = _communicator.createObjectAdapterWithEndpoints("ContratosAdapter", "tcp -z -t 15000 -p " + _port);
 
             // Register in the communicator
-            //adapter.add(_contratos, Util.stringToIdentity("Contratos"));
+            //adapter.add(_theContratos, Util.stringToIdentity("theContratos"));// linea problema 
 
             // Activation
             adapter.activate();
