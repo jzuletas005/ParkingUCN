@@ -1,9 +1,25 @@
 plugins {
     id 'java'
+    id 'com.github.ben-manes.versions' version '0.28.0' apply true
+    //Zero ICe
+    id 'com.zeroc.gradle.ice-builder.slice' version '1.4.7' apply true
+
 }
 
 group 'cl.ucn.disc.pdis'
 version '0.0.1'
+
+slice {
+
+    // The home of ice
+    iceHome = 'e:\\zeroice\\'
+
+    java {
+        files = [file("../domain.ice")]
+        //args = "--debug --impl"
+        logger.lifecycle("Slicing file: <${files}>")
+    }
+}
 
 repositories {
     mavenCentral()
@@ -12,7 +28,7 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     // Sqlite JDB
-    implementation 'org.xerial:sqlite-jdbc:3.32.3'
+    implementation 'org.xerial:sqlite-jdbc:3.32.3.1'
     // ORMlite
     implementation 'com.j256.ormlite:ormlite-core:5.1'
     implementation 'com.j256.ormlite:ormlite-jdbc:5.1'
@@ -25,4 +41,7 @@ dependencies {
     implementation 'org.jsoup:jsoup:1.13.1'
     // CSV
     implementation 'com.opencsv:opencsv:5.2'
+    // Zero ICE
+    implementation 'com.zeroc:ice:3.7.4'
+
 }
