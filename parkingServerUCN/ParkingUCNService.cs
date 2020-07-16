@@ -34,13 +34,13 @@ namespace ServerParkingUCN
         /// The ParkingUCNService 
         /// </summary>
         /// <param name="logger">Used to print debug message.</param>
-        //public ParkingUCNService(ILogger<ParkingUCNService> logger, ContratosDisp_ contratos)
-        //{
-            //_logger = logger;
-            //_logger.LogDebug("Building the Parking UCN Service ..");
+        public ParkingUCNService(ILogger<ParkingUCNService> logger)
+        {
+            _logger = logger;
+            _logger.LogDebug("Building the Parking UCN Service ..");
             //_contratos = contratos;
-            //_communicator = buildCommunicator();
-        //}
+            _communicator = buildCommunicator();
+        }
 
         /// <summary>
         /// Triggered when the application host is ready to start the service.
