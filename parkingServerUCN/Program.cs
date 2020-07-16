@@ -4,6 +4,7 @@ using ServerZeroIce.model;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Dao;
 
 namespace ServerParkingUCN
 {
@@ -37,12 +38,11 @@ namespace ServerParkingUCN
             .ConfigureServices((hostContext, services) => 
             {
                 // The ParkingContext
-                //services.AddDbContext<ParkingUCNContext>(); 
+                services.AddDbContext<ParkingUCNContext>(); 
                 //Singleton
-                //services.AddSingleton<ContratosDisp_, ContratosImpl>();
-                // The ServerParkingUcnService
-                //services.AddHostedService<ParkingUCNService>();
-                
+                services.AddSingleton<TheContratosImpl>();
+                //The ParkingUCNService
+                services.AddHostedService<ParkingUCNService>();
                 // The Logger
                 services.AddLogging();
                 // The wait for finish
