@@ -23,7 +23,7 @@
  */
 
 // https://doc.zeroc.com/ice/3.7/language-mappings/java-mapping/client-side-slice-to-java-mapping/customizing-the-java-mapping
-["java:package:cl.ucn.disc.pdis.scrapper.zeroice"]
+["java:package:cl.ucn.disc.pdis.scrapper.zeroice", "cs:namespace:ServerZeroIce"]
 module model {
 
     /**
@@ -40,12 +40,7 @@ module model {
             /**
             * Nombre;
             */
-            string nombre;	
-
-	   /    **
-            * Apellido;
-            */
-            string apellido;
+            string nombre;
 
             /**
             *Rut: 18124996K
@@ -55,22 +50,17 @@ module model {
             /**
             * wPosition;
             */
-            string wposition;
+            string wposition; // corresponde al cargo del trabajor
 
             /**
             * Unidad;
             */
-            string unit;
+            string unit; //En qué unidad trabaja.
 
             /**
             * Direccion
             */
             string direccion;
-
- 	        /**
-            * Tipo
-            */
-            string tipo;
 
             /**
             * Telefono
@@ -81,6 +71,11 @@ module model {
             *Correo Electronico
             */
             string email;
+
+             /**
+            *País
+            */
+            string country;
 
         }
 
@@ -123,18 +118,20 @@ module model {
                   /**
                   * Año
                   */
-                  int año;
+                  int anio;
 
                    /**
                    *Observación
                    */
-                   string observación;
+                   string observacion;
 
                    /**
                    * Responsable (asociado con la entidad persona)
                    */
                     Persona responsable;
                 }
+
+
 
     /**
      * The base system.
