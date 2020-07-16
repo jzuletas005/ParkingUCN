@@ -40,63 +40,60 @@ namespace ServerParkingUCN
         }
 
         // Adds a Persona to Database
-        //public override Persona crear(Persona persona, Current current = null)
-        //{
-            /*TODO:
+        /*
+        public override Persona registrarPersona(Persona persona, Current current = null)
+        {
+            
             using (var scope = _serviceScopeFactory.CreateScope())
             {
-                ParkingUCNContext pc = scope.ServiceProvider.GetService<ParkingContext>();
-                pc.Personas.Add(persona);
+                ParkingUCNContext pc = scope.ServiceProvider.GetService<ParkingUCNContext>();
+                pc.Persona.Add(persona);
                 pc.SaveChanges();
                 return persona;
             }
-            */
-            //throw new System.NotImplementedException();
-        //}
+            
+            throw new System.NotImplementedException();
+        }
 
         // Adds a Vehiculo to Database
-        //public override Vehiculo crearVehiculo(Vehiculo vehiculo, Current current = null)
-        //{
-            /*TODO:
+       public override Vehiculo registrarVehiculo(Vehiculo vehiculo, Current current = null)
+        {
+           
             using (var scope = _serviceScopeFactory.CreateScope())
             {
-                ParkingUCNContext pc = scope.ServiceProvider.GetService<ParkingContext>();
+                ParkingUCNContext pc = scope.ServiceProvider.GetService<ParkingUCNContext>();
                 pc.Vehiculos.Add(vehiculo);
                 pc.SaveChanges();
                 return vehiculo;
             }
-            */
-            //throw new System.NotImplementedException();
-        //}
+            throw new System.NotImplementedException();
+        }
 
         // Given a patente, returns a vehiculo from Database
-        //public override Vehiculo obtenerVehiculo(string patente, Current current)
-        //{
-            /*TODO:
+        public override Vehiculo obtenerVehiculo(string patente, Current current)
+        {
             using (var scope = _serviceScopeFactory.CreateScope())
             {
-                ParkingUCNContext pc = scope.ServiceProvider.GetService<ParkingContext>();
+                ParkingUCNContext pc = scope.ServiceProvider.GetService<ParkingUCNContext>();
                 Vehiculo vehiculo = pc.Vehiculos.Find(patente);
                 pc.SaveChanges();
                 return vehiculo;
             }
-            */
-            //throw new System.NotImplementedException();
-        //}
+            throw new System.NotImplementedException();
+        }
 
         // Given a rut, returns a persona from Database
-        //public override Persona obtenerPersona(string rut, Current current)
-        //{
-            /*TODO:
+        public override Persona obtenerPersona(string rut, Current current)
+        { 
             using (var scope = _serviceScopeFactory.CreateScope())
             {
-                ParkingContext pc = scope.ServiceProvider.GetService<ParkingContext>();
+                ParkingUCNContext pc = scope.ServiceProvider.GetService<ParkingUCNContext>();
                 Persona persona = pc.Personas.Find(rut);
                 pc.SaveChanges();
                 return persona;
             }
-            */
-            //throw new System.NotImplementedException();
-        //}
+            throw new System.NotImplementedException();
+            
+        }*/
     }
 }
