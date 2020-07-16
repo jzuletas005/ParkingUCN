@@ -26,16 +26,24 @@
 ["java:package:cl.ucn.disc.pdis.scrapper.zeroice", "cs:namespace:ServerZeroIce"]
 module model {
 
+     /**
+    *The Sexo
+    */
+        enum Sexo {
+        MASCULINO,
+        FEMENINO
+        }
+
     /**
     * Clase persona
     */
-
+        ["cs:property"]
         class Persona{
 
             /**
             * PK
             */
-            int id;
+            int uid;
 
             /**
             * Nombre;
@@ -44,7 +52,7 @@ module model {
 
             /**
             *Rut: 18124996K
-            */
+            */  
             string rut;
 
             /**
@@ -63,6 +71,11 @@ module model {
             string direccion;
 
             /**
+            *Sexo
+            */
+            Sexo sexo; 
+
+            /**
             * Telefono
             */
             long telefono;
@@ -77,27 +90,24 @@ module model {
             */
             string country;
 
-        }
-
             /**
-            *The Sexo
+            * tipo;
             */
+            string tipo; //Tipo de funcionario. 
 
-            enum Sexo {
-                 MASCULINO,
-                 FEMENINO
-            }
+        }
 
 
      /**
      *Clase vehiculo
      */
+        ["cs:property"]
         class Vehiculo {
 
                 /**
                 *PrimaryKey
                 */
-                int id;
+                int uid;
 
                 /**
                 * Patente;
@@ -130,20 +140,61 @@ module model {
                    */
                     Persona responsable;
                 }
+        /**
+         * The Contratos.
+         */
+        interface theContratos{
 
+         /**
+         * register a Persona with a persona instance.
+         * 
+         * @param persona to create
+         * @return Persona created
+         */
+        Persona registrarPersona(Persona persona);
 
+		/**
+         * Register a Vehiculo with a vehiculo instance.
+         *
+         * @param vehiculo to create
+         * @return Vehiculo created
+         */
+        Vehiculo registrarVehiculo(Vehiculo vehiculo);
+      
+        /**
+         * Search a Persona with a rut.
+         *
+         * @param rut de la persona a buscar.
+         * @return Persona buscado.
+         */
+        Persona obtenerPersona(string rut);
 
-    /**
-     * The base system.
-     */
-     interface TheSystem {
+		/**
+         * Search a Vehiculo with a patente.
+		 *
+         * @param patente del vehiculo a buscar.
+         * @return Vehiculo buscado.
+         */
+        Vehiculo obtenerVehiculo(string patente);
 
         /**
-         * @return the diference in time between client and server.
-         */
-        long getDelay(long clientTime);
+        * Erase a persona with a rut
+        *
+        * @param rut del vehiculo a buscar.
+        * @return persona buscada a eliminar.
+        */
+        Persona eliminarPersona(string rut);
 
-     }
+        /**
+         *Search a Vehiculo with a patente.
+         *
+         * @param patente del vehiculo a buscar.
+        * @return Vehiculo eliminar.
+        */
+        Vehiculo eliminarVehiculo(string patente);
 
+    }
 }
+
+
 
