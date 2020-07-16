@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <RestoreSuccess Condition=" '$(RestoreSuccess)' == '' ">True</RestoreSuccess>
+    <RestoreTool Condition=" '$(RestoreTool)' == '' ">NuGet</RestoreTool>
+    <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">$(MSBuildThisFileDirectory)project.assets.json</ProjectAssetsFile>
+    <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">/Users/Beatriz/.nuget/packages/</NuGetPackageRoot>
+    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">/Users/Beatriz/.nuget/packages/;/usr/local/share/dotnet/sdk/NuGetFallbackFolder</NuGetPackageFolders>
+    <NuGetProjectStyle Condition=" '$(NuGetProjectStyle)' == '' ">PackageReference</NuGetProjectStyle>
+    <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">5.6.0</NuGetToolVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+  </PropertyGroup>
+  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)zeroc.icebuilder.msbuild/5.0.4/build/zeroc.icebuilder.msbuild.props" Condition="Exists('$(NuGetPackageRoot)zeroc.icebuilder.msbuild/5.0.4/build/zeroc.icebuilder.msbuild.props')" />
+    <Import Project="$(NuGetPackageRoot)zeroc.ice.net/3.7.4/build/zeroc.ice.net.props" Condition="Exists('$(NuGetPackageRoot)zeroc.ice.net/3.7.4/build/zeroc.ice.net.props')" />
+  </ImportGroup>
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Pkgzeroc_icebuilder_msbuild Condition=" '$(Pkgzeroc_icebuilder_msbuild)' == '' ">/Users/Beatriz/.nuget/packages/zeroc.icebuilder.msbuild/5.0.4</Pkgzeroc_icebuilder_msbuild>
+    <Pkgzeroc_ice_net Condition=" '$(Pkgzeroc_ice_net)' == '' ">/Users/Beatriz/.nuget/packages/zeroc.ice.net/3.7.4</Pkgzeroc_ice_net>
+  </PropertyGroup>
+</Project>

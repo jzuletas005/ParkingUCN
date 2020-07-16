@@ -40,8 +40,6 @@ public class ScrapperData {
     /**
      * Logger
      *
-     * @param args
-     * @throws IOException
      */
     private static final Logger log = LoggerFactory.getLogger(ScrapperData.class);
 
