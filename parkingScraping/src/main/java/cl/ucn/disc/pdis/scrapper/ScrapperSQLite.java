@@ -23,16 +23,10 @@
  */
 package cl.ucn.disc.pdis.scrapper;
 
-import java.io.File;
+import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.SQLException;
-
-
-import com.opencsv.CSVParser;
-import com.opencsv.CSVParserBuilder;
-import com.opencsv.CSVReaderBuilder;
-import com.opencsv.exceptions.CsvValidationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.j256.ormlite.dao.Dao;
@@ -40,7 +34,7 @@ import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
-import com.opencsv.CSVReader;
+
 
 public class ScrapperSQLite {
 
@@ -59,20 +53,13 @@ public class ScrapperSQLite {
         String databaseUrl = "jdbc:sqlite:personasucn.db";
 
         // Create an object of file reader class with CSV file as a parameter.
-        FileReader filereader = new FileReader("./datos.csv");
+        FileReader csvFile = new FileReader("./datos.csv");
 
-        CSVParser parser = new CSVParserBuilder()
-                .withSeparator(',')
-                .withIgnoreQuotations(true)
-                .build();
-
-        //  CSV file path
-        CSVReader reader = new CSVReaderBuilder(filereader)
-                .withCSVParser(parser)
-                .build();
+        //  Buffer that read CSV file
+        BufferedReader br = new BufferedReader(csvFile);
 
         //  Check if CSV file exists
-        if (!reader.verifyReader()){
+        if (csvFile == null){
             log.debug("Error locating CSV file");
         } else {
             try (ConnectionSource connectionSource = new JdbcConnectionSource(databaseUrl)){
@@ -83,44 +70,81 @@ public class ScrapperSQLite {
                 //  Create Dao
                 Dao<Person, Long> personDao = DaoManager.createDao(connectionSource, Person.class);
 
-                String[] nextRecord;
+                //  Buffer that read CSV file
+                BufferedReader bufferedReader = new BufferedReader(csvFile);
 
-                //  Assign CSV file to reader object and extract the records.
-                while ((nextRecord = reader.readNext()) != null) {
+                //  String helper for read CSV line by line
+                String line;
+                while ((line = bufferedReader.readLine()) != null){
 
+                    //  Vector string for every data in a line
+                    String[] data = new String[11];
+                    int dataNumber = 0;
 
-                    //  Insert person information into the database.
+                    //  String builder that record char by char
+                    StringBuilder charCollector = new StringBuilder();
 
-                    //We collect the .csv data
-                    String aux = nextRecord[0];
-                    String name = nextRecord[1];
-                    String rut = nextRecord[2];
-                    String sex = nextRecord[3];
-                    String wposition = nextRecord[4];
-                    String unit = nextRecord[5];
-                    String email = nextRecord[6];
-                    String phone = nextRecord[7];
-                    String office = nextRecord[8];
-                    String address = nextRecord[9];
-                    String country = "";
+                    //  Identifying every char in line
+                    for (int i = 0; i < line.length(); i++){
 
-                    if(nextRecord.length == 10){
-                        country="";
-                    }else {
-                        if(nextRecord.length == 11){
-                            country = nextRecord[10];
+                        //  If it's the last data, it read until the last char and save it
+                        if (dataNumber == 10){
+                            charCollector.append(line.charAt(i));
+                            if (i == line.length() - 1){
+                                charCollector.delete(0, 1);
+                                data[dataNumber] = charCollector.toString();
+                            }
+                        }else{
+
+                            //  If a comma exists in the current char it saves the previous data.
+                            //  also it checks if it is not the last char of the line to prevent
+                            //  possible errors
+                            if (String.valueOf(line.charAt(i)).equals(",") && i != line.length() - 1) {
+
+                                //  It checks if the next char is not a whitespace,
+                                //  to ensure that is an end of the current data
+                                if (!String.valueOf(line.charAt(i + 1)).isBlank()) {
+
+                                    //  It checks if a data is empty to prevent record a whitespace
+                                    if (charCollector.length() != 0) {
+                                        data[dataNumber] = charCollector.toString();
+
+                                        //  if a data is complete, then it clears the string builder
+                                        charCollector.delete(0, charCollector.length());
+                                    }
+                                    dataNumber = dataNumber + 1;
+                                }else{
+                                    if(String.valueOf(line.charAt(i + 1)).isBlank() && dataNumber == 9){
+
+                                        //  It checks if a data is empty to prevent record a whitespace
+                                        if (charCollector.length() != 0) {
+                                            data[dataNumber] = charCollector.toString();
+
+                                            //  if a data is complete, then it clears the string builder
+                                            charCollector.delete(0, charCollector.length());
+                                        }
+                                        dataNumber = dataNumber + 1;
+                                    }else {
+                                        charCollector.append(line.charAt(i));
+                                    }
+                                }
+                            }else{
+                                charCollector.append(line.charAt(i));
+                            }
                         }
-
                     }
+                    log.debug("Person: "+Integer.parseInt(data[0])+", "+data[1]+", "+data[2]+", "+data[3]
+                            +", "+data[4]+", "+data[5]+", "+data[6]+", "+data[7]+", "+data[8]+", "+data[9]
+                            +", "+data[10]);
 
-                    int id = Integer.parseInt(aux);
-
-                    personDao.create(new Person(id, name, rut, sex, wposition, unit, email, phone, office, address, country));
-                    log.debug(aux);
+                    //  Add new person to database
+                    personDao.createIfNotExists(new Person(Integer.parseInt(data[0]), data[1], data[2], data[3],
+                            data[4], data[5], data[6], data[7], data[8], data[9], data[10]));
+                    log.debug("Person added !");
                 }
-                log.debug("Done ....");
-            }catch (SQLException | CsvValidationException e){
+                log.debug("Persons Table created !");
 
+            }catch (SQLException e){
                 log.error("Error: ", e);
             }
         }

@@ -30,7 +30,7 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "Persons")
 public final class Person {
 
-    @DatabaseField(canBeNull = false)
+    @DatabaseField(id = true, canBeNull = false)
     private int id;
 
     @DatabaseField(canBeNull = false)
