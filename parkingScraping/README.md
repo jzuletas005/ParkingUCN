@@ -16,6 +16,10 @@
 - ZeroIce: com.zeroc:ice
 
 ## Class Domain
+
+![Screenshot](diagram.png)
+
+
 @startuml
 class Person{
 
