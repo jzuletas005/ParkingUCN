@@ -11,7 +11,7 @@ namespace Dao
         /// The Connection to the database to Persona.
         /// </summary>
         /// <value> </value>
-        public DbSet<PersonasUCN> Personas { get; set; }
+        //public DbSet<PersonasUCN> Personas { get; set; }
 
         /// <summary>
         /// The Connection to the database to Vehiculo.
