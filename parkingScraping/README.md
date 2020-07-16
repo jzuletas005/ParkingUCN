@@ -70,7 +70,7 @@ class ScrapperSQLite{
 note "datos.csv" as N1
 
 ScrapperData ..N1:<create>
-ScrapperSQLite -->N1:<use>
-ScrapperSQLite -->Person:<use>
+ScrapperSQLite o-->N1:<use>
+ScrapperSQLite o-->Person:<use>
 
 @enduml
