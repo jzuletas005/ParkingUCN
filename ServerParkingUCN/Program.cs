@@ -37,11 +37,11 @@ namespace ServerParkingUCN
             .ConfigureServices((hostContext, services) => 
             {
                 // The ParkingContext
-                services.AddDbContext<ParkingUCNContext>(); 
+                //services.AddDbContext<ParkingUCNContext>(); 
                 //Singleton
                 //services.AddSingleton<ContratosDisp_, ContratosImpl>();
                 // The ServerParkingUcnService
-                services.AddHostedService<ParkingUCNService>();
+                //services.AddHostedService<ParkingUCNService>();
                 
                 // The Logger
                 services.AddLogging();
