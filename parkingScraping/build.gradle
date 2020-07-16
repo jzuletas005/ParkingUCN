@@ -2,13 +2,14 @@ plugins {
     id 'java'
     id 'com.github.ben-manes.versions' version '0.28.0' apply true
     //Zero ICe
-    id 'com.zeroc.gradle.ice-builder.slice' version '1.4.7' apply true
+    //id 'com.zeroc.gradle.ice-builder.slice' version '1.4.7' apply true
 
 }
 
 group 'cl.ucn.disc.pdis'
 version '0.0.1'
 
+/*
 slice {
 
     // The home of ice
@@ -20,13 +21,14 @@ slice {
         logger.lifecycle("Slicing file: <${files}>")
     }
 }
+*/
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile group: 'junit', name: 'junit', version: '4.13'
     // Sqlite JDB
     implementation 'org.xerial:sqlite-jdbc:3.32.3.1'
     // ORMlite
