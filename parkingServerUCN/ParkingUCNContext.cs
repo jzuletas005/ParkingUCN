@@ -39,59 +39,57 @@ namespace Dao
         /// Create the ER from Entity.
         /// </summary>
         /// <param name="modelBuilder">to use</param>
+       
+        /*
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Make the model to Persona in Db. 
-            //modelBuilder.Entity<Persona>(p =>
-            //{
+            modelBuilder.Entity<Persona>(p =>
+            {
                 // Primary Key
-                //p.HasKey(p => p.uid);
+                p.HasKey(p => p.uid);
                 // The Name
-                //p.Property(p => p.nombre);
+                p.Property(p => p.nombre);
                 // Required rut
-                //p.Property(p => p.rut);
+                p.Property(p => p.rut);
                 // The Sexo
-                //p.Property(p => p.sexo);
+                p.Property(p => p.sexo);
                 // The Cargo
-                //p.Property(p => wPosition.w);
+                //p.Property(p => wposition); <-------- Error problema no sé 
                 // The Unidad
-                //p.Property(p => p.unit);
+                p.Property(p => p.unit);
                 // The Email 
-                //p.Property(p => p.email);
+                p.Property(p => p.email);
                 // The Telefono
-                //p.Property(p => p.telefono);
+                p.Property(p => p.telefono);
                 // The Workd Address
-                //p.Property(p => p.direccion);
+                p.Property(p => p.direccion);
                 // The Country
-                //p.Property(p => p.country);
-           // });
+                p.Property(p => p.country);
+           });
 
              // Make the model to Vehiculo in Db. 
-            //modelBuilder.Entity<Vehiculo>(v =>
-            //{
+            modelBuilder.Entity<Vehiculo>(v =>
+            {
                 // Primary Key
-               // v.HasKey(v => v.uid);
+                v.HasKey(v => v.uid);
                 // The Patente
-                //v.Property(v => v.Patente);
+                v.Property(v => v.patente);
                 // The Marca
-                //v.Property(v => v.marca);
+                v.Property(v => v.marca);
                 // The Modelo
-                //v.Property(v => v.modelo);
+                v.Property(v => v.modelo);
                 // The anio
-                //v.Property(v => v.anio);
+                v.Property(v => v.anio);
                 // The Observation
-                //v.Property(v => v.observacion);
-                // The legal owner
-                //v.Property(v => v.responsable);
-           // });
+                v.Property(v => v.observacion);
+                // The Responsable
+                v.Property(v => v.responsable);
+            });
 
-        //}
+        }*/
 
     }
 
 
 }
-
-    
-    
-    }
