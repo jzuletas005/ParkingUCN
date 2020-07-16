@@ -9,13 +9,13 @@ using Microsoft.Extensions.Logging;
 namespace ServerParkingUCN
 {
 
-    internal class ServerParkingUcnService : IHostedService, IDisposable
+    internal class ParkingUCNService : IHostedService, IDisposable
     {
 
         /// <summary>
         /// The Logger.
         /// </summary>
-        private readonly ILogger<ServerParkingUcnService> _logger;
+        private readonly ILogger<ParkingUCNService> _logger;
 
         /// <summary>
         /// The Port.
@@ -34,10 +34,10 @@ namespace ServerParkingUCN
         /// The ParkingUCNService 
         /// </summary>
         /// <param name="logger">Used to print debug message.</param>
-        //public ServerParkingUcnService(ILogger<ServerParkingUcnService> logger, ContratosDisp_ contratos)
+        //public ParkingUCNService(ILogger<ParkingUCNService> logger, ContratosDisp_ contratos)
         //{
             //_logger = logger;
-            //_logger.LogDebug("Building the Parking Service ..");
+            //_logger.LogDebug("Building the Parking UCN Service ..");
             //_contratos = contratos;
             //_communicator = buildCommunicator();
         //}
