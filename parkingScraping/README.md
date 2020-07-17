@@ -17,7 +17,7 @@
 
 ## UML
 
-![Screenshot](diagram.png)
+![Screenshot](../img/scrapper.png)
 
 
 @startuml

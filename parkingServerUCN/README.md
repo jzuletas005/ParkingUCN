@@ -21,7 +21,7 @@
 
 ## UML
 
-![Screenshot](diagram.png)
+![Screenshot](../img/server.png)
 
 
 @startuml
