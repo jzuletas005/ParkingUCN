@@ -23,6 +23,12 @@ namespace ServerParkingUCN.Dao
         public DbSet<Vehiculo> Vehiculos { get; set; }
 
         /// <summary>
+        /// The Connection to the database to Vehiculo.
+        /// </summary>
+        /// <value> </value>
+        public DbSet<Circulacion> Circulacion { get; set; } // <---- Linea para referenciar la base de datos Circulacion
+
+        /// <summary>
         /// Configuration.
         /// </summary>
         /// <param name="optionsBuilder"> </param>
@@ -88,6 +94,19 @@ namespace ServerParkingUCN.Dao
                 // The Responsable
                 v.Property(v => v.responsable);
             });
+
+            modelBuilder.Entity<Circulacion>(c =>
+            {
+             // Primary Key
+            c.HasKey(c => c.uid);
+             // The Patente
+            c.Property(c => c.patente);
+            // The fecha de ingreso
+            c.Property(c => c.fechaIngreso);
+            // The fecha de salida
+            c.Property(c => c.fechaSalida);
+
+});
 
         }
 
