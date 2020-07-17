@@ -31,16 +31,16 @@ import com.j256.ormlite.table.DatabaseTable;
 public final class Person {
 
     @DatabaseField(id = true, canBeNull = false)
-    private int id;
+    private int uid;
 
     @DatabaseField(canBeNull = false)
-    private String name;
+    private String nombre;
 
     @DatabaseField(canBeNull = true)
     private String rut;
 
     @DatabaseField(canBeNull = true)
-    private String sex;
+    private String sexo;
 
     @DatabaseField(canBeNull = true)
     private String wposition;
@@ -52,13 +52,13 @@ public final class Person {
     private String email;
 
     @DatabaseField(canBeNull = true)
-    private String phone;
+    private String telefono;
 
     @DatabaseField(canBeNull = true)
-    private String office;
+    private String oficina;
 
     @DatabaseField(canBeNull = true)
-    private String address;
+    private String direccion;
 
     @DatabaseField(canBeNull = true)
     private String country;
@@ -73,44 +73,44 @@ public final class Person {
     /**
      * Constructor
      *
-     * @param id
-     * @param name
+     * @param uid
+     * @param nombre
      * @param rut
-     * @param sex
+     * @param sexo
      * @param wposition
      * @param unit
      * @param email
-     * @param phone
-     * @param office
-     * @param address
+     * @param telefono
+     * @param oficina
+     * @param direccion
      * @param country
      */
-    public Person(int id, String name,String rut, String sex, String wposition, String unit, String email, String phone,
-                  String office, String address, String country) {
-        this.id = id;
-        this.name = name;
+    public Person(int uid, String nombre,String rut, String sexo, String wposition, String unit, String email, String telefono,
+                  String oficina, String direccion, String country) {
+        this.uid = uid;
+        this.nombre = nombre;
         this.rut = rut;
-        this.sex = sex;
+        this.sexo = sexo;
         this.wposition = wposition;
         this.unit = unit;
         this.email = email;
-        this.phone = phone;
-        this.office = office;
-        this.address = address;
+        this.telefono = telefono;
+        this.oficina = oficina;
+        this.direccion = direccion;
         this.country = country;
     }
 
-    public int getId() {
-        return id;
+    public int getUid() {
+        return uid;
     }
 
     public String getName() {
-        return name;
+        return nombre;
     }
 
     public String getRut() { return rut; }
 
-    public String getSex() { return sex; }
+    public String getSex() { return sexo; }
 
     public String getWposition() {
         return wposition;
@@ -125,15 +125,15 @@ public final class Person {
     }
 
     public String getPhone() {
-        return phone;
+        return telefono;
     }
 
     public String getOffice() {
-        return office;
+        return oficina;
     }
 
     public String getAddress() {
-        return address;
+        return direccion;
     }
 
     public String getCountry() {
