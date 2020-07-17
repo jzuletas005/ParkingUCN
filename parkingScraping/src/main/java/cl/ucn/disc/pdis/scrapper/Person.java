@@ -27,7 +27,7 @@ package cl.ucn.disc.pdis.scrapper;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
-@DatabaseTable(tableName = "Persons")
+@DatabaseTable(tableName = "Personas")
 public final class Person {
 
     @DatabaseField(id = true, canBeNull = false)
