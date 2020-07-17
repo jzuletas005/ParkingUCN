@@ -94,9 +94,9 @@ class Program{
 }
 Program-->TheSystemImpl: use
 Program-->ContratosImpl: use
-ContratosImpl-->Person:use
-ContratosImpl-->Vehiculo:use
-ContratosImpl-->Circulacion:use
+ContratosImpl--"0..*"Person:use
+ContratosImpl--"0..*"Vehiculo:use
+ContratosImpl--"0..*"Circulacion:use
 TheSystem..|>TheSystemImpl:implement
 Contratos..|>ContratosImpl:implement
 Sexo-->Person:use
