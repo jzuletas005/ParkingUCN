@@ -52,7 +52,7 @@ public class ScrapperSQLite {
 
 
         //  URL to DataBase
-        String databaseUrl = "jdbc:sqlite:../serverParkingUCN/parking.db";
+        String databaseUrl = "jdbc:sqlite:../parkingServerUCN/parking.db";
 
         // Create an object of file reader class with CSV file as a parameter.
         FileReader csvFile = new FileReader("./datos.csv");
@@ -105,7 +105,7 @@ public class ScrapperSQLite {
 
                                 //  It checks if the next char is not a whitespace,
                                 //  to ensure that is an end of the current data
-                                if (!String.valueOf(line.charAt(i + 1)).isBlank()) {
+                                if (!String.valueOf(line.charAt(i + 1)).isEmpty()) {
 
                                     //  It checks if a data is empty to prevent record a whitespace
                                     if (charCollector.length() != 0) {
@@ -116,7 +116,7 @@ public class ScrapperSQLite {
                                     }
                                     dataNumber = dataNumber + 1;
                                 }else{
-                                    if(String.valueOf(line.charAt(i + 1)).isBlank() && dataNumber == 9){
+                                    if(String.valueOf(line.charAt(i + 1)).isEmpty() && dataNumber == 9){
 
                                         //  It checks if a data is empty to prevent record a whitespace
                                         if (charCollector.length() != 0) {
