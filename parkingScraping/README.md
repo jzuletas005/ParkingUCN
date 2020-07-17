@@ -15,9 +15,9 @@
 - SQLite: org.xerial:sqlite
 - ZeroIce: com.zeroc:ice
 
-## Class Domain
+## UML
 
-![Screenshot](diagram.png)
+![Screenshot](../img/scrapper.png)
 
 
 @startuml

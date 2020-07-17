@@ -26,7 +26,7 @@ namespace ServerParkingUCN.Dao
         /// The Connection to the database to Vehiculo.
         /// </summary>
         /// <value> </value>
-        public DbSet<Circulacion> Circulacion { get; set; } // <---- Linea para referenciar la base de datos Circulacion
+        public DbSet<Circulacion> Circulacion { get; set; } // <---- Linea para referenciar la base de datos circulacion
 
         /// <summary>
         /// Configuration.
