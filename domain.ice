@@ -102,79 +102,74 @@ module model
      /**
      *Clase vehiculo
      */
-        ["cs:property"]
-        class Vehiculo {
+      ["cs:property"]
+      class Vehiculo {
 
-                /**
-                *PrimaryKey
-                */
-                int uid;
+        /**
+        *PrimaryKey
+        */
+        int uid;
 
-                /**
-                * Patente;
-                **/
-                string patente;
+        /**
+        * Patente;
+        */
+        string patente;
 
-                /**
-                 * Marca del vehiculo.
-                 */
-                 string marca;
+        /**
+        * Marca del vehiculo.
+        */
+        string marca;
 
-                 /**
-                 * Modelo del vehículo.
-                 *
-                 */
-                  string modelo;
+        /**
+        * Modelo del vehículo.
+        */
+        string modelo;
 
-                  /**
-                  * Año
-                  */
-                  int anio;
+         /**
+         * Año
+         */
+         int anio;
 
-                   /**
-                   *Observación
-                   */
-                   string observacion;
+         /**
+         *Observación
+         */
+         string observacion;
 
-                   /**
-                   * Responsable (asociado con la entidad persona)
-                   */
-                    string responsable;
+         /**
+         * Responsable (asociado con la entidad persona)
+         */
+         string responsable;
         }
 
      /**
-     * Clase circulacion 
+     * Clase circulacion
      */
      ["cs:property"]
-     class Circulacion { 
+     class Circulacion {
 
-     /**
-     *PrimaryKey
-     */
+         /**
+         *PrimaryKey
+         */
+         int uid;
 
-     int uid;
+         /**
+          *Fecha de Ingreso del vehiculo
+          *Format: ISO_ZONED_DATE_TIME
+          */
+           string fechaIngreso;
 
-     /**
-      *Fecha de Ingreso del vehiculo
-      *Format: ISO_ZONED_DATE_TIME
-      */
+         /**
+         * Fecha de salida del vehiculo
+         *Format: ISO_ZONED_DATE_TIME
+         */
+         string fechaSalida;
 
-       string fechaIngreso;
-
-     /**
-     * Fecha de salida del vehiculo
-     *Format: ISO_ZONED_DATE_TIME
-     */
-
-     string fechaSalida;
-
-     /**
-     *Patente 
-     *
-     */
-
-     string patente;
-    }
+         /**
+         *Patente
+         *
+         */
+         string patente;
+     }
 
         /**
          * The Contratos
