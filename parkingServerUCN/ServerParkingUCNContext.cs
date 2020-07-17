@@ -36,7 +36,7 @@ namespace ServerParkingUCN.Dao
 
         {
             // Using SQLite
-            optionsBuilder.UseSqlite("Data Source=parkingUCN.db", options =>
+            optionsBuilder.UseSqlite("Data Source=parking.db", options =>
             {
                 options.MigrationsAssembly(Assembly.GetExecutingAssembly().FullName);
             });
