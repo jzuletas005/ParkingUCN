@@ -140,9 +140,44 @@ module model
                    * Responsable (asociado con la entidad persona)
                    */
                     string responsable;
-                }
+        }
+
+     /**
+     * Clase circulacion 
+     */
+     ["cs:property"]
+     class Circulacion { 
+
+     /**
+     *PrimaryKey
+     */
+
+     int uid;
+
+     /**
+      *Fecha de Ingreso del vehiculo
+      *Format: ISO_ZONED_DATE_TIME
+      */
+
+       string fechaIngreso;
+
+     /**
+     * Fecha de salida del vehiculo
+     *Format: ISO_ZONED_DATE_TIME
+     */
+
+     string fechaSalida;
+
+     /**
+     *Patente 
+     *
+     */
+
+     string patente;
+    }
+
         /**
-         * The Contratos.
+         * The Contratos
          */
         interface Contratos{
 
