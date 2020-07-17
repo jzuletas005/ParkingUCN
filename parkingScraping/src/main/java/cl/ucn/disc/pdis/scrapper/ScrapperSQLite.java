@@ -52,7 +52,7 @@ public class ScrapperSQLite {
 
 
         //  URL to DataBase
-        String databaseUrl = "jdbc:sqlite:../parkingServerUCN/parking.db";
+        String databaseUrl = "jdbc:sqlite:../serverParkingUCN/parking.db";
 
         // Create an object of file reader class with CSV file as a parameter.
         FileReader csvFile = new FileReader("./datos.csv");
