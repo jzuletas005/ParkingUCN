@@ -11,7 +11,7 @@ java, zeroIce y android para su desarrollo.
 
 
 ##  Technologies
-  - Java 1.8.0_131
+  - Java 14.0.1
   - PHP 7.4.7
   - C# 8
   - .NET Core 3.1
