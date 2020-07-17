@@ -15,7 +15,7 @@
 - Microsoft.Extensions.Logging Version 3.1.4
 - Microsoft.Extensions.Logging.Console Version 3.1.4
 
-####ZeroIce
+#### ZeroIce
 - zeroc.ice.net Version 3.7.3.2
 - zeroc.icebuilder.msbuild Version 5.0.4
 
