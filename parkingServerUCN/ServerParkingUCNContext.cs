@@ -36,7 +36,7 @@ namespace ServerParkingUCN.Dao
 
         {
             // Using SQLite
-            optionsBuilder.UseSqlite("Data Source=parkingUCN.db", options =>
+            optionsBuilder.UseSqlite("Data Source=parking.db", options =>
             {
                 options.MigrationsAssembly(Assembly.GetExecutingAssembly().FullName);
             });
@@ -70,6 +70,8 @@ namespace ServerParkingUCN.Dao
                 p.Property(p => p.email);
                 // The Telefono
                 p.Property(p => p.telefono);
+                // The Oficina
+                p.Property(p => p.oficina);
                 // The Workd Address
                 p.Property(p => p.direccion);
                 // The Country

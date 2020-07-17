@@ -105,7 +105,12 @@ public class ScrapperSQLite {
 
                                 //  It checks if the next char is not a whitespace,
                                 //  to ensure that is an end of the current data
-                                if (!String.valueOf(line.charAt(i + 1)).isEmpty()) {
+                                if (!String.valueOf(line.charAt(i + 1)).isBlank()) {
+
+                                    //  avoid null sex
+                                    if (dataNumber == 3 && charCollector.length() == 0){
+                                        data[dataNumber] = "INDETERMINADO";
+                                    }
 
                                     //  It checks if a data is empty to prevent record a whitespace
                                     if (charCollector.length() != 0) {
@@ -116,7 +121,7 @@ public class ScrapperSQLite {
                                     }
                                     dataNumber = dataNumber + 1;
                                 }else{
-                                    if(String.valueOf(line.charAt(i + 1)).isEmpty() && dataNumber == 9){
+                                    if(String.valueOf(line.charAt(i + 1)).isBlank() && dataNumber == 9){
 
                                         //  It checks if a data is empty to prevent record a whitespace
                                         if (charCollector.length() != 0) {

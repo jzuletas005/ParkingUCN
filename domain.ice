@@ -32,7 +32,8 @@ module model
     */
         enum Sexo {
         MASCULINO,
-        FEMENINO
+        FEMENINO,
+	INDETERMINADO
         }
 
     /**
@@ -79,7 +80,12 @@ module model
             /**
             * Telefono
             */
-            long telefono;
+            string telefono;
+
+	    /**
+	    * Oficina
+	    */
+            string oficina;
 
             /**
             *Correo Electronico
@@ -89,12 +95,7 @@ module model
              /**
             *País
             */
-            string country;
-
-            /**
-            * tipo;
-            */
-            string tipo; //Tipo de funcionario. 
+            string country; 
 
         }
 
