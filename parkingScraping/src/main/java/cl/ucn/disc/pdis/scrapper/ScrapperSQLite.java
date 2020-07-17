@@ -50,7 +50,7 @@ public class ScrapperSQLite {
      */
     public static void main (String[] args) throws IOException {
 
-        String databaseUrl = "jdbc:sqlite:../parkingServerUCN/personasucn.db";
+        String databaseUrl = "jdbc:sqlite:../parkingServerUCN/parking.db";
 
         // Create an object of file reader class with CSV file as a parameter.
         FileReader csvFile = new FileReader("./datos.csv");
