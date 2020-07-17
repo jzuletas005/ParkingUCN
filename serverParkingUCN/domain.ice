@@ -24,7 +24,8 @@
 
 // https://doc.zeroc.com/ice/3.7/language-mappings/java-mapping/client-side-slice-to-java-mapping/customizing-the-java-mapping
 ["java:package:cl.ucn.disc.pdis.scrapper.zeroice", "cs:namespace:ServerParkingUCN.ZeroIce"]
-module model {
+module model 
+{
 
      /**
     *The Sexo

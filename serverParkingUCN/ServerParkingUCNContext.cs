@@ -20,7 +20,7 @@ namespace ServerParkingUCN.Dao
         /// </summary>
         /// <value> </value>
 
-        public DbSet<Vehiculo> Vehiculos { get; set; } // <---- Linea para referenciar la base de datos Vehiculo 
+        public DbSet<Vehiculo> Vehiculos { get; set; }
 
         /// <summary>
         /// Configuration.
