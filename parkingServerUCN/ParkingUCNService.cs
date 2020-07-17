@@ -28,7 +28,7 @@ namespace ServerParkingUCN
         private readonly Communicator _communicator;
 
         // The Contracts
-        //private readonly theContratosDisp_ _theContratos; // linea problema 
+        private readonly TheContratosDisp_ _theContratos; // linea problema 
 
         /// <summary>
         /// The ParkingUCNService 

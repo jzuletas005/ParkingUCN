@@ -23,9 +23,8 @@
  */
 
 // https://doc.zeroc.com/ice/3.7/language-mappings/java-mapping/client-side-slice-to-java-mapping/customizing-the-java-mapping
-["java:package:cl.ucn.disc.pdis.scrapper.zeroice", "cs:namespace:ServerZeroIce"]
-module model
-{
+["java:package:cl.ucn.disc.pdis.scrapper.zeroice", "cs:namespace:ServerParkingUCN.ZeroIce"]
+module model {
 
      /**
     *The Sexo
@@ -39,8 +38,7 @@ module model
     * Clase persona
     */
         ["cs:property"]
-        class Persona
-        {
+        class Persona{
 
             /**
             * PK
@@ -104,13 +102,12 @@ module model
      *Clase vehiculo
      */
         ["cs:property"]
-        class Vehiculo 
-        {
+        class Vehiculo {
 
-            /**
-            *PrimaryKey
-            */
-            int uid;
+                /**
+                *PrimaryKey
+                */
+                int uid;
 
                 /**
                 * Patente;
@@ -144,10 +141,9 @@ module model
                     string responsable;
                 }
         /**
-         * The Contratos
+         * The Contratos.
          */
-        interface TheContratos
-        {
+        interface Contratos{
 
          /**
          * register a Persona with a persona instance.
@@ -186,19 +182,30 @@ module model
         *
         * @param rut del vehiculo a buscar.
         * @return persona buscada a eliminar.
+        *
+        *Persona eliminarPersona(string rut);
         */
-        Persona eliminarPersona(string rut);
 
         /**
          *Search a Vehiculo with a patente.
          *
          * @param patente del vehiculo a buscar.
         * @return Vehiculo eliminar.
+        *
+        *Vehiculo eliminarVehiculo(string patente);
         */
-        Vehiculo eliminarVehiculo(string patente);
+
+    }
+
+     /**
+     * The base system.
+     */
+    interface TheSystem {
+
+        /**
+         * @return the diference in time between client and server.
+         */
+        long getDelay(long clientTime);
 
     }
 }
-
-
-

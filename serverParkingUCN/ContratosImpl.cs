@@ -1,18 +1,19 @@
+using ServerParkingUCN.Dao;
+using ServerParkingUCN.ZeroIce.model;
 using Ice;
-using ServerZeroIce;
-using ServerZeroIce.model;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Dao;
 
-namespace ServerParkingUCN
+namespace ServerParkingUCN.ZeroIce
 {
-    public  abstract class TheContratosImpl
+    ///<sumary>
+    /// The Implementation of the Contratos
+    ///</sumary>
+    public class ContratosImpl : ContratosDisp_
     {
 
-
- // The Logger
-        private readonly ILogger<TheContratosImpl> _logger;
+        // The Logger
+        private readonly ILogger<ContratosImpl> _logger;
 
         // The Provider of DbContext
         private readonly IServiceScopeFactory _serviceScopeFactory;
@@ -22,7 +23,7 @@ namespace ServerParkingUCN
         /// </summary>
         /// <param name="logger"></param>
         /// <param name="serviceScopeFactory"></param>
-        public TheContratosImpl(ILogger<TheContratosImpl> logger, IServiceScopeFactory serviceScopeFactory)
+        public ContratosImpl(ILogger<ContratosImpl> logger, IServiceScopeFactory serviceScopeFactory)
         {
             _logger = logger;
             _logger.LogDebug("Building the ContratosImpl ..");
@@ -32,22 +33,21 @@ namespace ServerParkingUCN
             _logger.LogInformation("Creating the Database ..");
             using (var scope = _serviceScopeFactory.CreateScope())
             {
-                ParkingUCNContext pc = scope.ServiceProvider.GetService<ParkingUCNContext>();
+                ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
                 pc.Database.EnsureCreated();
                 pc.SaveChanges();
             }
             
-            _logger.LogDebug("Done.");  
+            _logger.LogDebug("Done.");            
+        }
 
-        }          
-
-        // Adds a Persona to Database
+        ///Adds a Persona to Database
         public override Persona registrarPersona(Persona persona, Current current = null)
         {
             
             using (var scope = _serviceScopeFactory.CreateScope())
             {
-                ParkingUCNContext pc = scope.ServiceProvider.GetService<ParkingUCNContext>();
+                ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
                 pc.Personas.Add(persona);
                 pc.SaveChanges();
                 return persona;
@@ -57,12 +57,12 @@ namespace ServerParkingUCN
         }
 
         // Adds a Vehiculo to Database
-       public override  Vehiculo registrarVehiculo(Vehiculo vehiculo, Current current = null)
+       public override Vehiculo registrarVehiculo(Vehiculo vehiculo, Current current = null)
         {
            
             using (var scope = _serviceScopeFactory.CreateScope())
             {
-                ParkingUCNContext pc = scope.ServiceProvider.GetService<ParkingUCNContext>();
+                ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
                 pc.Vehiculos.Add(vehiculo);
                 pc.SaveChanges();
                 return vehiculo;
@@ -75,7 +75,7 @@ namespace ServerParkingUCN
         {
             using (var scope = _serviceScopeFactory.CreateScope())
             {
-                ParkingUCNContext pc = scope.ServiceProvider.GetService<ParkingUCNContext>();
+                ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
                 Vehiculo vehiculo = pc.Vehiculos.Find(patente);
                 pc.SaveChanges();
                 return vehiculo;
@@ -88,7 +88,7 @@ namespace ServerParkingUCN
         { 
             using (var scope = _serviceScopeFactory.CreateScope())
             {
-                ParkingUCNContext pc = scope.ServiceProvider.GetService<ParkingUCNContext>();
+                ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
                 Persona persona = pc.Personas.Find(rut);
                 pc.SaveChanges();
                 return persona;
@@ -96,8 +96,5 @@ namespace ServerParkingUCN
             throw new System.NotImplementedException();
             
         }
-
     }
-
-
 }

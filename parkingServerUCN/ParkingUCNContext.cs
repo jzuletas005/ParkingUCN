@@ -11,14 +11,14 @@ namespace Dao
         /// The Connection to the database to Persona.
         /// </summary>
         /// <value> </value>
-        //public DbSet<PersonasUCN> Personas { get; set; }
+        public DbSet<Persona> Personas { get; set; }
 
         /// <summary>
         /// The Connection to the database to Vehiculo.
         /// </summary>
         /// <value> </value>
 
-        //public DbSet<VehiculosUCN> Vehiculos { get; set; } // <---- Linea para referenciar la base de datos Vehiculo 
+        public DbSet<Vehiculo> Vehiculos { get; set; } // <---- Linea para referenciar la base de datos Vehiculo 
 
         /// <summary>
         /// Configuration.
@@ -40,54 +40,54 @@ namespace Dao
         /// </summary>
         /// <param name="modelBuilder">to use</param>
        
-        /*
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Make the model to Persona in Db. 
-            modelBuilder.Entity<Persona>(p =>
+            modelBuilder.Entity<Persona>(pe =>
             {
                 // Primary Key
-                p.HasKey(p => p.uid);
+                pe.HasKey(p => p.uid);
                 // The Name
-                p.Property(p => p.nombre);
+                pe.Property(p => p.nombre);
                 // Required rut
-                p.Property(p => p.rut);
+                pe.Property(p => p.rut);
                 // The Sexo
-                p.Property(p => p.sexo);
+                pe.Property(p => p.sexo);
                 // The Cargo
-                //p.Property(p => wposition); <-------- Error problema no sé 
+                pe.Property(p => p.wposition); 
                 // The Unidad
-                p.Property(p => p.unit);
+                pe.Property(p => p.unit);
                 // The Email 
-                p.Property(p => p.email);
+                pe.Property(p => p.email);
                 // The Telefono
-                p.Property(p => p.telefono);
+                pe.Property(p => p.telefono);
                 // The Workd Address
-                p.Property(p => p.direccion);
+                pe.Property(p => p.direccion);
                 // The Country
-                p.Property(p => p.country);
+                pe.Property(p => p.country);
            });
 
              // Make the model to Vehiculo in Db. 
-            modelBuilder.Entity<Vehiculo>(v =>
+            modelBuilder.Entity<Vehiculo>(vh =>
             {
                 // Primary Key
-                v.HasKey(v => v.uid);
+                vh.HasKey(v => v.uid);
                 // The Patente
-                v.Property(v => v.patente);
+                vh.Property(v => v.patente);
                 // The Marca
-                v.Property(v => v.marca);
+                vh.Property(v => v.marca);
                 // The Modelo
-                v.Property(v => v.modelo);
+                vh.Property(v => v.modelo);
                 // The anio
-                v.Property(v => v.anio);
+                vh.Property(v => v.anio);
                 // The Observation
-                v.Property(v => v.observacion);
+                vh.Property(v => v.observacion);
                 // The Responsable
-                v.Property(v => v.responsable);
+                vh.Property(v => v.responsable);
             });
 
-        }*/
+        }
 
     }
 
