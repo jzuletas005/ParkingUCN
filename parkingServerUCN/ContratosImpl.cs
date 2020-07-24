@@ -3,7 +3,6 @@ using ServerParkingUCN.ZeroIce.model;
 using Ice;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
 using System;
 
 namespace ServerParkingUCN.ZeroIce
@@ -98,7 +97,7 @@ namespace ServerParkingUCN.ZeroIce
             throw new System.NotImplementedException();
 
         }
-
+            //Given a patente, deleting a vehiculo from Database
         public override Vehiculo eliminarVehiculo(string patente, Current current)
         {
             using (var scope = _serviceScopeFactory.CreateScope())
@@ -112,6 +111,8 @@ namespace ServerParkingUCN.ZeroIce
             throw new System.NotImplementedException();
         }
 
+
+            //Given a rut, deleting a persona from Database
         public override Persona eliminarPersona(string rut, Current current)
         {
             using (var scope = _serviceScopeFactory.CreateScope())
@@ -122,47 +123,33 @@ namespace ServerParkingUCN.ZeroIce
                 pc.SaveChanges();
                 return persona;
             }
-        }
 
+             throw new System.NotImplementedException();
+        }
+           //Editing a persona from de database. 
         public override Persona editarPersona(Persona persona, Current current)
         {
-            try
+            using (var scope = _serviceScopeFactory.CreateScope())
             {
-                using (var scope = _serviceScopeFactory.CreateScope())
-                {
-                    ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
-                    pc.Personas.Update(persona);
-                    pc.SaveChanges();
-                    return persona;
-                }
+                ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
+                pc.Personas.Update(persona);
+                pc.SaveChanges();
+                return persona;
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-
-            }
-
+            throw new System.NotImplementedException();
         }
+
+        //Editing a Vehiculo from de database. 
         public override Vehiculo editarVehiculo(Vehiculo vehiculo, Current current)
         {
-
-            try
+            using (var scope = _serviceScopeFactory.CreateScope())
             {
-                using (var scope = _serviceScopeFactory.CreateScope())
-                {
-                    ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
-                    pc.Vehiculos.Update(vehiculo);
-                    pc.SaveChanges();
-                    return vehiculo;
-                }
+                ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
+                pc.Vehiculos.Update(vehiculo);
+                pc.SaveChanges();
+                return vehiculo;
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-
+            throw new System.NotImplementedException();
         }
 
     }
