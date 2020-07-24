@@ -90,6 +90,8 @@ namespace ServerParkingUCN.Dao
             {
                 // The Patente
                 v.HasKey(v => v.patente);
+                //  The LogoUCN
+                v.Property(v => v.codigoLogo);
                 // The Marca
                 v.Property(v => v.marca);
                 // The Modelo
@@ -120,10 +122,9 @@ namespace ServerParkingUCN.Dao
 
             modelBuilder.Entity<Identificacion>(i =>
             {
-                 // Primary Key
-                i.HasKey(i => i.uid);
-                 // The Codigo Logo
-                i.Property(i => i.codigoLogo);
+                // Primary Key
+                // The Codigo Logo
+                i.HasKey(i => i.codigoLogo);
                 // The patente
                 i.Property(i => i.patente);
                 // The rut

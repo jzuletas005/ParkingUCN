@@ -126,7 +126,9 @@ namespace ServerParkingUCN.ZeroIce
 
              throw new System.NotImplementedException();
         }
-           //Editing a persona from de database. 
+
+           //Editing a persona from database. 
+
         public override Persona editarPersona(Persona persona, Current current)
         {
             using (var scope = _serviceScopeFactory.CreateScope())
@@ -138,8 +140,8 @@ namespace ServerParkingUCN.ZeroIce
             }
             throw new System.NotImplementedException();
         }
-
-        //Editing a Vehiculo from de database. 
+        
+        //Editing a Vehiculo from de database.
         public override Vehiculo editarVehiculo(Vehiculo vehiculo, Current current)
         {
             using (var scope = _serviceScopeFactory.CreateScope())
@@ -152,6 +154,35 @@ namespace ServerParkingUCN.ZeroIce
             throw new System.NotImplementedException();
         }
 
+        public override bool verificarPatenteLogo(string patente, string codigoLogo, Current current)
+        {
+            using (var scope = _serviceScopeFactory.CreateScope())
+            {
+                ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
+                Vehiculo vehiculo = pc.Vehiculos.Find(patente);
+                if (vehiculo.codigoLogo == codigoLogo){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+            throw new System.NotImplementedException();
+        }
+
+        public override bool verificarLogoPatente(string patente, string codigoLogo, Current current)
+        {
+            using (var scope = _serviceScopeFactory.CreateScope())
+            {
+                ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
+                Identificacion identificacion = pc.Identificaciones.Find(codigoLogo);
+                if (identificacion.patente == patente){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+
+        }
     }
 }
 
