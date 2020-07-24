@@ -118,7 +118,7 @@ namespace ServerParkingUCN.Dao
                 c.Property(c => c.puertaSalida);
             });
 
-            modelBuilder.Entity<Circulacion>(i =>
+            modelBuilder.Entity<Identificacion>(i =>
             {
                  // Primary Key
                 i.HasKey(i => i.uid);
