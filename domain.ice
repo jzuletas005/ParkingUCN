@@ -119,6 +119,11 @@ module model
         string patente;
 
         /**
+        * codigo LogoUCN.
+        */
+        string codigoLogo;
+
+        /**
         * Marca del vehiculo.
         */
         string marca;

@@ -90,6 +90,8 @@ namespace ServerParkingUCN.Dao
             {
                 // The Patente
                 v.HasKey(v => v.patente);
+                //  The LogoUCN
+                v.Property(v => v.codigoLogo);
                 // The Marca
                 v.Property(v => v.marca);
                 // The Modelo
