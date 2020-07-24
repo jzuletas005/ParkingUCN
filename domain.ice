@@ -311,7 +311,7 @@ module model
         *@param patente del vehiculo
         *@return true or false
         */
-        //bool verificarPatenteLogo(string patente, string codigoLogo);
+        bool verificarPatenteLogo(string patente, string codigoLogo);
 
         /**
         *Created Official ID
