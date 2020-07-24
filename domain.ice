@@ -270,6 +270,23 @@ module model
         */
         Vehiculo eliminarVehiculo(string patente);
 
+
+        /**
+         *editing a persona with a persona instance.
+        *
+        * @param persona to editing
+        * @return persona edited.
+        */
+        Persona editarPersona(Persona persona);
+
+        /**
+        *
+        *editing a vehiculo
+        *@param vehiculo to editing
+        *@return vehiculo edited.
+        */
+        Vehiculo editarVehiculo(Vehiculo vehiculo);
+
         /**
         *Enter vehicle
         *
