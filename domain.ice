@@ -214,20 +214,20 @@ module model
         *
         * @param rut del vehiculo a buscar.
         * @return persona buscada a eliminar.
-        *
-        *Persona eliminarPersona(string rut);
         */
+        Persona eliminarPersona(string rut);
+        
 
         /**
          *Search a Vehiculo with a patente.
          *
          * @param patente del vehiculo a buscar.
         * @return Vehiculo eliminar.
-        *
-        *Vehiculo eliminarVehiculo(string patente);
         */
-
+        Vehiculo eliminarVehiculo(string patente);
     }
+
+    
 
      /**
      * The base system.

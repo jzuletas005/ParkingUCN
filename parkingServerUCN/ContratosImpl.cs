@@ -3,6 +3,7 @@ using ServerParkingUCN.ZeroIce.model;
 using Ice;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 
 namespace ServerParkingUCN.ZeroIce
 {
@@ -95,6 +96,31 @@ namespace ServerParkingUCN.ZeroIce
             }
             throw new System.NotImplementedException();
             
+        }
+
+        public override Vehiculo eliminarVehiculo(string patente, Current current)
+        {
+            using (var scope = _serviceScopeFactory.CreateScope())
+            {
+                ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
+                Vehiculo vehiculo = pc.Vehiculos.Find(patente);
+                pc.Vehiculos.Remove(vehiculo);
+                pc.SaveChanges();
+                return vehiculo;
+            }
+            throw new System.NotImplementedException();
+        }
+
+        public override Persona eliminarPersona(string rut, Current current)
+        {
+            using (var scope = _serviceScopeFactory.CreateScope())
+            {
+                ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
+                Persona persona = pc.Personas.Find(rut);
+                pc.Personas.Remove(persona);
+                pc.SaveChanges();
+                return persona;
+            }
         }
     }
 }
