@@ -126,7 +126,9 @@ namespace ServerParkingUCN.ZeroIce
 
              throw new System.NotImplementedException();
         }
-           //Editing a persona from de database.
+
+           //Editing a persona from database. 
+
         public override Persona editarPersona(Persona persona, Current current)
         {
             using (var scope = _serviceScopeFactory.CreateScope())
@@ -138,7 +140,7 @@ namespace ServerParkingUCN.ZeroIce
             }
             throw new System.NotImplementedException();
         }
-
+        
         //Editing a Vehiculo from de database.
         public override Vehiculo editarVehiculo(Vehiculo vehiculo, Current current)
         {
@@ -179,6 +181,7 @@ namespace ServerParkingUCN.ZeroIce
                     return false;
                 }
             }
+
         }
     }
 }
