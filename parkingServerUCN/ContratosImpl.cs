@@ -3,6 +3,8 @@ using ServerParkingUCN.ZeroIce.model;
 using Ice;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
+using System;
 
 namespace ServerParkingUCN.ZeroIce
 {
@@ -37,14 +39,14 @@ namespace ServerParkingUCN.ZeroIce
                 pc.Database.EnsureCreated();
                 pc.SaveChanges();
             }
-            
-            _logger.LogDebug("Done.");            
+
+            _logger.LogDebug("Done.");
         }
 
         ///Adds a Persona to Database
         public override Persona registrarPersona(Persona persona, Current current = null)
         {
-            
+
             using (var scope = _serviceScopeFactory.CreateScope())
             {
                 ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
@@ -52,14 +54,14 @@ namespace ServerParkingUCN.ZeroIce
                 pc.SaveChanges();
                 return persona;
             }
-            
+
             throw new System.NotImplementedException();
         }
 
         // Adds a Vehiculo to Database
-       public override Vehiculo registrarVehiculo(Vehiculo vehiculo, Current current = null)
+        public override Vehiculo registrarVehiculo(Vehiculo vehiculo, Current current = null)
         {
-           
+
             using (var scope = _serviceScopeFactory.CreateScope())
             {
                 ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
@@ -85,7 +87,7 @@ namespace ServerParkingUCN.ZeroIce
 
         // Given a rut, returns a persona from Database
         public override Persona obtenerPersona(string rut, Current current)
-        { 
+        {
             using (var scope = _serviceScopeFactory.CreateScope())
             {
                 ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
@@ -94,7 +96,76 @@ namespace ServerParkingUCN.ZeroIce
                 return persona;
             }
             throw new System.NotImplementedException();
-            
+
         }
+
+        public override Vehiculo eliminarVehiculo(string patente, Current current)
+        {
+            using (var scope = _serviceScopeFactory.CreateScope())
+            {
+                ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
+                Vehiculo vehiculo = pc.Vehiculos.Find(patente);
+                pc.Vehiculos.Remove(vehiculo);
+                pc.SaveChanges();
+                return vehiculo;
+            }
+            throw new System.NotImplementedException();
+        }
+
+        public override Persona eliminarPersona(string rut, Current current)
+        {
+            using (var scope = _serviceScopeFactory.CreateScope())
+            {
+                ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
+                Persona persona = pc.Personas.Find(rut);
+                pc.Personas.Remove(persona);
+                pc.SaveChanges();
+                return persona;
+            }
+        }
+
+        public override Persona editarPersona(Persona persona, Current current)
+        {
+            try
+            {
+                using (var scope = _serviceScopeFactory.CreateScope())
+                {
+                    ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
+                    pc.Personas.Update(persona);
+                    pc.SaveChanges();
+                    return persona;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+
+            }
+
+        }
+        public override Vehiculo editarVehiculo(Vehiculo vehiculo, Current current)
+        {
+
+            try
+            {
+                using (var scope = _serviceScopeFactory.CreateScope())
+                {
+                    ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
+                    pc.Vehiculos.Update(vehiculo);
+                    pc.SaveChanges();
+                    return vehiculo;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+
+        }
+
     }
+
 }
+
