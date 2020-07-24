@@ -314,6 +314,15 @@ module model
         bool verificarPatenteLogo(string patente, string codigoLogo);
 
         /**
+        *Verify patent of an existing logo
+        *
+        *@param codigo logo
+        *@param patente del vehiculo
+        *@return true or false
+        */
+        bool verificarLogoPatente(string patente, string codigoLogo);
+
+        /**
         *Created Official ID
         *
         *@param identificacion

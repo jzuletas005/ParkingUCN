@@ -166,6 +166,20 @@ namespace ServerParkingUCN.ZeroIce
             }
             throw new System.NotImplementedException();
         }
+
+        public override bool verificarLogoPatente(string patente, string codigoLogo, Current current)
+        {
+            using (var scope = _serviceScopeFactory.CreateScope())
+            {
+                ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
+                Identificacion identificacion = pc.Identificaciones.Find(codigoLogo);
+                if (identificacion.patente == patente){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+        }
     }
 }
 
