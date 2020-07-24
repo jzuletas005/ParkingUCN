@@ -21,8 +21,8 @@ java, zeroIce y android para su desarrollo.
   - HTML, CSS, Javascript
 
 ## Developers
- - [Javier Zuleta-Silva -Jzuletas005@gmail.com]().
- - [Beatriz Álvarez-Rojas - Bar011@Alumnos.ucn.cl]().
+ - [Javier Zuleta-Silva -jzuletas005@gmail.com]().
+ - [Beatriz Álvarez-Rojas - bar011@Alumnos.ucn.cl]().
  - [Gonzalo Nieto-Berrios -gnb001@alumnos.ucn.cl ]().
 
 ## UML
