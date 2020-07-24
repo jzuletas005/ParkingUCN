@@ -190,13 +190,9 @@ module model
       ["cs:property"]
       class Identificacion{
 
-           /**
-           *PrimaryKey
-           */
-           int uid;
-
           /**
           *Codigo del Logo
+          *PrimaryKey
           */
           string codigoLogo;
 
@@ -304,7 +300,7 @@ module model
         //Circulacion salidaVehiculo(string codigoLogo);
 
         /**
-        *Verify patent and logo
+        *Verify logo of an existing patent
         *
         *@param codigo logo
         *@param patente del vehiculo
