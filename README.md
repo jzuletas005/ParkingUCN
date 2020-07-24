@@ -29,76 +29,57 @@ java, zeroIce y android para su desarrollo.
 
 ![Screenshot](img/global.png)
 
-
+<!--
 @startuml
 package "Scrapper" #DDDDDD {
   class PersonScrapper{
 }
-
 class ScrapperDataScrapper{
 }
-
 class ScrapperSQLiteScrapper{
 }
-
 note "datos.csv" as N1
-
 ScrapperDataScrapper ..N1:<create>
-ScrapperSQLiteScrapper o-->N1:<use>
-ScrapperSQLiteScrapper o-->PersonScrapper:<use>
+ScrapperSQLiteScrapper o--N1:<use>
+ScrapperSQLiteScrapper o--PersonScrapper:<use>
 }
-
 package "Server" #DDDDDD {
   interface TheSystemServer{
 }
-
 interface ContratosServer{
 }
-
 class CirculacionServer{
 }
-
 class VehiculoServer{ 
 }
-
 enum SexoServer{
 }
-
 class PersonServer{
 }
-
 class ContratosImplServer{
 }
-
 class TheSystemImplServer{
 }
-
 class ProgramServer{
 }
-
-ProgramServer-->TheSystemImplServer: use
-ProgramServer-->ContratosImplServer: use
-ContratosImplServer-->PersonServer:use
-ContratosImplServer-->VehiculoServer:use
-ContratosImplServer-->CirculacionServer:use
+ProgramServer--TheSystemImplServer: use
+ProgramServer--ContratosImplServer: use
+ContratosImplServer--PersonServer:use
+ContratosImplServer--VehiculoServer:use
+ContratosImplServer--CirculacionServer:use
 TheSystemServer..|>TheSystemImplServer:implement
 ContratosServer..|>ContratosImplServer:implement
-SexoServer-->PersonServer:use
+SexoServer--PersonServer:use
 }
-
 package Parking <<Database>> #00aae4 {
-  
  package VehiculoDB <<Node>> {
  }
-
  package PersonaDB <<Node>> {
  }
-
  package CirculacioDB <<Node>> {
  }
-
 }
-
-ProgramServer --> Parking: create
-ScrapperSQLiteScrapper --> PersonaDB: use
+ProgramServer -- Parking: create
+ScrapperSQLiteScrapper -- PersonaDB: use
 @enduml
+-->
