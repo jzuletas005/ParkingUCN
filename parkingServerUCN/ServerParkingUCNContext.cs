@@ -26,7 +26,14 @@ namespace ServerParkingUCN.Dao
         /// The Connection to the database to Vehiculo.
         /// </summary>
         /// <value> </value>
-        public DbSet<Circulacion> Circulacion { get; set; } // <---- Linea para referenciar la base de datos circulacion
+        public DbSet<Circulacion> Circulaciones { get; set; } // <---- Linea para referenciar la base de datos circulacion
+
+        /// <summary>
+        /// The Connection to the database to Identificacion.
+        /// </summary>
+        /// <value> </value>
+
+        public DbSet<Identificacion> Identificaciones { get; set; }
 
         /// <summary>
         /// Configuration.
@@ -81,10 +88,8 @@ namespace ServerParkingUCN.Dao
              // Make the model to Vehiculo in Db. 
             modelBuilder.Entity<Vehiculo>(v =>
             {
-                // Primary Key
-                v.HasKey(v => v.uid);
                 // The Patente
-                v.Property(v => v.patente);
+                v.HasKey(v => v.patente);
                 // The Marca
                 v.Property(v => v.marca);
                 // The Modelo
@@ -99,16 +104,33 @@ namespace ServerParkingUCN.Dao
 
             modelBuilder.Entity<Circulacion>(c =>
             {
-             // Primary Key
-            c.HasKey(c => c.uid);
-             // The Patente
-            c.Property(c => c.patente);
-            // The fecha de ingreso
-            c.Property(c => c.fechaIngreso);
-            // The fecha de salida
-            c.Property(c => c.fechaSalida);
+                 // Primary Key
+                c.HasKey(c => c.uid);
+                 // The Patente
+                c.Property(c => c.patente);
+                // The fecha de ingreso
+                c.Property(c => c.fechaIngreso);
+                // The fecha de salida
+                c.Property(c => c.fechaSalida);
+                // The puerta ingreso
+                c.Property(c => c.puertaEntrada);
+                // The puerta salida
+                c.Property(c => c.puertaSalida);
+            });
 
-});
+            modelBuilder.Entity<Identificacion>(i =>
+            {
+                 // Primary Key
+                i.HasKey(i => i.uid);
+                 // The Codigo Logo
+                i.Property(i => i.codigoLogo);
+                // The patente
+                i.Property(i => i.patente);
+                // The rut
+                i.Property(i => i.rut);
+                // The tipo logo
+                i.Property(i => i.tipoLogo);
+            });
 
         }
 

@@ -27,14 +27,21 @@
 module model 
 {
 
-     /**
+    /**
     *The Sexo
     */
         enum Sexo {
         MASCULINO,
         FEMENINO,
-	INDETERMINADO
+	    INDETERMINADO
         }
+     /**
+     *The Tipo Logo
+     */
+        enum TipoLogo{
+             ROJO,
+             AZUL
+         }
 
     /**
     * Clase persona
@@ -95,8 +102,7 @@ module model
              /**
             *País
             */
-            string country; 
-
+            string country;
         }
 
 
@@ -107,11 +113,7 @@ module model
       class Vehiculo {
 
         /**
-        *PrimaryKey
-        */
-        int uid;
-
-        /**
+        * PrimaryKey
         * Patente;
         */
         string patente;
@@ -167,10 +169,52 @@ module model
 
          /**
          *Patente
-         *
          */
          string patente;
+
+         /**
+         *Entrada
+         */
+         string puertaEntrada;
+
+         /**
+          *Salida
+          */
+          string puertaSalida;
+
      }
+
+      /**
+      * Clase identificacion
+      */
+      ["cs:property"]
+      class Identificacion{
+
+           /**
+           *PrimaryKey
+           */
+           int uid;
+
+          /**
+          *Codigo del Logo
+          */
+          string codigoLogo;
+
+          /**
+          *Patente
+          */
+          string patente;
+
+          /**
+          *Rut de persona
+          */
+          string rut;
+
+          /**
+          *Tipo Logo
+          */
+          TipoLogo tipoLogo;
+      }
 
         /**
          * The Contratos
@@ -214,20 +258,77 @@ module model
         *
         * @param rut del vehiculo a buscar.
         * @return persona buscada a eliminar.
-        *
-        *Persona eliminarPersona(string rut);
         */
+        Persona eliminarPersona(string rut);
+        
 
         /**
          *Search a Vehiculo with a patente.
          *
          * @param patente del vehiculo a buscar.
         * @return Vehiculo eliminar.
-        *
-        *Vehiculo eliminarVehiculo(string patente);
         */
+        Vehiculo eliminarVehiculo(string patente);
 
+        /**
+        *Enter vehicle
+        *
+        *@param codigo del logo
+        *@return Circulacion del vehiculo
+        */
+        //Circulacion ingresoVehiculo(string codigoLogo);
+
+        /**
+        *Exit vehicle
+        *
+        *@param codigo del logo
+        *@return Circulacion del vehiculo
+        */
+        //Circulacion salidaVehiculo(string codigoLogo);
+
+        /**
+        *Verify patent and logo
+        *
+        *@param codigo logo
+        *@param patente del vehiculo
+        *@return true or false
+        */
+        //bool verificarPatenteLogo(string patente, string codigoLogo);
+
+        /**
+        *Created Official ID
+        *
+        *@param identificacion
+        *@return Identificacion del vehiculo en Universidad
+        */
+        //Identificacion registrarOID(Identificacion oid);
+
+        /**
+        *Search Official ID
+        *
+        *@param identificacion
+        *@return Identificacion del vehiculo en Universidad
+        */
+        //Identificacion obtenerOID(Identificacion oid);
+
+        /**
+        *Updated Official ID
+        *
+        *@param identificacion
+        *@return Identificacion del vehiculo en Universidad
+        */
+        //Identificacion editarOID(Identificacion oid);
+
+        /**
+        *Deleted Official ID
+        *
+        *@param identificacion
+        *@return Identificacion del vehiculo en Universidad
+        */
+        //Identificacion eliminarOID(Identificacion oid);
     }
+
+
 
      /**
      * The base system.
