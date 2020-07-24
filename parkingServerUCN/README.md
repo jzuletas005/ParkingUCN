@@ -23,14 +23,12 @@
 
 ![Screenshot](../img/server.png)
 
-
+<!--
 @startuml
 interface TheSystem{
 - getDelay(long clientTime): long
 }
-
 interface Contratos{
-
 +Persona registrarPersona(Persona persona);
 +Vehiculo registrarVehiculo(Vehiculo vehiculo);
 +Persona obtenerPersona(string rut);
@@ -38,15 +36,12 @@ interface Contratos{
 +Vehiculo eliminarVehiculo(string patente);
 +Persona eliminarPersona(string rut); 
 }
-
 class Circulacion {
-
 - int uid;
 - string fechaIngreso;
 - string fechaSalida;
 - string patente;
 }
-
 class Vehiculo{ 
 -int uid;
 -string patente;
@@ -56,14 +51,11 @@ class Vehiculo{
 -string observacion;
 -string responsable;
 }
-
 enum Sexo{
 MASCULINO,
 FEMENINO
 }
-
 class Person{
-
 - int uid;
 - string name; 
 - string rut; 
@@ -76,28 +68,21 @@ class Person{
 - string address;
 - string country;
 }
-
 class ContratosImpl{
-
 }
-
 class TheSystemImpl{
-
 }
-
-
 class Program{
-
 +Main();
 +IHostBuilder CreateHostBuilder(string[] args):IHostBuilder
-
 }
-Program-->TheSystemImpl: use
-Program-->ContratosImpl: use
+Program--TheSystemImpl: use
+Program--ContratosImpl: use
 ContratosImpl--"0..*"Person:use
 ContratosImpl--"0..*"Vehiculo:use
 ContratosImpl--"0..*"Circulacion:use
-TheSystem..|>TheSystemImpl:implement
-Contratos..|>ContratosImpl:implement
-Sexo-->Person:use
+TheSystem..TheSystemImpl:implement
+Contratos..ContratosImpl:implement
+Sexo--Person:use
 @enduml
+-->

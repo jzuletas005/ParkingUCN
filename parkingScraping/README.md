@@ -19,58 +19,47 @@
 
 ![Screenshot](../img/scrapper.png)
 
-
-@startuml
-class Person{
-
-- id: int
-- name: String
-- rut: String
-- sex: String
-- wposition: String
-- unit: String
-- email: String
-- phone: String
-- office: String
-- address: String
-- country: String
-
-+ Person(): ORM Lite
-+ Person()
-+ getId()
-+ getName()
-+ getRut()
-+ getSex()
-+ getWposition()
-+ getUnit()
-+ getEmail()
-+ getPhone()
-+ getOffice()
-+ getAddress()
-+ getCountry()
-
-}
-
-class ScrapperData{
-
-- {static}log: Logger
-
-+ Main(): void
-- {static}Rutificador(): String[]
-- {static}ReversWord(): String
-
-}
-
-class ScrapperSQLite{
-
-- {static}log: Logger
-+ Main(): void
-}
-
-note "datos.csv" as N1
-
-ScrapperData ..N1:<create>
-ScrapperSQLite o-->N1:<use>
-ScrapperSQLite o-->Person:<use>
-
-@enduml
+<!--
+  @startuml
+  class Person{
+  - id: int
+  - name: String
+  - rut: String
+  - sex: String
+  - wposition: String
+  - unit: String
+  - email: String
+  - phone: String
+  - office: String
+  - address: String
+  - country: String
+  + Person(): ORM Lite
+  + Person()
+  + getId()
+  + getName()
+  + getRut()
+  + getSex()
+  + getWposition()
+  + getUnit()
+  + getEmail()
+  + getPhone()
+  + getOffice()
+  + getAddress()
+  + getCountry()
+  }
+  class ScrapperData{
+  - {static}log: Logger
+  + Main(): void
+  - {static}Rutificador(): String[]
+  - {static}ReversWord(): String
+  }
+  class ScrapperSQLite{
+  - {static}log: Logger
+  + Main(): void
+  }
+  note "datos.csv" as N1
+  ScrapperData ..N1:<create>
+  ScrapperSQLite o--N1:<use>
+  ScrapperSQLite o--Person:<use>
+  @enduml
+-->
