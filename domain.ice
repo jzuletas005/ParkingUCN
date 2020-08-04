@@ -119,6 +119,11 @@ module model
         string patente;
 
         /**
+        * codigo LogoUCN.
+        */
+        string codigoLogo;
+
+        /**
         * Marca del vehiculo.
         */
         string marca;
@@ -190,13 +195,9 @@ module model
       ["cs:property"]
       class Identificacion{
 
-           /**
-           *PrimaryKey
-           */
-           int uid;
-
           /**
           *Codigo del Logo
+          *PrimaryKey
           */
           string codigoLogo;
 
@@ -270,6 +271,23 @@ module model
         */
         Vehiculo eliminarVehiculo(string patente);
 
+
+        /**
+         *editing a persona with a persona instance.
+        *
+        * @param persona to editing
+        * @return persona edited.
+        */
+        Persona editarPersona(Persona persona);
+
+        /**
+        *
+        *editing a vehiculo
+        *@param vehiculo to editing
+        *@return vehiculo edited.
+        */
+        Vehiculo editarVehiculo(Vehiculo vehiculo);
+
         /**
         *Enter vehicle
         *
@@ -287,13 +305,22 @@ module model
         //Circulacion salidaVehiculo(string codigoLogo);
 
         /**
-        *Verify patent and logo
+        *Verify logo of an existing patent
         *
         *@param codigo logo
         *@param patente del vehiculo
         *@return true or false
         */
-        //bool verificarPatenteLogo(string patente, string codigoLogo);
+        bool verificarPatenteLogo(string patente, string codigoLogo);
+
+        /**
+        *Verify patent of an existing logo
+        *
+        *@param codigo logo
+        *@param patente del vehiculo
+        *@return true or false
+        */
+        bool verificarLogoPatente(string patente, string codigoLogo);
 
         /**
         *Created Official ID
