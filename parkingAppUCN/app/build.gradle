@@ -1,5 +1,21 @@
 plugins {
     id 'com.android.application'
+
+    // https://plugins.gradle.org/plugins/com.zeroc.gradle.ice-builder.slice
+    id 'com.zeroc.gradle.ice-builder.slice' version '1.4.7' apply true
+}
+
+apply plugin: 'com.android.application'
+
+// Docs: https://github.com/zeroc-ice/ice-builder-gradle
+slice{
+    // The home of ice
+    iceHome = 'e:\\zeroice\\'
+    java {
+        files = [file("../../domain.ice")]
+        //args = "--debug"
+        //logger.lifecycle("Slicing file: <${files}>")
+    }
 }
 
 android {
@@ -36,4 +52,18 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    // Zero ICE
+    implementation 'com.zeroc:ice:3.7.4'
+
+    // Compression for ZeroIce
+    // https://github.com/zeroc-ice/ice/tree/3.7/java#bzip2-compression
+    implementation 'org.apache.commons:commons-compress:1.20'
+
+    // SLF4J
+    implementation 'org.slf4j:slf4j-api:2.0.0-alpha1'
+    implementation 'ch.qos.logback:logback-classic:1.3.0-alpha5'
+
+    // Apache Commons Lang
+    implementation 'org.apache.commons:commons-lang3:3.11'
 }
