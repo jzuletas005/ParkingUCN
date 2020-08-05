@@ -5,6 +5,8 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using ServerParkingUCN.ZeroIce.model;
+using ServerParkingUCN.ZeroIce;
+
 
 namespace serverParkingUCN
 {
@@ -115,11 +117,4 @@ namespace serverParkingUCN
         }
     }
 
-    public class TheSystemImpl : TheSystemDisp_
-    {
-        public override long getDelay(long clienTime, Current current = null)
-        {
-            return DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() - clienTime;
-        }
-    }
 }
