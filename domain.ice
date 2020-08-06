@@ -222,72 +222,6 @@ module model
          */
         interface Contratos{
 
-         /**
-         * register a Persona with a persona instance.
-         * 
-         * @param persona to create
-         * @return Persona created
-         */
-        Persona registrarPersona(Persona persona);
-
-		/**
-         * Register a Vehiculo with a vehiculo instance.
-         *
-         * @param vehiculo to create
-         * @return Vehiculo created
-         */
-        Vehiculo registrarVehiculo(Vehiculo vehiculo);
-      
-        /**
-         * Search a Persona with a rut.
-         *
-         * @param rut de la persona a buscar.
-         * @return Persona buscado.
-         */
-        Persona obtenerPersona(string rut);
-
-		/**
-         * Search a Vehiculo with a patente.
-		 *
-         * @param patente del vehiculo a buscar.
-         * @return Vehiculo buscado.
-         */
-        Vehiculo obtenerVehiculo(string patente);
-
-        /**
-        * Erase a persona with a rut
-        *
-        * @param rut del vehiculo a buscar.
-        * @return persona buscada a eliminar.
-        */
-        Persona eliminarPersona(string rut);
-        
-
-        /**
-         *Search a Vehiculo with a patente.
-         *
-         * @param patente del vehiculo a buscar.
-        * @return Vehiculo eliminar.
-        */
-        Vehiculo eliminarVehiculo(string patente);
-
-
-        /**
-         *editing a persona with a persona instance.
-        *
-        * @param persona to editing
-        * @return persona edited.
-        */
-        Persona editarPersona(Persona persona);
-
-        /**
-        *
-        *editing a vehiculo
-        *@param vehiculo to editing
-        *@return vehiculo edited.
-        */
-        Vehiculo editarVehiculo(Vehiculo vehiculo);
-
         /**
         *Enter vehicle
         *
@@ -366,6 +300,72 @@ module model
          * @return the diference in time between client and server.
          */
         long getDelay(long clientTime);
+
+         /**
+         * register a Persona with a persona instance.
+         * 
+         * @param persona to create
+         * @return Persona created
+         */
+        Persona registrarPersona(Persona persona);
+
+		/**
+         * Register a Vehiculo with a vehiculo instanc
+         *
+         * @param vehiculo to create
+         * @return Vehiculo created
+         */
+        Vehiculo registrarVehiculo(Vehiculo vehiculo);
+      
+        /**
+         * Search a Persona with a rut.
+         *
+         * @param rut de la persona a buscar.
+         * @return Persona buscado.
+         */
+        Persona obtenerPersona(string rut);
+
+		/**
+         * Search a Vehiculo with a patente.
+		 *
+         * @param patente del vehiculo a buscar.
+         * @return Vehiculo buscado.
+         */
+        Vehiculo obtenerVehiculo(string patente);
+
+        /**
+        * Erase a persona with a rut
+        *
+        * @param rut del vehiculo a buscar.
+        * @return persona buscada a eliminar.
+        */
+        Persona eliminarPersona(string rut);
+        
+
+        /**
+        *Search a Vehiculo with a patente.
+        *
+        *@param patente del vehiculo a buscar.
+        *@return Vehiculo eliminar.
+        */
+        Vehiculo eliminarVehiculo(string patente);
+
+
+        /**
+        *editing a persona with a persona instance.
+        *
+        * @param persona to editing
+        * @return persona edited.
+        */
+        Persona editarPersona(Persona persona);
+
+        /**
+        *
+        *editing a vehiculo
+        *@param vehiculo to editing
+        *@return vehiculo edited.
+        */
+        Vehiculo editarVehiculo(Vehiculo vehiculo);
 
     }
 }
