@@ -4,3 +4,8 @@
 
 ## Description
 - Este modulo crea una aplicación movil la cual se mantendrá conectada con el servidor mediante la conexión que provee ZeroIce
+
+## Libraries
+
+
+## UML
