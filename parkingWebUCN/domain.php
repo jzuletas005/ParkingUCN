@@ -285,18 +285,7 @@ namespace model
     $model__t_ContratosPrx = IcePHP_defineProxy('::model::Contratos', $Ice__t_ObjectPrx, null);
 
     global $IcePHP__t_string;
-    global $model__t_Persona;
-    global $model__t_Vehiculo;
     global $IcePHP__t_bool;
-    IcePHP_defineOperation($model__t_ContratosPrx, 'conexionEstablecida', 0, 0, 0, null, null, array($IcePHP__t_string), null);
-    IcePHP_defineOperation($model__t_ContratosPrx, 'registrarPersona', 0, 0, 0, array(array($model__t_Persona)), null, array($model__t_Persona), null);
-    IcePHP_defineOperation($model__t_ContratosPrx, 'registrarVehiculo', 0, 0, 0, array(array($model__t_Vehiculo)), null, array($model__t_Vehiculo), null);
-    IcePHP_defineOperation($model__t_ContratosPrx, 'obtenerPersona', 0, 0, 0, array(array($IcePHP__t_string)), null, array($model__t_Persona), null);
-    IcePHP_defineOperation($model__t_ContratosPrx, 'obtenerVehiculo', 0, 0, 0, array(array($IcePHP__t_string)), null, array($model__t_Vehiculo), null);
-    IcePHP_defineOperation($model__t_ContratosPrx, 'eliminarPersona', 0, 0, 0, array(array($IcePHP__t_string)), null, array($model__t_Persona), null);
-    IcePHP_defineOperation($model__t_ContratosPrx, 'eliminarVehiculo', 0, 0, 0, array(array($IcePHP__t_string)), null, array($model__t_Vehiculo), null);
-    IcePHP_defineOperation($model__t_ContratosPrx, 'editarPersona', 0, 0, 0, array(array($model__t_Persona)), null, array($model__t_Persona), null);
-    IcePHP_defineOperation($model__t_ContratosPrx, 'editarVehiculo', 0, 0, 0, array(array($model__t_Vehiculo)), null, array($model__t_Vehiculo), null);
     IcePHP_defineOperation($model__t_ContratosPrx, 'verificarPatenteLogo', 0, 0, 0, array(array($IcePHP__t_string), array($IcePHP__t_string)), null, array($IcePHP__t_bool), null);
     IcePHP_defineOperation($model__t_ContratosPrx, 'verificarLogoPatente', 0, 0, 0, array(array($IcePHP__t_string), array($IcePHP__t_string)), null, array($IcePHP__t_bool), null);
 }
@@ -329,6 +318,17 @@ namespace model
     $model__t_TheSystemPrx = IcePHP_defineProxy('::model::TheSystem', $Ice__t_ObjectPrx, null);
 
     global $IcePHP__t_long;
+    global $model__t_Persona;
+    global $model__t_Vehiculo;
+    global $IcePHP__t_string;
     IcePHP_defineOperation($model__t_TheSystemPrx, 'getDelay', 0, 0, 0, array(array($IcePHP__t_long)), null, array($IcePHP__t_long), null);
+    IcePHP_defineOperation($model__t_TheSystemPrx, 'registrarPersona', 0, 0, 0, array(array($model__t_Persona)), null, array($model__t_Persona), null);
+    IcePHP_defineOperation($model__t_TheSystemPrx, 'registrarVehiculo', 0, 0, 0, array(array($model__t_Vehiculo)), null, array($model__t_Vehiculo), null);
+    IcePHP_defineOperation($model__t_TheSystemPrx, 'obtenerPersona', 0, 0, 0, array(array($IcePHP__t_string)), null, array($model__t_Persona), null);
+    IcePHP_defineOperation($model__t_TheSystemPrx, 'obtenerVehiculo', 0, 0, 0, array(array($IcePHP__t_string)), null, array($model__t_Vehiculo), null);
+    IcePHP_defineOperation($model__t_TheSystemPrx, 'eliminarPersona', 0, 0, 0, array(array($IcePHP__t_string)), null, array($model__t_Persona), null);
+    IcePHP_defineOperation($model__t_TheSystemPrx, 'eliminarVehiculo', 0, 0, 0, array(array($IcePHP__t_string)), null, array($model__t_Vehiculo), null);
+    IcePHP_defineOperation($model__t_TheSystemPrx, 'editarPersona', 0, 0, 0, array(array($model__t_Persona)), null, array($model__t_Persona), null);
+    IcePHP_defineOperation($model__t_TheSystemPrx, 'editarVehiculo', 0, 0, 0, array(array($model__t_Vehiculo)), null, array($model__t_Vehiculo), null);
 }
 ?>
