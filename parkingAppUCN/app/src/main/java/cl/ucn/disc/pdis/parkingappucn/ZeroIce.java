@@ -98,16 +98,15 @@ public class ZeroIce {
         try{
             this._theCommunicator = Util.initialize(getInitializationData());
 
-            log.debug("Proxying <Contratos> ..");
+            log.debug("Proxying <TheSystem> ..");
 
-            ObjectPrx theProxy = this._theCommunicator.stringToProxy("Contratos:tcp -h 192.168.0.22 -p 8080");
+            ObjectPrx theProxy = this._theCommunicator.stringToProxy("TheSystem:tcp -z -t 15000 -p 8080");
 
-            this._theContratos = ContratosPrx.checkedCast(theProxy);
+            this._theSystem = TheSystemPrx.checkedCast(theProxy);
 
         }catch (ConnectionRefusedException ex){
             log.warn("Backend error", ex);
         }
-
     }
 
     /**
@@ -119,7 +118,6 @@ public class ZeroIce {
             log.warn("The Communicator was already stopped?");
             return;
         }
-        this._theContratos = null;
         this._theSystem = null;
         this._theCommunicator.destroy();
     }

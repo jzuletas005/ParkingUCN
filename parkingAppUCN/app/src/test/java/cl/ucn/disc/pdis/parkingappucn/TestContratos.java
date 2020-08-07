@@ -3,7 +3,7 @@ package cl.ucn.disc.pdis.parkingappucn;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import cl.ucn.disc.pdis.scrapper.zeroice.model.ContratosPrx;
+import cl.ucn.disc.pdis.scrapper.zeroice.model.TheSystemPrx;
 import cl.ucn.disc.pdis.scrapper.zeroice.model.Persona;
 import cl.ucn.disc.pdis.scrapper.zeroice.model.Vehiculo;
 
@@ -15,11 +15,11 @@ public class TestContratos {
 
         ZeroIce ice = new ZeroIce();
         ice.start();
-        ContratosPrx contratosPrx = ice.getContratos();
+        TheSystemPrx theSystemPrx = ice.getTheSystem();
 
         Vehiculo vehiculo1 = new Vehiculo();
 
-        vehiculo1.patente = "GG-WPN";
+        vehiculo1.patente = "GG-UCNA";
         vehiculo1.codigoLogo = "s0123456789";
         vehiculo1.marca = "Ferrari";
         vehiculo1.modelo = "Berlini";
@@ -33,7 +33,7 @@ public class TestContratos {
                 vehiculo1.responsable);
 
 
-        Vehiculo vehiculo2 = contratosPrx.registrarVehiculo(vehiculo1);
+        theSystemPrx.registrarVehiculo(vehiculo1);
         logger.debug("DONE: Vehicle added succefully on database!");
 
     }
@@ -42,9 +42,9 @@ public class TestContratos {
 
         ZeroIce ice = new ZeroIce();
         ice.start();
-        ContratosPrx contratosPrx = ice.getContratos();
+        TheSystemPrx theSystemPrx = ice.getTheSystem();
 
-        Vehiculo vehiculofind = contratosPrx.obtenerVehiculo(patente);
+        Vehiculo vehiculofind = theSystemPrx.obtenerVehiculo(patente);
 
         logger.debug("Responsable : {}", vehiculofind.responsable);
 
@@ -56,9 +56,9 @@ public class TestContratos {
 
         ZeroIce ice = new ZeroIce();
         ice.start();
-        ContratosPrx contratosPrx = ice.getContratos();
+        TheSystemPrx theSystemPrx = ice.getTheSystem();
 
-        Persona personafind = contratosPrx.obtenerPersona(rutpersona);
+        Persona personafind = theSystemPrx.obtenerPersona(rutpersona);
 
         logger.debug("Nombre: {} " +
                         "Cargo: {} " +
@@ -75,7 +75,7 @@ public class TestContratos {
 
         ZeroIce ice = new ZeroIce();
         ice.start();
-        ContratosPrx contratosPrx = ice.getContratos();
+        TheSystemPrx theSystemPrx = ice.getTheSystem();
 
         Vehiculo vehiculo1 = new Vehiculo();
 
@@ -87,7 +87,7 @@ public class TestContratos {
         vehiculo1.observacion = "Ya pego su logo";
         vehiculo1.responsable = "123456789";
 
-        Vehiculo vehiculoupdate = contratosPrx.editarVehiculo(vehiculo1);
+        theSystemPrx.editarVehiculo(vehiculo1);
 
         logger.debug("Responsable : {}", vehiculo1.responsable);
         logger.debug("DONE: Vehicles updated susccefully!");
