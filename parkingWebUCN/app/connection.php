@@ -18,8 +18,6 @@ try
     //
     $rootDir = model\TheSystemPrxHelper::checkedCast($obj);
 
-    $msj = $rootDir->conexionEstablecida();
-
 }
 catch(Ice\LocalException $ex)
 {
