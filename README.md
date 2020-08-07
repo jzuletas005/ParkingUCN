@@ -12,11 +12,11 @@ java, zeroIce y android para su desarrollo.
 
 ##  Technologies
   - Java 14.0.1
-  - PHP 7.4.7
+  - PHP 7.3.7
   - C# 8
   - .NET Core 3.1
   - Laravel 7.16.0
-  - Intellij Idea 2020.1.1
+  - Intellij Idea 2020.2.1
   - Android Studio 4.1 Cannary 10
   - HTML, CSS, Javascript
 
