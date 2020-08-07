@@ -101,7 +101,8 @@ namespace serverParkingUCN
             _logger.LogDebug("Initializing Communicator v{0} ({1}) ..", Ice.Util.stringVersion(), Ice.Util.intVersion());
 
             Properties properties = Util.createProperties();
-
+            properties.setProperty("Ice.Trace.Network", "3");
+            
             InitializationData initializationData = new InitializationData();
             initializationData.properties = properties;
 
