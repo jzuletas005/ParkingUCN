@@ -100,7 +100,7 @@ public class ZeroIce {
 
             log.debug("Proxying <TheSystem> ..");
 
-            ObjectPrx theProxy = this._theCommunicator.stringToProxy("TheSystem:tcp -z -t 15000 -p 8080");
+            ObjectPrx theProxy = this._theCommunicator.stringToProxy("TheSystem:tcp -h 192.168.0.22 -t 15000 -p 8080");
 
             this._theSystem = TheSystemPrx.checkedCast(theProxy);
 
