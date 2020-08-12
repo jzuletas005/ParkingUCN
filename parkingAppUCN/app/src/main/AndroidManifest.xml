@@ -16,6 +16,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ParkingUCN"
+            android:label="@string/app_name">
+        </activity>
+        <activity
+            android:name=".CirculacionUCN"
+            android:label="@string/app_name">
+        </activity>
+        <activity
+            android:name=".RegistrarPersona"
+            android:label="@string/app_name">
+        </activity>
+        <activity
+            android:name=".RegistrarVehiculo"
+            android:label="@string/app_name">
+        </activity>
     </application>
 
 </manifest>

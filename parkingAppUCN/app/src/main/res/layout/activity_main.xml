@@ -31,7 +31,7 @@
         app:layout_constraintVertical_bias="0.582" />
 
     <Button
-        android:id="@+id/buttonCirculación"
+        android:id="@+id/buttonCirculacion"
         android:layout_width="218dp"
         android:layout_height="53dp"
         android:backgroundTint="@color/orange"
