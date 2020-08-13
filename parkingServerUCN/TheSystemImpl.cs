@@ -30,6 +30,15 @@ namespace ServerParkingUCN.ZeroIce
             _logger = logger;
             _logger.LogDebug("Building TheSystemImpl ..");
             _serviceScopeFactory = serviceScopeFactory;
+            
+             // Create the database
+            _logger.LogInformation("Creating the Database ..");
+            using (var scope = _serviceScopeFactory.CreateScope())
+            {
+                ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
+                pc.Database.EnsureCreated();
+                pc.SaveChanges();
+            }
         }
 
         public TheSystemImpl()

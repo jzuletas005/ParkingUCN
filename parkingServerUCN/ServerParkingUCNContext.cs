@@ -66,7 +66,7 @@ namespace ServerParkingUCN.Dao
                 // The Name
                 p.Property(p => p.nombre);
                 // Required rut
-                p.Property(p => p.rut);
+                p.HasKey(p => p.rut);
                 // The Sexo
                 p.Property(p => p.sexo);
                 // The Cargo

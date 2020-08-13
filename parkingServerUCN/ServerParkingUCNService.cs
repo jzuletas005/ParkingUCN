@@ -2,6 +2,7 @@ using Ice;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using ServerParkingUCN.ZeroIce.model;
@@ -62,20 +63,34 @@ namespace serverParkingUCN
         /// <returns></returns>
         public Task StartAsync(CancellationToken cancellationToken)
         {
+
+             IPHostEntry host;
+            string localIP = "";
+            host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (IPAddress ip in host.AddressList)
+            {
+                if (ip.AddressFamily.ToString() == "InterNetwork")
+                {
+                    localIP = ip.ToString();
+                }
+            }
+
+            _logger.LogDebug("Starting the ServerParkingUCNService ..");
+            _logger.LogDebug(localIP);
+            _logger.LogDebug("dato"+ _port);
+
             _logger.LogDebug("Starting the ServerParkingUCNService ..");
 
             // The adapter
-            var adapter = _communicator.createObjectAdapterWithEndpoints("TheSystem", "tcp -z -t 15000 -p " + _port);
-
-            TheSystem theSystem = new TheSystemImpl();
+            var adapter = _communicator.createObjectAdapterWithEndpoints("ParkingUCN", "tcp -z -t 15000 -p " + _port);
 
             // Register in the communicator
-            adapter.add(theSystem, Util.stringToIdentity("TheSystem"));
+            adapter.add(_theSystem, Util.stringToIdentity("TheSystem"));
 
             //Activation
             adapter.activate();
 
-            _theSystem.getDelay(0);
+            //_theSystem.getDelay(0);
 
             return Task.CompletedTask;
         }
