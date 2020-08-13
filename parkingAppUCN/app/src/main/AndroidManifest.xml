@@ -2,13 +2,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cl.ucn.disc.pdis.parkingappucn">
 
+    <!-- The Network Permissions -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ParkingAppUCN">
+        android:theme="@style/Theme.ParkingAppUCN"
+        android:autoRevokePermissions="allowed">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,11 +31,11 @@
             android:label="@string/app_name">
         </activity>
         <activity
-            android:name=".RegistrarPersona"
+            android:name=".Registrar"
             android:label="@string/app_name">
         </activity>
         <activity
-            android:name=".RegistrarVehiculo"
+            android:name=".Buscar"
             android:label="@string/app_name">
         </activity>
     </application>

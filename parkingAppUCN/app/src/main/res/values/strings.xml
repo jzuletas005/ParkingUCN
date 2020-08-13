@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">ParkingAppUCN</string>
+
+    <string-array name="finds_array">
+        <item>Rut</item>
+        <item>Patente</item>
+    </string-array>
 </resources>
