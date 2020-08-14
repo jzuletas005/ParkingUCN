@@ -7,6 +7,8 @@
 - Este modulo crea y mantiene la base de datos que dará soporte a todo el proyecto
 
 ## Java Libraries
+- .Net Core 3.1
+
 #### Microsoft
 - Microsoft.EntityFrameworkCore Version 3.1.4
 - Microsoft.Extensions.Hosting Version 3.1.4
