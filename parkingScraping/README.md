@@ -8,12 +8,16 @@
 
 
 ## Java Libraries
-- SLF4J: org.slf4j:slf4j-api
-- Logback: ch.qos.logback:logback-classic
-- Jsoup: org.jsoup:jsoup
-- ORMLite: com.j256.ormlite:ormlite
-- SQLite: org.xerial:sqlite
-- ZeroIce: com.zeroc:ice
+- SLF4J   1.7.30
+- Logback 1.3.0
+- JSoup  1.13.1
+- JUnit 5.7.0
+- H2 1.4.200
+- ORMLite 5.1
+- SQLite 3.32.3.1
+- ZeroIce 3.7.4
+- CSV 5.2 
+
 
 ## UML
 
