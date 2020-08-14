@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:id="@+id/newpersonicon"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/ic_baseline_face_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.055" />
+
+    <EditText
+        android:id="@+id/rNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:inputType="text"
+        android:hint="NOMBRE ..... Ej: Juan Perez"
+        app:layout_constraintTop_toBottomOf="@+id/newpersonicon"
+        tools:layout_editor_absoluteX="-28dp"
+        android:textSize="10dp"
+        android:textAlignment="center"
+        android:gravity="center"/>
+
+    <EditText
+        android:id="@+id/rRut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:inputType="text"
+        android:hint="RUT CON PUNTO Y GUIÓN .... Ej: 12.345.678-9"
+        app:layout_constraintTop_toBottomOf="@+id/rNombre"
+        tools:layout_editor_absoluteX="-28dp"
+        android:textSize="10dp"
+        android:textAlignment="center"
+        android:gravity="center"/>
+
+    <EditText
+        android:id="@+id/rSexo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:inputType="text"
+        android:hint="SEXO ..... Ej: FEMENINO"
+        app:layout_constraintTop_toBottomOf="@+id/rRut"
+        tools:layout_editor_absoluteX="28dp"
+        android:textSize="10dp"
+        android:textAlignment="center"
+        android:gravity="center"/>
+
+    <EditText
+        android:id="@+id/rCargo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:inputType="text"
+        android:hint="CARGO .... Ej: Jefe de Carrera"
+        app:layout_constraintTop_toBottomOf="@+id/rSexo"
+        tools:layout_editor_absoluteX="28dp"
+        android:textSize="10dp"
+        android:textAlignment="center"
+        android:gravity="center"/>
+    <EditText
+        android:id="@+id/rUnidad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:inputType="text"
+        android:hint="UNIDAD .... Ej: Departamento de Ciencias del Mar"
+        app:layout_constraintTop_toBottomOf="@+id/rCargo"
+        tools:layout_editor_absoluteX="28dp"
+        android:textSize="10dp"
+        android:textAlignment="center"
+        android:gravity="center"/>
+
+    <EditText
+        android:id="@+id/rEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:inputType="text"
+        android:hint="EMAIL .... Ej: correo@ucn.cl"
+        app:layout_constraintTop_toBottomOf="@+id/rUnidad"
+        tools:layout_editor_absoluteX="28dp"
+        android:textSize="10dp"
+        android:textAlignment="center"
+        android:gravity="center"/>
+
+    <EditText
+        android:id="@+id/rTelefono"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:inputType="text"
+        android:hint="TELEFONO .... Ej: 952841367"
+        app:layout_constraintTop_toBottomOf="@+id/rEmail"
+        tools:layout_editor_absoluteX="28dp"
+        android:textSize="10dp"
+        android:textAlignment="center"
+        android:gravity="center"/>
+
+    <EditText
+        android:id="@+id/rOficina"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:inputType="text"
+        android:hint="OFICINA .... Ej: Pab. A  Of. 007"
+        app:layout_constraintTop_toBottomOf="@+id/rTelefono"
+        tools:layout_editor_absoluteX="28dp"
+        android:textSize="10dp"
+        android:textAlignment="center"
+        android:gravity="center"/>
+
+    <EditText
+        android:id="@+id/rDireccion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:inputType="text"
+        android:hint="DIRECCIÓN .... Ej: Angamos 068"
+        app:layout_constraintTop_toBottomOf="@+id/rOficina"
+        tools:layout_editor_absoluteX="28dp"
+        android:textSize="10dp"
+        android:textAlignment="center"
+        android:gravity="center"/>
+
+    <EditText
+        android:id="@+id/rCountry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:inputType="text"
+        android:hint="REGION .... Ej: Antofagasta - Chile"
+        app:layout_constraintTop_toBottomOf="@+id/rDireccion"
+        tools:layout_editor_absoluteX="28dp"
+        android:textSize="10dp"
+        android:textAlignment="center"
+        android:gravity="center"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rCountry"
+        tools:layout_editor_absoluteX="16dp">
+
+        <Button
+            android:id="@+id/savepersona"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:text="Guardar" />
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:text="Cancelar" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

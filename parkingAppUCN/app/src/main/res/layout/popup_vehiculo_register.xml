@@ -7,108 +7,134 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/closepopup"
-        android:layout_width="52dp"
-        android:layout_height="51dp"
-        android:background="@drawable/ic_baseline_close_24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:onClick="close"
-        />
 
     <ImageView
-        android:id="@+id/newcaricon"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:id="@+id/newpersonicon"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:background="@drawable/ic_baseline_directions_car_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.137" />
+        app:layout_constraintVertical_bias="0.055" />
 
-    <TextView
-        android:id="@+id/findpatente"
+    <EditText
+        android:id="@+id/rPatente"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@+id/newcaricon"
+        android:inputType="text"
+        android:hint="PATENTE ..... Ej: GGWP10"
+        app:layout_constraintTop_toBottomOf="@+id/newpersonicon"
         tools:layout_editor_absoluteX="-28dp"
-        android:textSize="20dp"
+        android:textSize="10dp"
         android:textAlignment="center"
         android:gravity="center"/>
 
-    <TextView
-        android:id="@+id/findcodigoLogo"
+    <EditText
+        android:id="@+id/rCodigoLogo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@+id/findpatente"
+        android:inputType="text"
+        android:hint="CODIGO DEL LOGO .... Ej: s1254789"
+        app:layout_constraintTop_toBottomOf="@+id/rPatente"
         tools:layout_editor_absoluteX="-28dp"
-        android:textSize="20dp"
+        android:textSize="10dp"
         android:textAlignment="center"
         android:gravity="center"/>
 
-    <TextView
-        android:id="@+id/findmarca"
+    <EditText
+        android:id="@+id/rMarca"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@+id/findcodigoLogo"
+        android:inputType="text"
+        android:hint="MARCA ..... Ej: HYUNDAI"
+        app:layout_constraintTop_toBottomOf="@+id/rCodigoLogo"
         tools:layout_editor_absoluteX="28dp"
-        android:textSize="20dp"
+        android:textSize="10dp"
         android:textAlignment="center"
         android:gravity="center"/>
 
-    <TextView
-        android:id="@+id/findmodelo"
+    <EditText
+        android:id="@+id/rModelo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@+id/findmarca"
+        android:inputType="text"
+        android:hint="MODELO .... Ej: VELOSTER"
+        app:layout_constraintTop_toBottomOf="@+id/rMarca"
         tools:layout_editor_absoluteX="28dp"
-        android:textSize="20dp"
+        android:textSize="10dp"
+        android:textAlignment="center"
+        android:gravity="center"/>
+    <EditText
+        android:id="@+id/rAnio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="AÑO DEL VEHICULO .... Ej: 2015"
+        app:layout_constraintTop_toBottomOf="@+id/rModelo"
+        tools:layout_editor_absoluteX="28dp"
+        android:textSize="10dp"
+        android:inputType="number"
         android:textAlignment="center"
         android:gravity="center"/>
 
-    <TextView
-        android:id="@+id/findresponsable"
+    <EditText
+        android:id="@+id/rObservacion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@+id/findmodelo"
+        android:inputType="text"
+        android:hint="OBSERVACIÓN .... Ej: Se estaciona mal"
+        app:layout_constraintTop_toBottomOf="@+id/rAnio"
         tools:layout_editor_absoluteX="28dp"
-        android:textSize="20dp"
+        android:textSize="10dp"
         android:textAlignment="center"
         android:gravity="center"/>
+
+    <EditText
+        android:id="@+id/rResponsable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:inputType="text"
+        android:hint="RUT DEL RESPONSABLE .... Ej: 12.345.678-9"
+        app:layout_constraintTop_toBottomOf="@+id/rObservacion"
+        tools:layout_editor_absoluteX="28dp"
+        android:textSize="10dp"
+        android:textAlignment="center"
+        android:gravity="center"/>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/findresponsable"
+        app:layout_constraintTop_toBottomOf="@+id/rResponsable"
         tools:layout_editor_absoluteX="16dp">
 
         <Button
-            android:id="@+id/updatevehiculo"
+            android:id="@+id/savevehiculo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_weight="1"
-            android:text="Editar" />
+            android:text="Guardar" />
 
         <Button
-            android:id="@+id/deletevehiculo"
+            android:id="@+id/cancel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_weight="1"
-            android:text="Borrar" />
+            android:text="Cancelar" />
 
     </LinearLayout>
 

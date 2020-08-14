@@ -1,5 +1,6 @@
 package cl.ucn.disc.pdis.parkingappucn;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -114,11 +115,41 @@ public class Buscar extends AppCompatActivity {
         findunidad.setText(personafind.unit);
         findoficina.setText(personafind.oficina);
 
+        updatepersona = (Button) PersonaPopUpView.findViewById(R.id.updatepersona);
+        deletepersona = (Button) PersonaPopUpView.findViewById(R.id.deletepersona);
+
         dialogBuilder.setView(PersonaPopUpView);
         dialog = dialogBuilder.create();
         dialog.show();
 
-        //TODO crear botones de editar y borrar además de cerrar el dialog
+        updatepersona.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Bundle personabundle = new Bundle();
+                personabundle.putSerializable("persona",personafind);
+
+                Intent intent = new Intent(Buscar.this, Actualizar.class);
+                intent.putExtras(personabundle);
+                intent.putExtra("numero",0);
+                startActivity(intent);
+            }
+        });
+
+        deletepersona.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Bundle personabundle = new Bundle();
+                personabundle.putSerializable("persona",personafind);
+
+                Intent intent = new Intent(Buscar.this, Eliminar.class);
+                intent.putExtras(personabundle);
+                intent.putExtra("numero",0);
+                startActivity(intent);
+            }
+        });
+
     }
 
     /**
@@ -141,10 +172,45 @@ public class Buscar extends AppCompatActivity {
         findmodelo.setText(vehiculofind.modelo);
         findresponsable.setText(vehiculofind.responsable);
 
+        updatevehiculo = (Button) PersonaPopUpView.findViewById(R.id.updatevehiculo);
+        deletevehiculo = (Button) PersonaPopUpView.findViewById(R.id.deletevehiculo);
+
         dialogBuilder.setView(PersonaPopUpView);
         dialog = dialogBuilder.create();
         dialog.show();
 
-        //TODO crear botones de editar y borrar además de cerrar el dialog
+        updatevehiculo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Bundle personabundle = new Bundle();
+                personabundle.putSerializable("vehiculo",vehiculofind);
+
+                Intent intent = new Intent(Buscar.this, Actualizar.class);
+                intent.putExtras(personabundle);
+                intent.putExtra("numero",1);
+                startActivity(intent);
+            }
+        });
+
+        deletevehiculo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(Buscar.this, Eliminar.class);
+                intent.putExtra("patente", vehiculofind.patente);
+                intent.putExtra("numero",1);
+                startActivity(intent);
+            }
+        });
+
+    }
+
+    /**
+     *
+     * @param v
+     */
+    public void close(View v) {
+        dialog.dismiss();
     }
 }

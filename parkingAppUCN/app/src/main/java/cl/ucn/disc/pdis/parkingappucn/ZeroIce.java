@@ -6,8 +6,10 @@ import com.zeroc.Ice.InitializationData;
 import com.zeroc.Ice.ObjectPrx;
 import com.zeroc.Ice.Properties;
 import com.zeroc.Ice.Util;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.lang.String;
 
 import cl.ucn.disc.pdis.scrapper.zeroice.model.ContratosPrx;
@@ -30,43 +32,54 @@ public class ZeroIce {
     /**
      * The ZeroIce Communicator
      */
-    private Communicator _theCommunicator;
+    private Communicator theCommunicator;
 
     /**
      * The Contratos Implementation
      */
-    private ContratosPrx _theContratos;
+    private ContratosPrx theContratos;
 
     /**
      * The System Implementation
      */
-    private TheSystemPrx _theSystem;
+    private TheSystemPrx theSystem;
 
     /**
      * The Constructor.
      */
-    public ZeroIce() {} //Nothing here ...
+    public ZeroIce() {
+    } //Nothing here ...
 
     /**
      * Get Instance.
+     *
      * @return the ZeroIce.
      */
-    public static ZeroIce getInstance()  {return ZERO_ICE;}
+    public static ZeroIce getInstance() {
+        return ZERO_ICE;
+    }
 
     /**
      * Get Contratos.
+     *
      * @return the Contratos.
      */
-    public ContratosPrx getContratos() { return this._theContratos; }
+    public ContratosPrx getContratos() {
+        return this.theContratos;
+    }
 
     /**
      * Get TheSystem
+     *
      * @return theSystem
      */
-    public TheSystemPrx getTheSystem() { return this._theSystem; }
+    public TheSystemPrx getTheSystem() {
+        return this.theSystem;
+    }
 
     /**
      * Initialization of ZeroIce.
+     *
      * @return
      */
     private static InitializationData getInitializationData() {
@@ -95,16 +108,16 @@ public class ZeroIce {
      */
     public void start() {
 
-        try{
-            this._theCommunicator = Util.initialize(getInitializationData());
+        try {
+            this.theCommunicator = Util.initialize(getInitializationData());
 
             log.debug("Proxying <TheSystem> ..");
 
-            ObjectPrx theProxy = this._theCommunicator.stringToProxy("TheSystem:tcp -h 192.168.0.22 -t 15000 -p 8080");
+            ObjectPrx theProxy = this.theCommunicator.stringToProxy("TheSystem:tcp -h 192.168.0.22 -p 8080");
 
-            this._theSystem = TheSystemPrx.checkedCast(theProxy);
+            this.theSystem = TheSystemPrx.checkedCast(theProxy);
 
-        }catch (ConnectionRefusedException ex){
+        } catch (ConnectionRefusedException ex) {
             log.warn("Backend error", ex);
         }
     }
@@ -114,12 +127,12 @@ public class ZeroIce {
      */
     public void stop() {
         //If the communicator is null, it is destroyed
-        if (this._theCommunicator == null) {
+        if (this.theCommunicator == null) {
             log.warn("The Communicator was already stopped?");
             return;
         }
-        this._theSystem = null;
-        this._theCommunicator.destroy();
+        this.theSystem = null;
+        this.theCommunicator.destroy();
     }
 
 }

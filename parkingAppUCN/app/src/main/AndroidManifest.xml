@@ -38,6 +38,14 @@
             android:name=".Buscar"
             android:label="@string/app_name">
         </activity>
+        <activity
+            android:name=".Eliminar"
+            android:label="@string/app_name">
+        </activity>
+        <activity
+            android:name=".Actualizar"
+            android:label="@string/app_name">
+        </activity>
     </application>
 
 </manifest>
