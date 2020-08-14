@@ -11,7 +11,8 @@ java, zeroIce y android para su desarrollo.
 
 
 ##  Technologies
-  - Java 14.0.1
+  - JavaJDK11 1.8
+  - JavaSDK 14.0.1
   - PHP 7.3.7
   - C# 8
   - .NET Core 3.1
@@ -19,6 +20,11 @@ java, zeroIce y android para su desarrollo.
   - Intellij Idea 2020.2.1
   - Android Studio 4.1 Cannary 10
   - HTML, CSS, Javascript
+  - Gradle 6.6
+  - ZeroIce 3.7.4
+  - ORMLite 5.1 + JUunit 5.7.0
+  - SQLite 3.32.3.1 
+  - Visual Studio Code-Insiders 1.48.0
 
 ## Developers
  - [Javier Zuleta-Silva -jzuletas005@gmail.com]().
