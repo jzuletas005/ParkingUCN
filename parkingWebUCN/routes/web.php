@@ -13,7 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::redirect('/', 'home');
+Route::redirect('/', 'inicio');
 
-Route::get('home', 'Web\PageController@home')->name('home');
+Route::get('inicio', 'Web\PageController@inicio')->name('inicio');
 
+Route::get('buscarPersonas', 'Web\PageController@buscarPersona')->name('buscarPersonas');
+
+Route::post('buscarPersonas', 'Web\PageController@persona');
