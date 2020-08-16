@@ -21,6 +21,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp" />
 
+
     <EditText
         android:id="@+id/findText"
         android:layout_width="match_parent"
@@ -31,56 +32,38 @@
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.33" />
+        app:layout_constraintVertical_bias="0.339" />
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tipo de Busqueda"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/seleccion"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/findText" />
-
-    <RadioGroup
-        android:id="@+id/selection"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/botonBuscar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/findText">
-
-        <RadioButton
-            android:id="@+id/botonRut"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Por Rut"
-            android:textSize="20dp"/>
-
-        <RadioButton
-            android:id="@+id/botonPatente"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Por Patente"
-            android:textSize="20dp"/>
-    </RadioGroup>
-
-    <Button
-        android:id="@+id/botonBuscar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="96dp"
-        android:text="Buscar"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/findText"
-        app:layout_constraintVertical_bias="0.925" />
+        app:layout_constraintVertical_bias="0.355"
+        tools:layout_editor_absoluteX="0dp">
+
+        <ImageView
+            android:id="@+id/busquedaPersona"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/ic_baseline_face_24" />
+
+        <ImageView
+            android:id="@+id/busquedaVehiculo"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/ic_baseline_directions_car_24" />
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
