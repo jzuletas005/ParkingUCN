@@ -1,4 +1,4 @@
 @extends('layouts.default')
 @section('content')
-    Sistema de control de vehiculos
+    <h2>Sistema de control de vehiculos</h2>
 @stop
