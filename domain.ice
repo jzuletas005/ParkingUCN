@@ -48,9 +48,8 @@ module model
     */
         ["cs:property"]
         class Persona{
-
             /**
-            * PK
+            *
             */
             int uid;
 
@@ -60,7 +59,8 @@ module model
             string nombre;
 
             /**
-            *Rut: 18124996K
+            *PrimaryKey
+            *Rut:11.111.111-1
             */  
             string rut;
 
@@ -217,6 +217,17 @@ module model
           TipoLogo tipoLogo;
       }
 
+        exception DBnoEncontrada { 
+
+            string mensaje = "No se encuentra en la base de datos"; 
+        }
+
+        exception ErrorDeServidor {
+
+            string mensaje = "No se puede conectar con el servidor"; 
+        
+        }
+
         /**
          * The Contratos
          */
@@ -228,7 +239,7 @@ module model
         *@param codigo del logo
         *@return Circulacion del vehiculo
         */
-        //Circulacion ingresoVehiculo(string codigoLogo);
+        Circulacion ingresoVehiculo(string patente);
 
         /**
         *Exit vehicle
@@ -236,7 +247,7 @@ module model
         *@param codigo del logo
         *@return Circulacion del vehiculo
         */
-        //Circulacion salidaVehiculo(string codigoLogo);
+        Circulacion salidaVehiculo(string patente);
 
         /**
         *Verify logo of an existing patent
@@ -288,8 +299,6 @@ module model
         */
         //Identificacion eliminarOID(Identificacion oid);
     }
-
-
 
      /**
      * The base system.
