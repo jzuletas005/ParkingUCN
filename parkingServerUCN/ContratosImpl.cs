@@ -41,8 +41,8 @@ namespace ServerParkingUCN.ZeroIce
 
             _logger.LogDebug("Done.");
         }
-                    //Method that records the entry of the vehicle 
-            public override Circulacion ingresoVehiculo(string patente, Current current)
+                   //Method that records the entry of the vehicle 
+            public override Circulacion ingresoVehiculo(string patente, string puertaEntrada, Current current)
             {
                 using(var scope = _serviceScopeFactory.CreateScope())
                 {
@@ -50,6 +50,7 @@ namespace ServerParkingUCN.ZeroIce
                     Vehiculo vehiculo = pc.Vehiculos.Find(patente);
                     Circulacion ingreso = new Circulacion(); 
                     ingreso.patente = patente; 
+                    ingreso.puertaEntrada =puertaEntrada;
                     ingreso.fechaIngreso = DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss");
                     pc.Circulaciones.Add(ingreso);
                     pc.SaveChanges();
@@ -59,7 +60,7 @@ namespace ServerParkingUCN.ZeroIce
             }
 
                 //Method that records the departure of the vehicle 
-            public override Circulacion salidaVehiculo(string patente, Current current)
+            public override Circulacion salidaVehiculo(string patente,string puertaSalida, Current current)
             {
                  using(var scope = _serviceScopeFactory.CreateScope())
                 {
@@ -67,6 +68,7 @@ namespace ServerParkingUCN.ZeroIce
                     Vehiculo vehiculo = pc.Vehiculos.Find(patente);
                     Circulacion salida = new Circulacion(); 
                     salida.patente = patente; 
+                    salida.puertaSalida = puertaSalida;
                     salida.fechaSalida = DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss");
                     pc.Circulaciones.Add(salida);
                     pc.SaveChanges();
