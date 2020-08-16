@@ -61,11 +61,10 @@ namespace ServerParkingUCN.Dao
             // Make the model to Persona in Db. 
             modelBuilder.Entity<Persona>(p =>
             {
-                // Primary Key
-                p.HasKey(p => p.uid);
+                p.Property(p => p.uid);
                 // The Name
                 p.Property(p => p.nombre);
-                // Required rut
+                // Required rut -> Primary Key
                 p.HasKey(p => p.rut);
                 // The Sexo
                 p.Property(p => p.sexo);
