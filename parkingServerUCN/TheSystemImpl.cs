@@ -1,9 +1,11 @@
 using System;
 using Ice;
+using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using ServerParkingUCN.ZeroIce.model;
 using ServerParkingUCN.Dao;
+using Exception = Ice.Exception;
 
 
 namespace ServerParkingUCN.ZeroIce
@@ -48,26 +50,58 @@ namespace ServerParkingUCN.ZeroIce
         ///Adds a Persona to Database
         public override Persona registrarPersona(Persona persona, Current current = null)
         {
+            try { 
+            
             using (var scope = _serviceScopeFactory.CreateScope())
             {
                 ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
                 pc.Personas.Add(persona);
                 pc.SaveChanges();
                 return persona;
+
             }
-            throw new System.NotImplementedException();
+        }
+
+       catch (SqliteException exception){
+
+            _logger.LogDebug("Error: : {}", exception.InnerException);
+            return null; 
+        }
+         catch (Exception exception)
+            {
+                _logger.LogDebug("Error de servidor : {}",exception.InnerException);
+                throw new  NullReferenceException("Error interno del servidor");
+            }
+
         }
         // Adds a Vehiculo to Database
         public override Vehiculo registrarVehiculo(Vehiculo vehiculo, Current current = null)
         {
+
+            try { 
             using (var scope = _serviceScopeFactory.CreateScope())
             {
                 ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
                 pc.Vehiculos.Add(vehiculo);
                 pc.SaveChanges();
                 return vehiculo;
+
             }
-            throw new System.NotImplementedException();
+
+        }
+
+        catch (SqliteException exception){
+
+                _logger.LogDebug("Error: : {}", exception.InnerException);
+                 return null; 
+                
+                }
+                 catch (Exception exception)
+                {
+                        _logger.LogDebug("Error de servidor : {}",exception.InnerException);
+                        throw new  NullReferenceException("Error interno del servidor");
+                        }
+
         }
         // Given a patente, returns a vehiculo from Database
         public override Vehiculo obtenerVehiculo(string patente, Current current)
