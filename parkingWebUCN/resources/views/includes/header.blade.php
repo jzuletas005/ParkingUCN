@@ -4,7 +4,7 @@
         <ul class="nav">
             <p>
                 <button type="button" onclick="window.location='{{ route("buscarPersonas") }}'"class="btn btn-primary">Buscar Persona</button>
-                <button type="button" class="btn btn-primary">Crear Persona</button>
+                <button type="button" onclick="window.location='{{ route("crearPersonas") }}'"class="btn btn-primary">Crear Persona</button>
                 <button type="button" class="btn btn-primary">Editar Persona</button>
                 <button type="button" class="btn btn-primary">Eliminar Persona</button>
             </p>
