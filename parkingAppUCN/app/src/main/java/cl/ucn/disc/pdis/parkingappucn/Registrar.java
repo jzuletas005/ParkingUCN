@@ -4,8 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.TextView;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -42,14 +41,23 @@ public class Registrar extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrar);
 
-    }
+        ImageView people = findViewById(R.id.registroPersona);
+        ImageView car = findViewById(R.id.registroVehiculo);
 
-    public void imgpeople(View v) {
-        registerPersonaDialog();
-    }
+        people.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                registerPersonaDialog();
+            }
+        });
 
-    public void imgcar(View v) {
-        registerCarDialog();
+        car.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                registerCarDialog();
+            }
+        });
+
     }
 
     public void registerCarDialog() {
@@ -82,12 +90,21 @@ public class Registrar extends AppCompatActivity {
                 Vehiculo v = new Vehiculo(rPatente.getText().toString(),
                         rCodigoLogo.getText().toString(),
                         rMarca.getText().toString(),
-                        rModelo.getText().toString(), rAnio.getInputType(),
+                        rModelo.getText().toString(), Integer.parseInt(rAnio.getText().toString()),
                         rObservacion.getText().toString(), rResponsable.getText().toString());
 
-                theSystemPrx.registrarVehiculo(v);
-
-                Toast.makeText(Registrar.this, "Vehiculo registrado : " +v.patente, Toast.LENGTH_LONG).show();
+                //Busca si existe el vehiculo
+                try {
+                    if (theSystemPrx.obtenerVehiculo(v.patente) == null) {
+                        theSystemPrx.registrarVehiculo(v);
+                        Toast.makeText(Registrar.this, "Vehiculo registrado : " + v.patente, Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(Registrar.this, "Vehiculo ya existe : " + v.patente, Toast.LENGTH_LONG).show();
+                    }
+                    dialog.dismiss();
+                } catch (Exception ex) {
+                    logger.error("Error: " + ex);
+                }
             }
         });
 
@@ -121,11 +138,15 @@ public class Registrar extends AppCompatActivity {
         dialog = dialogBuilder.create();
         dialog.show();
 
-         Sexo varSexo = Sexo.INDETERMINADO;
+        Sexo varSexo = Sexo.INDETERMINADO;
 
-        if(rSexo.getText().toString().equalsIgnoreCase("Femenino")){ varSexo = Sexo.FEMENINO; }
+        if (rSexo.getText().toString().equalsIgnoreCase("Femenino")) {
+            varSexo = Sexo.FEMENINO;
+        }
 
-        if(rSexo.getText().toString().equalsIgnoreCase("Masculino")){ varSexo = Sexo.MASCULINO; }
+        if (rSexo.getText().toString().equalsIgnoreCase("Masculino")) {
+            varSexo = Sexo.MASCULINO;
+        }
 
         final Sexo finalvarSexo = varSexo;
 
@@ -136,16 +157,24 @@ public class Registrar extends AppCompatActivity {
         savePersona.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Persona p = new Persona(2,rNombre.getText().toString(),
+                Persona p = new Persona(2, rNombre.getText().toString(),
                         rRut.getText().toString(), rCargo.getText().toString(),
                         rUnidad.getText().toString(), rDireccion.getText().toString(),
                         finalvarSexo, rTelefono.getText().toString(),
                         rOficina.getText().toString(), rEmail.getText().toString(),
                         rCountry.getText().toString());
 
-                theSystemPrx.registrarPersona(p);
-
-                Toast.makeText(Registrar.this, "Persona registrado : " +p.nombre, Toast.LENGTH_LONG).show();
+                try {
+                    if (theSystemPrx.obtenerPersona(p.rut) == null) {
+                        theSystemPrx.registrarPersona(p);
+                        Toast.makeText(Registrar.this, "Persona registrado : " + p.nombre, Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(Registrar.this, "Persona ya existe : " + p.nombre, Toast.LENGTH_LONG).show();
+                    }
+                    dialog.dismiss();
+                } catch (Exception ex) {
+                    logger.error("Error: " + ex);
+                }
             }
         });
 
@@ -155,6 +184,5 @@ public class Registrar extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
-
     }
 }

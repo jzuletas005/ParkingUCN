@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +35,7 @@ public class Buscar extends AppCompatActivity {
 
     private Button updatepersona, deletepersona, updatevehiculo, deletevehiculo;
 
+
     /**
      * OnCreate
      *
@@ -45,23 +47,25 @@ public class Buscar extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buscar);
 
-        Button botonBuscar = findViewById(R.id.botonBuscar);
-        RadioGroup seleccion = findViewById(R.id.selection);
-        EditText dato = findViewById(R.id.findText);
+        EditText find = findViewById(R.id.findText);
 
+        ImageView people = findViewById(R.id.busquedaPersona);
+        ImageView car = findViewById(R.id.busquedaVehiculo);
 
-        botonBuscar.setOnClickListener(new View.OnClickListener() {
+        people.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (seleccion.getCheckedRadioButtonId() == R.id.botonPatente) {
-                    obtenerCar(dato.getText().toString());
-                }
-
-                if (seleccion.getCheckedRadioButtonId() == R.id.botonRut) {
-                    obtenerPeople(dato.getText().toString());
-                }
+                obtenerPeople(find.getText().toString());
             }
         });
+
+        car.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                obtenerCar(find.getText().toString());
+            }
+        });
+
     }
 
     /**
@@ -75,9 +79,21 @@ public class Buscar extends AppCompatActivity {
 
         Vehiculo vehiculofind = theSystemPrx.obtenerVehiculo(patente);
 
-        logger.debug("Patente: {} " + vehiculofind.patente);
+        try {
+            if(vehiculofind == null){
 
-        showVehiculoDialog(vehiculofind);
+                Toast.makeText(Buscar.this, "Vehiculo no existe  ", Toast.LENGTH_LONG).show();
+
+            }else {
+
+                logger.debug("Patente: " + vehiculofind.patente);
+                showVehiculoDialog(vehiculofind);
+                Toast.makeText(Buscar.this, "Vehiculo encontrado: " + vehiculofind.patente, Toast.LENGTH_LONG).show();
+            }
+
+        }catch (Exception exception){
+            logger.error("Error: "+exception);
+        }
     }
 
     /**
@@ -89,11 +105,23 @@ public class Buscar extends AppCompatActivity {
         ice.start();
         TheSystemPrx theSystemPrx = ice.getTheSystem();
 
-        Persona personafind = theSystemPrx.obtenerPersona(rutpersona); //TODO agregar que es rut con punto y guión
+        Persona personafind = theSystemPrx.obtenerPersona(rutpersona);
 
-        logger.debug("Nombre: {} " + personafind.nombre);
+        try {
+            if(personafind == null){
 
-        showPersonaDialog(personafind);
+                Toast.makeText(Buscar.this, "Persona no existe  ", Toast.LENGTH_LONG).show();
+
+            }else {
+
+                logger.debug("Nombre: " + personafind.nombre);
+                showPersonaDialog(personafind);
+                Toast.makeText(Buscar.this, "Persona encontrado: " + personafind.nombre, Toast.LENGTH_LONG).show();
+            }
+
+        }catch (Exception exception){
+            logger.error("Error: "+exception);
+        }
 
     }
 

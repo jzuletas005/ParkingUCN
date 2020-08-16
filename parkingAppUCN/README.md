@@ -7,10 +7,5 @@
 
 ## Libraries
 
--Gradle 1.4.7
--ZeroIce 3.7.4
--SLF4J 2.0.0 + Logback 1.2.0 
--Apache Commons Lang 3.11
-
 
 ## UML
