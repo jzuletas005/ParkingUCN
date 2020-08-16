@@ -23,31 +23,57 @@ try
 }
 catch(Ice\LocalException $ex)
 {
-    print_r($ex);
+    $imprimir = $ex;
+    //print_r($ex);
 }
 if($ic)
 {
     $ic->destroy();
 }
 
+if($persona){
+    $imprimir = "";
+    $nombre = $persona->nombre;
+    $rut = $persona->rut;
+    $cargo = $persona->wposition;
+    $unidad = $persona->unit;
+    $direccion = $persona->direccion;
+    $telefono = $persona->telefono;
+    $oficina = $persona->oficina;
+    $email = $persona->email;
+    $localidad = $persona->country;
+}else{
+    $imprimir = "Rut invalido";
+    $nombre = "";
+    $rut = "";
+    $cargo = "";
+    $unidad = "";
+    $direccion = "";
+    $telefono = "";
+    $oficina = "";
+    $email = "";
+    $localidad = "";
+}
+
 ?>
 @section('content')
+    <h4><?php echo $imprimir;?></h4><br>
     Nombre:
-    <?php echo $persona->nombre;?><br>
+    <?php echo $nombre;?><br>
     Rut:
-    <?php echo $persona->rut;?><br>
+    <?php echo $rut;?><br>
     Cargo:
-    <?php echo $persona->wposition;?><br>
+    <?php echo $cargo;?><br>
     Unidad:
-    <?php echo $persona->unit;?><br>
+    <?php echo $unidad;?><br>
     Direccion:
-    <?php echo $persona->direccion;?><br>
+    <?php echo $direccion;?><br>
     Telefono:
-    <?php echo $persona->telefono;?><br>
+    <?php echo $telefono;?><br>
     Oficina:
-    <?php echo $persona->oficina;?><br>
+    <?php echo $oficina;?><br>
     Email:
-    <?php echo $persona->email;?><br>
+    <?php echo $email;?><br>
     Localidad:
-    <?php echo $persona->country;?><br>
+    <?php echo $localidad;?><br>
 @endsection

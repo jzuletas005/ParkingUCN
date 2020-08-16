@@ -19,4 +19,8 @@ Route::get('inicio', 'Web\PageController@inicio')->name('inicio');
 
 Route::get('buscarPersonas', 'Web\PageController@buscarPersona')->name('buscarPersonas');
 
+Route::get('crearPersonas', 'Web\PageController@crearPersona')->name('crearPersonas');
+
 Route::post('buscarPersonas', 'Web\PageController@persona');
+
+Route::post('crearPersonas', 'Web\PageController@creandoPersona');
