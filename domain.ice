@@ -239,7 +239,7 @@ module model
         *@param codigo del logo
         *@return Circulacion del vehiculo
         */
-        Circulacion ingresoVehiculo(string patente);
+        Circulacion ingresoVehiculo(string patente, string puertaEntrada);
 
         /**
         *Exit vehicle
@@ -247,7 +247,7 @@ module model
         *@param codigo del logo
         *@return Circulacion del vehiculo
         */
-        Circulacion salidaVehiculo(string patente);
+        Circulacion salidaVehiculo(string patente, string puertaSalida);
 
         /**
         *Verify logo of an existing patent
