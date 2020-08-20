@@ -60,4 +60,9 @@ class PageController extends Controller
             'unidad' => $unidad, 'email' => $email, 'telefono' => $telefono, 'oficina' => $oficina,
             'direccion' => $direccion, 'localidad' => $localidad]);
     }
+
+    public function eliminarPersona(Request $request){
+        $rut = $request->get('rut');
+        return view('personaEliminada', ['rut' => $rut]);
+    }
 }

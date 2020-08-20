@@ -82,4 +82,9 @@ if($persona){
         <input type="hidden" name="rut" value=<?php echo $rut;?>>
         <button>Editar Persona</button>
     </form>
+    <form method="get" action="{{route('eliminarPersona')}}">
+        @csrf
+        <input type="hidden" name="rut" value=<?php echo $rut;?>>
+        <button>Eliminar Persona</button>
+    </form>
 @endsection

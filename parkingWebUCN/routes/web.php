@@ -23,6 +23,8 @@ Route::get('crearPersona', 'Web\PageController@crearPersona')->name('crearPerson
 
 Route::get('editarPersona', 'Web\PageController@editarPersona')->name('editarPersona');
 
+Route::get('eliminarPersona', 'Web\PageController@eliminarPersona')->name('eliminarPersona');
+
 Route::post('buscarPersona', 'Web\PageController@persona');
 
 Route::post('crearPersona', 'Web\PageController@creandoPersona');
