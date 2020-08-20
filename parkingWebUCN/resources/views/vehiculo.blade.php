@@ -72,4 +72,9 @@ if($ic)
     <?php echo $responsable;?><br>
     Observacion:
     <?php echo $observacion;?><br>
+    <form method="get" action="{{route('editarVehiculo')}}">
+        @csrf
+        <input type="hidden" name="patente" value=<?php echo $patente;?>>
+        <button>Editar Vehiculo</button>
+    </form>
 @endsection
