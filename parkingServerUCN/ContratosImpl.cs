@@ -4,6 +4,8 @@ using Ice;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace ServerParkingUCN.ZeroIce
 {
@@ -42,16 +44,20 @@ namespace ServerParkingUCN.ZeroIce
             _logger.LogDebug("Done.");
         }
                    //Method that records the entry of the vehicle 
-            public override Circulacion ingresoVehiculo(string patente, string puertaEntrada, Current current)
+            public override Circulacion ingresoVehiculo(string patente, string puertaEntrada,string observacion, Current current)
             {
                 using(var scope = _serviceScopeFactory.CreateScope())
                 {
+
+                    var dato = 1;
                     ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
-                    Vehiculo vehiculo = pc.Vehiculos.Find(patente);
                     Circulacion ingreso = new Circulacion(); 
                     ingreso.patente = patente; 
-                    ingreso.puertaEntrada =puertaEntrada;
-                    ingreso.fechaIngreso = DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss");
+                    ingreso.puertaEntrada = puertaEntrada;
+                    ingreso.estadoVehiculo = dato;
+                    ingreso.observacion = observacion;
+                    ingreso.fechaIngreso = DateTime.Now.ToString("dd-M-yyyy");
+                    ingreso.horaIngreso = DateTime.Now.ToString("HH:mm:ss");
                     pc.Circulaciones.Add(ingreso);
                     pc.SaveChanges();
                     return ingreso ;
@@ -64,13 +70,14 @@ namespace ServerParkingUCN.ZeroIce
             {
                  using(var scope = _serviceScopeFactory.CreateScope())
                 {
+                     var dato = 0;
                     ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
-                    Vehiculo vehiculo = pc.Vehiculos.Find(patente);
-                    Circulacion salida = new Circulacion(); 
-                    salida.patente = patente; 
+                    Circulacion salida = new Circulacion();
+                    salida = pc.Circulaciones.Where(w => w.patente == patente).Where(a => a.estadoVehiculo == 1).FirstOrDefault();
                     salida.puertaSalida = puertaSalida;
-                    salida.fechaSalida = DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss");
-                    pc.Circulaciones.Add(salida);
+                    salida.estadoVehiculo = dato;
+                    salida.fechaSalida = DateTime.Now.ToString("dd-M-yyyy");
+                    salida.horaSalida = DateTime.Now.ToString("HH:mm:ss");
                     pc.SaveChanges();
                     return salida;
                     
@@ -79,37 +86,113 @@ namespace ServerParkingUCN.ZeroIce
                 
                 }
 
-        //Method that checks if the logo and the patent match 
-        public override bool verificarPatenteLogo(string patente, string codigoLogo, Current current)
+                public override  Circulacion busquedaVehiculo(string fechadeBusqueda, Current current)
+            {
+                 using(var scope = _serviceScopeFactory.CreateScope())
+                {
+                    ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
+                    Circulacion busqueda = new Circulacion();
+                    string patente = pc.Circulaciones.Where(w=> w.fechaIngreso == fechadeBusqueda).Select(s=> s.patente).FirstOrDefault();
+                    string horaIn = pc.Circulaciones.Where(w=> w.fechaIngreso == fechadeBusqueda).Select(s=> s.horaIngreso).FirstOrDefault();
+                    string horaSal = pc.Circulaciones.Where(w=> w.fechaIngreso == fechadeBusqueda).Select(s=> s.horaSalida).FirstOrDefault();
+                    string observa  = pc.Circulaciones.Where(w=> w.fechaIngreso == fechadeBusqueda).Select(s=> s.observacion).FirstOrDefault();
+
+                    busqueda.patente = patente;
+                    busqueda.horaIngreso = horaIn;
+                    busqueda.horaSalida = horaSal;
+                    busqueda.observacion = observa;
+                    pc.SaveChanges();
+
+                     Console.WriteLine("{0} is in {1}", busqueda.horaIngreso, busqueda.horaSalida);
+                    return busqueda;
+                }
+                throw new System.NotImplementedException();
+                
+            }
+       
+        
+        // Method count cars into the university
+        public override int  vehiculosInterior(int estadoVehiculo ,string fecha, Current current)
         {
             using (var scope = _serviceScopeFactory.CreateScope())
             {
                 ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
-                Vehiculo vehiculo = pc.Vehiculos.Find(patente);
-                if (vehiculo.codigoLogo == codigoLogo){
-                    return true;
-                }else{
-                    return false;
-                }
+                int dato = pc.Circulaciones.Where(w => w.estadoVehiculo == 1).Where(o=> o.fechaIngreso == fecha).Count();  
+                pc.SaveChanges();
+
+                return dato;
             }
             throw new System.NotImplementedException();
         }
 
-         //Method that checks if the logo and the patent match 
-        public override bool verificarLogoPatente(string patente, string codigoLogo, Current current)
+        public override int  vehiculosGatePrincipal(int estadoVehiculo,string fecha, Current current)
         {
             using (var scope = _serviceScopeFactory.CreateScope())
             {
                 ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
-                Identificacion identificacion = pc.Identificaciones.Find(codigoLogo);
-                if (identificacion.patente == patente){
-                    return true;
-                }else{
-                    return false;
-                }
-            }
+                int dato = pc.Circulaciones.Where(w => w.estadoVehiculo == 1).Where(p=> p.puertaEntrada == "Principal").Count();
+                pc.SaveChanges();
 
+                return dato;
+            }
+            throw new System.NotImplementedException();
+        }
+
+        public override int  vehiculosGateSur(int estadoVehiculo,string fecha ,Current current)
+        {
+            using (var scope = _serviceScopeFactory.CreateScope())
+            {
+                ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
+                int dato = pc.Circulaciones.Where(w => w.estadoVehiculo == 1).Where(p=> p.puertaEntrada == "Sur").Count();
+                pc.SaveChanges();
+
+                return dato;
+            }
+            throw new System.NotImplementedException();
+        }
+
+        public override int  vehiculosGateAngamos(int estadoVehiculo,string fecha, Current current)
+        {
+            using (var scope = _serviceScopeFactory.CreateScope())
+            {
+                ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
+                int dato = pc.Circulaciones.Where(w => w.estadoVehiculo == 1).Where(p=> p.puertaEntrada == "Angamos").Count();
+                pc.SaveChanges();
+
+                return dato;
+            }
+            throw new System.NotImplementedException();
+        }
+
+
+        public override int totalRegion(string region, Current current)
+        { 
+             using (var scope = _serviceScopeFactory.CreateScope())
+            {
+                ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
+                int dato = pc.Personas.Where(w => w.country == region).Count();
+                pc.SaveChanges();
+
+                return dato;
+            }
+            throw new System.NotImplementedException();
+        } 
+
+        public override int datosEstadisticos(string busquedaDato, Current current)
+        {
+
+             using (var scope = _serviceScopeFactory.CreateScope())
+            {
+                ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
+                int dato = pc.Personas.Where(w => w.unit == busquedaDato).Count();
+                pc.SaveChanges();
+
+                return dato;
+            }
+            throw new System.NotImplementedException();
         }
     }
 }
+
+
 

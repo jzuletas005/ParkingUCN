@@ -103,7 +103,12 @@ module model
             *País
             */
             string country;
-        }
+
+             /**
+             *Tipo Logo
+            */
+            TipoLogo tipoLogo;
+            }
 
 
      /**
@@ -147,6 +152,14 @@ module model
          * Responsable (asociado con la entidad persona)
          */
          string responsable;
+
+        /**
+        *Tipo de Logo
+        *
+        */
+        TipoLogo tipoLogo;
+
+
         }
 
      /**
@@ -161,16 +174,27 @@ module model
          int uid;
 
          /**
-          *Fecha de Ingreso del vehiculo
-          *Format: ISO_ZONED_DATE_TIME
-          */
-           string fechaIngreso;
+        *Fecha de Ingreso del vehiculo
+        *Format: ISO_ZONED_DATE_TIME
+        */
+        string fechaIngreso;
+
+        /**
+        *Hora de ingreso del vehiculo
+        */
+
+        string horaIngreso;
 
          /**
          * Fecha de salida del vehiculo
          *Format: ISO_ZONED_DATE_TIME
          */
          string fechaSalida;
+
+         /**
+         * Hora de salida del vehiculo
+         */
+         string horaSalida;
 
          /**
          *Patente
@@ -182,40 +206,25 @@ module model
          */
          string puertaEntrada;
 
+        /**
+        *Salida
+        */
+        string puertaSalida;
+
+        /**
+        *Observaciones
+        */
+          
+        string observacion;
+
+
          /**
-          *Salida
-          */
-          string puertaSalida;
+        *Estado del Vehiculo
+        */
+
+        int estadoVehiculo;
 
      }
-
-      /**
-      * Clase identificacion
-      */
-      ["cs:property"]
-      class Identificacion{
-
-          /**
-          *Codigo del Logo
-          *PrimaryKey
-          */
-          string codigoLogo;
-
-          /**
-          *Patente
-          */
-          string patente;
-
-          /**
-          *Rut de persona
-          */
-          string rut;
-
-          /**
-          *Tipo Logo
-          */
-          TipoLogo tipoLogo;
-      }
 
         exception DBnoEncontrada { 
 
@@ -239,7 +248,7 @@ module model
         *@param codigo del logo
         *@return Circulacion del vehiculo
         */
-        Circulacion ingresoVehiculo(string patente, string puertaEntrada);
+        Circulacion ingresoVehiculo(string patente, string puertaEntrada, string observacion);
 
         /**
         *Exit vehicle
@@ -249,55 +258,57 @@ module model
         */
         Circulacion salidaVehiculo(string patente, string puertaSalida);
 
-        /**
-        *Verify logo of an existing patent
-        *
-        *@param codigo logo
-        *@param patente del vehiculo
-        *@return true or false
+         /**
+        *Exit vehicle
+         *
+         *@param Fecha de Busqueda
+         *@return circulacion 
         */
-        bool verificarPatenteLogo(string patente, string codigoLogo);
+
+        Circulacion busquedaVehiculo(string fechadeBusqueda);
 
         /**
-        *Verify patent of an existing logo
         *
-        *@param codigo logo
-        *@param patente del vehiculo
-        *@return true or false
+        *@param Estado del Vehiculo
+        *@return estadoVehiculo
         */
-        bool verificarLogoPatente(string patente, string codigoLogo);
+              
+        int vehiculosInterior(int estadoVehiculo, string fecha);
 
         /**
-        *Created Official ID
         *
-        *@param identificacion
-        *@return Identificacion del vehiculo en Universidad
+        *@param Estado del vehiculo
+        *@return Gate Principal 
         */
-        //Identificacion registrarOID(Identificacion oid);
+
+        int vehiculosGatePrincipal(int estadoVehiculo, string fecha);
 
         /**
-        *Search Official ID
-        *
-        *@param identificacion
-        *@return Identificacion del vehiculo en Universidad
+        *@param Estado del Vehiculo
+        *@return Gate sur
         */
-        //Identificacion obtenerOID(Identificacion oid);
+
+        int vehiculosGateSur(int estadoVehiculo, string fecha);
 
         /**
-        *Updated Official ID
-        *
-        *@param identificacion
-        *@return Identificacion del vehiculo en Universidad
+        *@param Estado del vehiculo
+        *@return Gate Angamos 
         */
-        //Identificacion editarOID(Identificacion oid);
+        int vehiculosGateAngamos(int estadoVehiculo, string fecha);
 
         /**
-        *Deleted Official ID
-        *
-        *@param identificacion
-        *@return Identificacion del vehiculo en Universidad
+        *@param region 
+        *@return el total en la region
         */
-        //Identificacion eliminarOID(Identificacion oid);
+
+        int totalRegion(string region);
+
+        /**
+        *@param busqueda Dato
+        *@return las estadisticas
+        */
+
+        int datosEstadisticos(string busquedaDato);
     }
 
      /**
