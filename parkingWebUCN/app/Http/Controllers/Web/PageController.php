@@ -12,11 +12,15 @@ class PageController extends Controller
     }
 
     public function buscarPersona(){
-        return view('buscarPersonas');
+        return view('buscarPersona');
     }
 
     public function crearPersona(){
-        return view('crearPersonas');
+        return view('crearPersona');
+    }
+
+    public function editarPersona(){
+        return view('editarPersona');
     }
 
     public function persona(Request $request){
