@@ -15,36 +15,40 @@ try
     // Down-cast the proxy to a Directory proxy
     //
     $rootDir = model\TheSystemPrxHelper::checkedCast($obj);
-    $persona = $rootDir->obtenerPersona($rut);
 
-    if($cargo == ""){
-        $cargo = $persona->wposition;
-    }
-    if($unidad == ""){
-        $unidad = $persona->unit;
-    }
-    if($email == ""){
-        $email = $persona->email;
-    }
-    if($telefono == ""){
-        $telefono = $persona->telefono;
-    }
-    if($oficina == ""){
-        $oficina = $persona->oficina;
-    }
-    if($direccion == ""){
-        $direccion = $persona->direccion;
-    }
-    if($localidad == ""){
-        $localidad = $persona->country;
-    }
+    if($rut == ""){
+        $imprimir = "Rut invalido";
+    }else{
+        $persona = $rootDir->obtenerPersona($rut);
 
-    $personaEditada = new \model\Persona(0, $persona->nombre, $rut, $cargo, $unidad, $direccion,
-        $persona->sexo, $telefono, $oficina, $email, $localidad);
+        if($cargo == ""){
+            $cargo = $persona->wposition;
+        }
+        if($unidad == ""){
+            $unidad = $persona->unit;
+        }
+        if($email == ""){
+            $email = $persona->email;
+        }
+        if($telefono == ""){
+            $telefono = $persona->telefono;
+        }
+        if($oficina == ""){
+            $oficina = $persona->oficina;
+        }
+        if($direccion == ""){
+            $direccion = $persona->direccion;
+        }
+        if($localidad == ""){
+            $localidad = $persona->country;
+        }
 
-    $rootDir->editarPersona($personaEditada);
-    $imprimir = "Persona editada";
+        $personaEditada = new \model\Persona(0, $persona->nombre, $rut, $cargo, $unidad, $direccion,
+            $persona->sexo, $telefono, $oficina, $email, $localidad);
 
+        $rootDir->editarPersona($personaEditada);
+        $imprimir = "Persona editada";
+    }
 }
 catch(Ice\LocalException $ex)
 {

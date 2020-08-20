@@ -15,8 +15,13 @@ try
     // Down-cast the proxy to a Directory proxy
     //
     $rootDir = model\TheSystemPrxHelper::checkedCast($obj);
-    $persona = $rootDir->obtenerPersona($rut);
-
+    if($rut == ""){
+        $imprimir = "Rut invalido";
+        $nombre = "";
+    }else{
+        $persona = $rootDir->obtenerPersona($rut);
+        $nombre = $persona->nombre;
+    }
 }
 catch(Ice\LocalException $ex)
 {
@@ -34,9 +39,10 @@ if($ic)
 
 @section('content')
     <h3>Editar Persona</h3>
+    <h4><?php echo $imprimir;?></h4><br>
     Rellenar solo los campos a modificar<br><br>
     Rut: <?php echo $rut;?><br>
-    Nombre: <?php echo $persona->nombre;?><br>
+    Nombre: <?php echo $nombre;?><br>
     <form method="post" action="{{route('editarPersona')}}">
         @csrf
         <input name="cargo" placeholder="Cargo" ><br>
