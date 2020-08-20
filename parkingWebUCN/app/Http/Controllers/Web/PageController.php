@@ -113,4 +113,9 @@ class PageController extends Controller
             'tipoLogo' => $tipoLogo, 'marca' => $marca, 'modelo' => $modelo, 'anio' => $anio,
             'responsable' => $responsable, 'observacion' => $observacion]);
     }
+
+    public function eliminarVehiculo(Request $request){
+        $patente = $request->get('patente');
+        return view('vehiculoEliminado', ['patente' => $patente]);
+    }
 }

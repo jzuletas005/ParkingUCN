@@ -31,6 +31,8 @@ Route::get('buscarVehiculo', 'Web\PageController@buscarVehiculo')->name('buscarV
 
 Route::get('editarVehiculo', 'Web\PageController@editarVehiculo')->name('editarVehiculo');
 
+Route::get('eliminarVehiculo', 'Web\PageController@eliminarVehiculo')->name('eliminarVehiculo');
+
 Route::post('buscarPersona', 'Web\PageController@persona');
 
 Route::post('crearPersona', 'Web\PageController@creandoPersona');

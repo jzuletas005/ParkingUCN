@@ -77,4 +77,9 @@ if($ic)
         <input type="hidden" name="patente" value=<?php echo $patente;?>>
         <button>Editar Vehiculo</button>
     </form>
+    <form method="get" action="{{route('eliminarVehiculo')}}">
+        @csrf
+        <input type="hidden" name="patente" value=<?php echo $patente;?>>
+        <button>Eliminar Vehiculo</button>
+    </form>
 @endsection
