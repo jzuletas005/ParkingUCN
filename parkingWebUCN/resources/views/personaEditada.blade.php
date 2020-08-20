@@ -43,7 +43,7 @@ try
             $localidad = $persona->country;
         }
 
-        $personaEditada = new \model\Persona(0, $persona->nombre, $rut, $cargo, $unidad, $direccion,
+        $personaEditada = new \model\Persona($persona->uid, $persona->nombre, $rut, $cargo, $unidad, $direccion,
             $persona->sexo, $telefono, $oficina, $email, $localidad);
 
         $rootDir->editarPersona($personaEditada);

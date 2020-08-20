@@ -65,4 +65,32 @@ class PageController extends Controller
         $rut = $request->get('rut');
         return view('personaEliminada', ['rut' => $rut]);
     }
+
+    public function crearVehiculo(){
+        return view('crearVehiculo');
+    }
+
+    public function creandoVehiculo(Request $request){
+        $patente = $request->get('patente');
+        $codigoLogo = $request->get('codigoLogo');
+        $tipoLogo = $request->get('tipoLogo');
+        $marca = $request->get('marca');
+        $modelo = $request->get('modelo');
+        $anio = $request->get('anio');
+        $responsable = $request->get('responsable');
+        $observacion = $request->get('observacion');
+
+        return view('creandoVehiculo', ['patente' => $patente, 'codigoLogo' => $codigoLogo,
+            'tipoLogo' => $tipoLogo, 'marca' => $marca, 'modelo' => $modelo, 'anio' => $anio,
+            'responsable' => $responsable, 'observacion' => $observacion]);
+    }
+
+    public function buscarVehiculo(){
+        return view('buscarVehiculo');
+    }
+
+    public function vehiculo(Request $request){
+        $patente = $request->get('patente');
+        return view('vehiculo', ['patente' => $patente]);
+    }
 }

@@ -20,6 +20,30 @@ try
     $rootDir = model\TheSystemPrxHelper::checkedCast($obj);
     $persona = $rootDir->obtenerPersona($rut);
 
+    if($persona){
+        $imprimir = "";
+        $nombre = $persona->nombre;
+        $rut = $persona->rut;
+        $cargo = $persona->wposition;
+        $unidad = $persona->unit;
+        $direccion = $persona->direccion;
+        $telefono = $persona->telefono;
+        $oficina = $persona->oficina;
+        $email = $persona->email;
+        $localidad = $persona->country;
+    }else{
+        $imprimir = "Rut invalido";
+        $nombre = "";
+        $rut = "";
+        $cargo = "";
+        $unidad = "";
+        $direccion = "";
+        $telefono = "";
+        $oficina = "";
+        $email = "";
+        $localidad = "";
+    }
+
 }
 catch(Ice\LocalException $ex)
 {
@@ -29,31 +53,6 @@ catch(Ice\LocalException $ex)
 if($ic)
 {
     $ic->destroy();
-}
-
-if($persona){
-    $imprimir = "";
-    $nombre = $persona->nombre;
-    $rut = $persona->rut;
-    $cargo = $persona->wposition;
-    $unidad = $persona->unit;
-    $direccion = $persona->direccion;
-    $telefono = $persona->telefono;
-    $oficina = $persona->oficina;
-    $email = $persona->email;
-    $localidad = $persona->country;
-    $_GET = $rut;
-}else{
-    $imprimir = "Rut invalido";
-    $nombre = "";
-    $rut = "";
-    $cargo = "";
-    $unidad = "";
-    $direccion = "";
-    $telefono = "";
-    $oficina = "";
-    $email = "";
-    $localidad = "";
 }
 
 ?>
