@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 namespace ServerParkingUCN.Dao
 {
     ///<sumary>
-    /// The Connection to FivetDataBase
+    /// The Connection to Parking UCN Data base
     ///<sumary>
     public class ServerParkingUCNContext : DbContext
     {
@@ -32,8 +32,6 @@ namespace ServerParkingUCN.Dao
         /// The Connection to the database to Identificacion.
         /// </summary>
         /// <value> </value>
-
-        public DbSet<Identificacion> Identificaciones { get; set; }
 
         /// <summary>
         /// Configuration.
@@ -101,6 +99,8 @@ namespace ServerParkingUCN.Dao
                 v.Property(v => v.observacion);
                 // The Responsable
                 v.Property(v => v.responsable);
+                // The Tipo logo 
+                v.Property(v => v.tipoLogo);
             });
 
             modelBuilder.Entity<Circulacion>(c =>
@@ -111,25 +111,20 @@ namespace ServerParkingUCN.Dao
                 c.Property(c => c.patente);
                 // The fecha de ingreso
                 c.Property(c => c.fechaIngreso);
+                 // The hora de ingreso
+                c.Property(c => c.horaIngreso);
                 // The fecha de salida
                 c.Property(c => c.fechaSalida);
+                // The hora de salida
+                c.Property(c => c.horaSalida);
                 // The puerta ingreso
                 c.Property(c => c.puertaEntrada);
                 // The puerta salida
                 c.Property(c => c.puertaSalida);
-            });
-
-            modelBuilder.Entity<Identificacion>(i =>
-            {
-                // Primary Key
-                // The Codigo Logo
-                i.HasKey(i => i.codigoLogo);
-                // The patente
-                i.Property(i => i.patente);
-                // The rut
-                i.Property(i => i.rut);
-                // The tipo logo
-                i.Property(i => i.tipoLogo);
+                // Observacion del vehiculo
+                c.Property(c => c.observacion);
+                // Estado del vehiculo
+                c.Property(c => c.estadoVehiculo);
             });
 
         }
