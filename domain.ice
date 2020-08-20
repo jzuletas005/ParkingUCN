@@ -262,7 +262,7 @@ module model
         *Exit vehicle
          *
          *@param Fecha de Busqueda
-         *@return busqueda del vehiculo
+         *@return circulacion 
         */
 
         Circulacion busquedaVehiculo(string fechadeBusqueda);
@@ -270,7 +270,7 @@ module model
         /**
         *
         *@param Estado del Vehiculo
-        *@return interior del vehiculo 
+        *@return estadoVehiculo
         */
               
         int vehiculosInterior(int estadoVehiculo, string fecha);
@@ -278,34 +278,34 @@ module model
         /**
         *
         *@param Estado del vehiculo
-        *@return
+        *@return Gate Principal 
         */
 
         int vehiculosGatePrincipal(int estadoVehiculo, string fecha);
 
         /**
-        *@param
-        *@return
+        *@param Estado del Vehiculo
+        *@return Gate sur
         */
 
         int vehiculosGateSur(int estadoVehiculo, string fecha);
 
         /**
-        *@param
-        *@return
+        *@param Estado del vehiculo
+        *@return Gate Angamos 
         */
         int vehiculosGateAngamos(int estadoVehiculo, string fecha);
 
         /**
-        *@param
-        *@return
+        *@param region 
+        *@return el total en la region
         */
 
         int totalRegion(string region);
 
         /**
-        *@param
-        *@return
+        *@param busqueda Dato
+        *@return las estadisticas
         */
 
         int datosEstadisticos(string busquedaDato);
