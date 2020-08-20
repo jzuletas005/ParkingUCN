@@ -21,8 +21,10 @@ Route::get('buscarPersona', 'Web\PageController@buscarPersona')->name('buscarPer
 
 Route::get('crearPersona', 'Web\PageController@crearPersona')->name('crearPersona');
 
-
+Route::get('editarPersona', 'Web\PageController@editarPersona')->name('editarPersona');
 
 Route::post('buscarPersona', 'Web\PageController@persona');
 
 Route::post('crearPersona', 'Web\PageController@creandoPersona');
+
+Route::post('editarPersona', 'Web\PageController@personaEditada');

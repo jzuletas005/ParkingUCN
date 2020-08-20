@@ -42,6 +42,7 @@ if($persona){
     $oficina = $persona->oficina;
     $email = $persona->email;
     $localidad = $persona->country;
+    $_GET = $rut;
 }else{
     $imprimir = "Rut invalido";
     $nombre = "";
@@ -75,5 +76,10 @@ if($persona){
     Email:
     <?php echo $email;?><br>
     Localidad:
-    <?php echo $localidad;?><br>
+    <?php echo $localidad;?><br><br>
+    <form method="get" action="{{route('editarPersona')}}">
+        @csrf
+        <input type="hidden" name="rut" value=<?php echo $rut;?>>
+        <button>Editar Persona</button>
+    </form>
 @endsection

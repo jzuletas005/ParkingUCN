@@ -19,8 +19,9 @@ class PageController extends Controller
         return view('crearPersona');
     }
 
-    public function editarPersona(){
-        return view('editarPersona');
+    public function editarPersona(Request $request){
+        $rut = $request->get('rut');
+        return view('editarPersona', ['rut' => $rut]);
     }
 
     public function persona(Request $request){
@@ -43,5 +44,20 @@ class PageController extends Controller
         return view('creandoPersona', ['rut' => $rut, 'nombre' => $nombre, 'cargo' => $cargo,
             'unidad' => $unidad, 'email' => $email, 'telefono' => $telefono, 'oficina' => $oficina,
             'direccion' => $direccion, 'localidad' => $localidad, 'sexo' => $sexo]);
+    }
+
+    public function personaEditada(Request $request){
+        $rut = $request->get('rut');
+        $cargo = $request->get('cargo');
+        $unidad = $request->get('unidad');
+        $email = $request->get('email');
+        $telefono = $request->get('telefono');
+        $oficina = $request->get('oficina');
+        $direccion = $request->get('direccion');
+        $localidad = $request->get('localidad');
+
+        return view('personaEditada', ['rut' => $rut, 'cargo' => $cargo,
+            'unidad' => $unidad, 'email' => $email, 'telefono' => $telefono, 'oficina' => $oficina,
+            'direccion' => $direccion, 'localidad' => $localidad]);
     }
 }
