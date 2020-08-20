@@ -5,6 +5,7 @@
             <p>
                 <button type="button" onclick="window.location='{{ route("buscarPersona") }}'"class="btn btn-primary">Buscar Persona</button>
                 <button type="button" onclick="window.location='{{ route("crearPersona") }}'"class="btn btn-primary">Crear Persona</button>
+                <button type="button" onclick="window.location='{{ route("crearVehiculo") }}'"class="btn btn-primary">Crear Vehiculo</button>
             </p>
         </ul>
     </div>
