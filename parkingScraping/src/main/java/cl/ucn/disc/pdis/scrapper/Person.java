@@ -36,7 +36,7 @@ public final class Person {
     @DatabaseField(canBeNull = false)
     private String nombre;
 
-    @DatabaseField(id = true, canBeNull = true)
+    @DatabaseField(id = true, canBeNull = false)
     private String rut;
 
     @DatabaseField(canBeNull = true)
