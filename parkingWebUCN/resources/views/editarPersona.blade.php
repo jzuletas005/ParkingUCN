@@ -21,6 +21,7 @@ try
     }else{
         $persona = $rootDir->obtenerPersona($rut);
         $nombre = $persona->nombre;
+        $imprimir = "";
     }
 }
 catch(Ice\LocalException $ex)
