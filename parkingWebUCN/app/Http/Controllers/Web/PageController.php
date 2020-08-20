@@ -84,4 +84,13 @@ class PageController extends Controller
             'tipoLogo' => $tipoLogo, 'marca' => $marca, 'modelo' => $modelo, 'anio' => $anio,
             'responsable' => $responsable, 'observacion' => $observacion]);
     }
+
+    public function buscarVehiculo(){
+        return view('buscarVehiculo');
+    }
+
+    public function vehiculo(Request $request){
+        $patente = $request->get('patente');
+        return view('vehiculo', ['patente' => $patente]);
+    }
 }

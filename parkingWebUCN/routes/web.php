@@ -27,6 +27,8 @@ Route::get('eliminarPersona', 'Web\PageController@eliminarPersona')->name('elimi
 
 Route::get('crearVehiculo', 'Web\PageController@crearVehiculo')->name('crearVehiculo');
 
+Route::get('buscarVehiculo', 'Web\PageController@buscarVehiculo')->name('buscarVehiculo');
+
 Route::post('buscarPersona', 'Web\PageController@persona');
 
 Route::post('crearPersona', 'Web\PageController@creandoPersona');
@@ -34,3 +36,5 @@ Route::post('crearPersona', 'Web\PageController@creandoPersona');
 Route::post('editarPersona', 'Web\PageController@personaEditada');
 
 Route::post('crearVehiculo', 'Web\PageController@creandoVehiculo');
+
+Route::post('buscarVehiculo', 'Web\PageController@vehiculo');
