@@ -20,14 +20,6 @@ try
     $rootDir = model\TheSystemPrxHelper::checkedCast($obj);
 
     if(!$rootDir->obtenerPersona($rut)){
-        if($sexo == 'INDETERMINADO'){
-            $sexo = \model\Sexo::INDETERMINADO;
-        }
-        if($sexo == 'FEMENINO'){
-            $sexo = \model\Sexo::FEMENINO;
-        }else{
-            $sexo = \model\Sexo::MASCULINO;
-        }
         $persona = new \model\Persona(0, $nombre, $rut, $cargo, $unidad, $direccion,
             $sexo, $telefono, $oficina, $email, $localidad);
         $rootDir->registrarPersona($persona);
