@@ -42,7 +42,6 @@ if($persona){
     $oficina = $persona->oficina;
     $email = $persona->email;
     $localidad = $persona->country;
-    $_GET = $rut;
 }else{
     $imprimir = "Rut invalido";
     $nombre = "";
