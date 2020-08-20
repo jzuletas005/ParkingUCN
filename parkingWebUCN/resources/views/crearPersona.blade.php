@@ -2,7 +2,7 @@
 
 @section('content')
     <h3>Crear Persona</h3>
-    <form method="post" action="{{route('crearPersonas')}}">
+    <form method="post" action="{{route('crearPersona')}}">
         @csrf
         <input name="rut" placeholder="Rut">
         Sexo: <br>

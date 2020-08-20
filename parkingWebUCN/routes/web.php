@@ -17,10 +17,16 @@ Route::redirect('/', 'inicio');
 
 Route::get('inicio', 'Web\PageController@inicio')->name('inicio');
 
-Route::get('buscarPersonas', 'Web\PageController@buscarPersona')->name('buscarPersonas');
+Route::get('buscarPersona', 'Web\PageController@buscarPersona')->name('buscarPersona');
 
-Route::get('crearPersonas', 'Web\PageController@crearPersona')->name('crearPersonas');
+Route::get('crearPersona', 'Web\PageController@crearPersona')->name('crearPersona');
 
-Route::post('buscarPersonas', 'Web\PageController@persona');
+Route::get('editarPersona', 'Web\PageController@editarPersona')->name('editarPersona');
 
-Route::post('crearPersonas', 'Web\PageController@creandoPersona');
+Route::get('eliminarPersona', 'Web\PageController@eliminarPersona')->name('eliminarPersona');
+
+Route::post('buscarPersona', 'Web\PageController@persona');
+
+Route::post('crearPersona', 'Web\PageController@creandoPersona');
+
+Route::post('editarPersona', 'Web\PageController@personaEditada');
