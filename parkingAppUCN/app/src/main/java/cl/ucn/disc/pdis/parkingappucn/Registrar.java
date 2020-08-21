@@ -31,7 +31,7 @@ public class Registrar extends AppCompatActivity {
 
     private EditText rNombre, rRut, rSexo, rCargo, rUnidad, rEmail, rTelefono, rOficina, rDireccion, rCountry;
 
-    private EditText rPatente, rCodigoLogo, rMarca, rModelo, rAnio, rObservacion, rResponsable;
+    private EditText rPatente, rCodigoLogo, rMarca, rModelo, rAnio, rObservacion, rResponsable, rTipoLogo;
 
     private Button savePersona, saveVehiculo, cancel;
 
@@ -71,6 +71,7 @@ public class Registrar extends AppCompatActivity {
         rAnio = (EditText) PersonaPopUpView.findViewById(R.id.rAnio);
         rObservacion = (EditText) PersonaPopUpView.findViewById(R.id.rObservacion);
         rResponsable = (EditText) PersonaPopUpView.findViewById(R.id.rResponsable);
+        rTipoLogo = (EditText) PersonaPopUpView.findViewById(R.id.rTipoLogo);
 
 
         saveVehiculo = (Button) PersonaPopUpView.findViewById(R.id.savevehiculo);
@@ -87,23 +88,28 @@ public class Registrar extends AppCompatActivity {
         saveVehiculo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Vehiculo v = new Vehiculo(rPatente.getText().toString(),
-                        rCodigoLogo.getText().toString(),
-                        rMarca.getText().toString(),
-                        rModelo.getText().toString(), Integer.parseInt(rAnio.getText().toString()),
-                        rObservacion.getText().toString(), rResponsable.getText().toString());
+                Vehiculo v;
+                if(!rPatente.getText().toString().equals("") || !rAnio.getText().toString().equals("")){
+                     v = new Vehiculo(rPatente.getText().toString(),
+                            rCodigoLogo.getText().toString(),
+                            rMarca.getText().toString(),
+                            rModelo.getText().toString(), Integer.parseInt(rAnio.getText().toString()),
+                            rObservacion.getText().toString(), rResponsable.getText().toString(), rTipoLogo.getText().toString());
 
-                //Busca si existe el vehiculo
-                try {
-                    if (theSystemPrx.obtenerVehiculo(v.patente) == null) {
-                        theSystemPrx.registrarVehiculo(v);
-                        Toast.makeText(Registrar.this, "Vehiculo registrado : " + v.patente, Toast.LENGTH_LONG).show();
-                    } else {
-                        Toast.makeText(Registrar.this, "Vehiculo ya existe : " + v.patente, Toast.LENGTH_LONG).show();
+                    try {
+                        if (theSystemPrx.obtenerVehiculo(v.patente) == null) {
+                            theSystemPrx.registrarVehiculo(v);
+                            Toast.makeText(Registrar.this, "Vehiculo registrado : " + v.patente, Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(Registrar.this, "Vehiculo ya existe : " + v.patente, Toast.LENGTH_LONG).show();
+                        }
+                        dialog.dismiss();
+                    } catch (Exception ex) {
+                        logger.error("Error: " + ex);
                     }
-                    dialog.dismiss();
-                } catch (Exception ex) {
-                    logger.error("Error: " + ex);
+                }else {
+                    Toast.makeText(Registrar.this, "Patente o Año del Vehiculo invalido ", Toast.LENGTH_LONG).show();
+                    dialog.cancel();
                 }
             }
         });
@@ -138,17 +144,17 @@ public class Registrar extends AppCompatActivity {
         dialog = dialogBuilder.create();
         dialog.show();
 
-        Sexo varSexo = Sexo.INDETERMINADO;
+        String varSexo = "INDETERMINADO";
 
         if (rSexo.getText().toString().equalsIgnoreCase("Femenino")) {
-            varSexo = Sexo.FEMENINO;
+            varSexo = "FEMENINO";
         }
 
         if (rSexo.getText().toString().equalsIgnoreCase("Masculino")) {
-            varSexo = Sexo.MASCULINO;
+            varSexo = "MASCULINO";
         }
 
-        final Sexo finalvarSexo = varSexo;
+        final String finalvarSexo = varSexo;
 
         ZeroIce ice = new ZeroIce();
         ice.start();
@@ -157,23 +163,31 @@ public class Registrar extends AppCompatActivity {
         savePersona.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Persona p = new Persona(2, rNombre.getText().toString(),
-                        rRut.getText().toString(), rCargo.getText().toString(),
-                        rUnidad.getText().toString(), rDireccion.getText().toString(),
-                        finalvarSexo, rTelefono.getText().toString(),
-                        rOficina.getText().toString(), rEmail.getText().toString(),
-                        rCountry.getText().toString());
+                Persona p;
 
-                try {
-                    if (theSystemPrx.obtenerPersona(p.rut) == null) {
-                        theSystemPrx.registrarPersona(p);
-                        Toast.makeText(Registrar.this, "Persona registrado : " + p.nombre, Toast.LENGTH_LONG).show();
-                    } else {
-                        Toast.makeText(Registrar.this, "Persona ya existe : " + p.nombre, Toast.LENGTH_LONG).show();
+                if(!rRut.getText().toString().equals("") || !rNombre.getText().toString().equals("")){
+
+                    p = new Persona(2, rNombre.getText().toString(),
+                            rRut.getText().toString(), rCargo.getText().toString(),
+                            rUnidad.getText().toString(), rDireccion.getText().toString(),
+                            finalvarSexo, rTelefono.getText().toString(),
+                            rOficina.getText().toString(), rEmail.getText().toString(),
+                            rCountry.getText().toString());
+
+                    try {
+                        if (theSystemPrx.obtenerPersona(p.rut) == null) {
+                            theSystemPrx.registrarPersona(p);
+                            Toast.makeText(Registrar.this, "Persona registrado : " + p.nombre, Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(Registrar.this, "Persona ya existe : " + p.nombre, Toast.LENGTH_LONG).show();
+                        }
+                        dialog.dismiss();
+                    } catch (Exception ex) {
+                        logger.error("Error: " + ex);
                     }
-                    dialog.dismiss();
-                } catch (Exception ex) {
-                    logger.error("Error: " + ex);
+                }else {
+                    Toast.makeText(Registrar.this, "Nombre o Rut de la Persona invalido", Toast.LENGTH_LONG).show();
+                    dialog.cancel();
                 }
             }
         });

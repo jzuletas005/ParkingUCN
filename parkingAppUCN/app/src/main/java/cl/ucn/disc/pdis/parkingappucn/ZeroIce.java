@@ -112,10 +112,13 @@ public class ZeroIce {
             this.theCommunicator = Util.initialize(getInitializationData());
 
             log.debug("Proxying <TheSystem> ..");
+            log.debug("Proxying <Contratos> ..");
 
             ObjectPrx theProxy = this.theCommunicator.stringToProxy("TheSystem:tcp -h 192.168.0.22 -p 8080");
+            ObjectPrx theProxyC = this.theCommunicator.stringToProxy("Contratos:tcp -h 192.168.0.22 -p 4000");
 
             this.theSystem = TheSystemPrx.checkedCast(theProxy);
+            this.theContratos = ContratosPrx.checkedCast(theProxyC);
 
         } catch (ConnectionRefusedException ex) {
             log.warn("Backend error", ex);
@@ -132,6 +135,7 @@ public class ZeroIce {
             return;
         }
         this.theSystem = null;
+        this.theContratos = null;
         this.theCommunicator.destroy();
     }
 

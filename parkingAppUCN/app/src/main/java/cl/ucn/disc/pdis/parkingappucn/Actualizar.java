@@ -37,11 +37,11 @@ public class Actualizar  extends AppCompatActivity {
 
     private EditText rNombre, rRut, rSexo, rCargo, rUnidad, rEmail, rTelefono, rOficina, rDireccion, rCountry;
 
-    private EditText rPatente, rCodigoLogo, rMarca, rModelo, rAnio, rObservacion, rResponsable;
+    private EditText rPatente, rCodigoLogo, rMarca, rModelo, rAnio, rObservacion, rResponsable, rTipoLogo;
 
     private TextView tNombre, tRut, tSexo, tCargo, tUnidad, tEmail, tTelefono, tOficina, tDireccion, tCountry;
 
-    private TextView tPatente, tCodigoLogo, tMarca, tModelo, tAnio, tObservacion, tResponsable;
+    private TextView tPatente, tCodigoLogo, tMarca, tModelo, tAnio, tObservacion, tResponsable, tTipoLogo;
 
     private Button savePersona, saveVehiculo, cancel;
 
@@ -53,7 +53,6 @@ public class Actualizar  extends AppCompatActivity {
         personaActualizar = (Persona) datos.getSerializable("persona");
         vehiculoActualizar = (Vehiculo) datos.getSerializable("vehiculo");
         numeroDelDestino = datos.getInt("numero");
-
 
         if(numeroDelDestino == 0){
             updatePersonaThing(personaActualizar);
@@ -76,6 +75,7 @@ public class Actualizar  extends AppCompatActivity {
         rAnio = (EditText) PersonaPopUpView.findViewById(R.id.rAnio);
         rObservacion = (EditText) PersonaPopUpView.findViewById(R.id.rObservacion);
         rResponsable = (EditText) PersonaPopUpView.findViewById(R.id.rResponsable);
+        rTipoLogo = (EditText) PersonaPopUpView.findViewById(R.id.rTipoLogo);
 
 
         tPatente = (TextView) PersonaPopUpView.findViewById(R.id.tPatente);
@@ -85,6 +85,7 @@ public class Actualizar  extends AppCompatActivity {
         tAnio = (TextView) PersonaPopUpView.findViewById(R.id.tAnio);
         tObservacion = (TextView) PersonaPopUpView.findViewById(R.id.tObservacion);
         tResponsable = (TextView) PersonaPopUpView.findViewById(R.id.tResponsable);
+        tTipoLogo = (TextView) PersonaPopUpView.findViewById(R.id.tTipoLogo);
 
 
         tPatente.setText(vehiculoActualizar.patente);
@@ -94,6 +95,7 @@ public class Actualizar  extends AppCompatActivity {
         tAnio.setText(String.valueOf(vehiculoActualizar.anio));
         tObservacion.setText(vehiculoActualizar.observacion);
         tResponsable.setText(vehiculoActualizar.responsable);
+        tTipoLogo.setText(vehiculoActualizar.tipoLogo);
 
 
         saveVehiculo = (Button) PersonaPopUpView.findViewById(R.id.savevehiculo);
@@ -116,13 +118,15 @@ public class Actualizar  extends AppCompatActivity {
         if(rAnio.getText().toString().matches("")){vtrue.anio = vehiculoActualizar.anio;}
         if(rObservacion.getText().toString().matches("")){vtrue.observacion = vehiculoActualizar.observacion;}
         if(rResponsable.getText().toString().matches("")){vtrue.responsable = vehiculoActualizar.responsable;}
+        if(rTipoLogo.getText().toString().matches("")){vtrue.tipoLogo = vehiculoActualizar.tipoLogo;}
 
         saveVehiculo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Vehiculo v = new Vehiculo(vtrue.patente,
                         vtrue.codigoLogo,vtrue.marca,vtrue.modelo,vtrue.anio,
-                        vtrue.observacion,vtrue.responsable);
+                        vtrue.observacion,vtrue.responsable,vtrue.tipoLogo);
                 try {
                     if(v!= null) {
                         theSystemPrx.editarVehiculo(v);
@@ -132,7 +136,6 @@ public class Actualizar  extends AppCompatActivity {
                 }catch (Exception exception){
                     logger.error("Error: "+exception);
                 }
-
             }
         });
 
@@ -142,7 +145,6 @@ public class Actualizar  extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
-
     }
 
     public void updatePersonaThing(Persona personaActualizar) {
@@ -172,21 +174,21 @@ public class Actualizar  extends AppCompatActivity {
         tDireccion = (TextView) PersonaPopUpView.findViewById(R.id.tDireccion);
         tCountry = (TextView) PersonaPopUpView.findViewById(R.id.tCountry);
 
-        Sexo varSexo = Sexo.INDETERMINADO;
+        String varSexo = "INDETERMINADO";
 
         if (rSexo.getText().toString().equalsIgnoreCase("Femenino")) {
-            varSexo = Sexo.FEMENINO;
+            varSexo = "FEMENINO";
         }
 
         if (rSexo.getText().toString().equalsIgnoreCase("Masculino")) {
-            varSexo = Sexo.MASCULINO;
+            varSexo = "MASCULINO";
         }
 
-        final Sexo finalvarSexo = varSexo;
+        final String finalvarSexo = varSexo;
 
         tNombre.setText(personaActualizar.nombre);
         tRut.setText(personaActualizar.rut);
-        tSexo.setText(finalvarSexo.toString());
+        tSexo.setText(finalvarSexo);
         tCargo.setText(personaActualizar.wposition);
         tUnidad.setText(personaActualizar.unit);
         tEmail.setText(personaActualizar.email);
