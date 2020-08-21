@@ -35,6 +35,8 @@ Route::get('eliminarVehiculo', 'Web\PageController@eliminarVehiculo')->name('eli
 
 Route::get('ingresoVehiculo', 'Web\PageController@ingresoVehiculo')->name('ingresoVehiculo');
 
+Route::get('salidaVehiculo', 'Web\PageController@salidaVehiculo')->name('salidaVehiculo');
+
 Route::post('buscarPersona', 'Web\PageController@persona');
 
 Route::post('crearPersona', 'Web\PageController@creandoPersona');
@@ -48,3 +50,5 @@ Route::post('buscarVehiculo', 'Web\PageController@vehiculo');
 Route::post('editarVehiculo', 'Web\PageController@vehiculoEditado');
 
 Route::post('ingresoVehiculo', 'Web\PageController@ingresandoVehiculo');
+
+Route::post('salidaVehiculo', 'Web\PageController@saliendoVehiculo');
