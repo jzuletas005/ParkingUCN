@@ -273,7 +273,7 @@ module model
         *@return estadoVehiculo
         */
               
-        int vehiculosInterior(int estadoVehiculo, string fecha);
+        int vehiculosInterior(int estadoVehiculo);
 
         /**
         *
