@@ -116,7 +116,7 @@ namespace ServerParkingUCN.ZeroIce
                 {
                     ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
                     Circulacion salida = new Circulacion();
-                    salida = pc.Circulaciones.Where(w => w.patente == patente).Where(a => a.estadoVehiculo == estado).LastOrDefault();
+                    salida = pc.Circulaciones.Where(w => w.patente == patente).Where(a => a.estadoVehiculo == estado).FirstOrDefault();
                     pc.SaveChanges();
                     return salida;
 
@@ -127,12 +127,13 @@ namespace ServerParkingUCN.ZeroIce
        
         
         // Method count cars into the university
-        public override int  vehiculosInterior(int estadoVehiculo ,string fecha, Current current)
+        public override int  vehiculosInterior(int estadoVehiculo, Current current)
         {
             using (var scope = _serviceScopeFactory.CreateScope())
             {
                 ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
-                int dato = pc.Circulaciones.Where(w => w.estadoVehiculo == 1).Where(o=> o.fechaIngreso == fecha).Count();  
+                string fecha = DateTime.Now.ToString("dd-M-yyyy");
+                int dato = pc.Circulaciones.Where(w => w.estadoVehiculo == 1).Where(w=> w.fechaIngreso == fecha).Count();
                 pc.SaveChanges();
 
                 return dato;
@@ -140,12 +141,13 @@ namespace ServerParkingUCN.ZeroIce
             throw new System.NotImplementedException();
         }
 
-        public override int  vehiculosGatePrincipal(int estadoVehiculo,string fecha, Current current)
+        public override int  vehiculosGate(string puerta, Current current)
         {
             using (var scope = _serviceScopeFactory.CreateScope())
             {
                 ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
-                int dato = pc.Circulaciones.Where(w => w.estadoVehiculo == 1).Where(p=> p.puertaEntrada == "Principal").Count();
+                string fecha = DateTime.Now.ToString("dd-M-yyyy");
+                int dato = pc.Circulaciones.Where(w => w.estadoVehiculo == 1).Where(p=> p.puertaEntrada == puerta).Where(w=> w.fechaIngreso == fecha).Count();
                 pc.SaveChanges();
 
                 return dato;
@@ -153,31 +155,6 @@ namespace ServerParkingUCN.ZeroIce
             throw new System.NotImplementedException();
         }
 
-        public override int  vehiculosGateSur(int estadoVehiculo,string fecha ,Current current)
-        {
-            using (var scope = _serviceScopeFactory.CreateScope())
-            {
-                ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
-                int dato = pc.Circulaciones.Where(w => w.estadoVehiculo == 1).Where(p=> p.puertaEntrada == "Sur").Count();
-                pc.SaveChanges();
-
-                return dato;
-            }
-            throw new System.NotImplementedException();
-        }
-
-        public override int  vehiculosGateAngamos(int estadoVehiculo,string fecha, Current current)
-        {
-            using (var scope = _serviceScopeFactory.CreateScope())
-            {
-                ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
-                int dato = pc.Circulaciones.Where(w => w.estadoVehiculo == 1).Where(p=> p.puertaEntrada == "Angamos").Count();
-                pc.SaveChanges();
-
-                return dato;
-            }
-            throw new System.NotImplementedException();
-        }
 
 
         public override int totalRegion(string region, Current current)

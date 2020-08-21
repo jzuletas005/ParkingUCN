@@ -273,28 +273,15 @@ module model
         *@return estadoVehiculo
         */
               
-        int vehiculosInterior(int estadoVehiculo, string fecha);
+        int vehiculosInterior(int estadoVehiculo);
 
         /**
         *
         *@param Estado del vehiculo
-        *@return Gate Principal 
+        *@return la puerta de acceso o salida del Vehículo 
         */
 
-        int vehiculosGatePrincipal(int estadoVehiculo, string fecha);
-
-        /**
-        *@param Estado del Vehiculo
-        *@return Gate sur
-        */
-
-        int vehiculosGateSur(int estadoVehiculo, string fecha);
-
-        /**
-        *@param Estado del vehiculo
-        *@return Gate Angamos 
-        */
-        int vehiculosGateAngamos(int estadoVehiculo, string fecha);
+       int vehiculosGate(string puerta);
 
         /**
         *@param region 
