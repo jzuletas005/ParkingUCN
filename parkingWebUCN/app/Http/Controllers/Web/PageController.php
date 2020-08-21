@@ -118,4 +118,32 @@ class PageController extends Controller
         $patente = $request->get('patente');
         return view('vehiculoEliminado', ['patente' => $patente]);
     }
+
+    public function ingresoVehiculo(){
+        return view('ingresoVehiculo');
+    }
+
+    public function ingresandoVehiculo(Request $request){
+        $patente = $request->get('patente');
+        $puertaEntrada = $request->get('puertaEntrada');
+        $observacion = $request->get('observacion');
+        return view('ingresandoVehiculo', ['patente' => $patente, 'puertaEntrada' => $puertaEntrada,
+            'observacion' => $observacion]);
+    }
+
+    public function salidaVehiculo(){
+        return view('salidaVehiculo');
+    }
+
+    public function saliendoVehiculo(Request $request){
+        $patente = $request->get('patente');
+        $puertaSalida = $request->get('puertaSalida');
+        return view('saliendoVehiculo', ['patente' => $patente, 'puertaSalida' => $puertaSalida]);
+    }
+
+
+    public function estadoVehiculo(Request $request){
+        $patente = $request->get('patente');
+        return view('estadoVehiculo', ['patente' => $patente]);
+    }
 }

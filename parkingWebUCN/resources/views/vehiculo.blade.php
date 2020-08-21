@@ -53,6 +53,7 @@ if($ic)
     $ic->destroy();
 }
 
+
 ?>
 @section('content')
     <h4><?php echo $imprimir;?></h4><br>
@@ -81,5 +82,10 @@ if($ic)
         @csrf
         <input type="hidden" name="patente" value=<?php echo $patente;?>>
         <button>Eliminar Vehiculo</button>
+    </form>
+    <form method="get" action="{{route('estadoVehiculo')}}">
+        @csrf
+        <input type="hidden" name="patente" value=<?php echo $patente;?>>
+        <button>Estado Vehiculo</button>
     </form>
 @endsection
