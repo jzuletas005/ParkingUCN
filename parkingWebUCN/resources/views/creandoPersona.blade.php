@@ -19,7 +19,7 @@ try
     //
     $rootDir = model\TheSystemPrxHelper::checkedCast($obj);
 
-    if($rut == "" || $nombre == ""){
+    if($rut == ""  || $nombre == ""){
         $imprimir = "Rut o nombre invalido";
     }else{
         if(!$rootDir->obtenerPersona($rut)){
