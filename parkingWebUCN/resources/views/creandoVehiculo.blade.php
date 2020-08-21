@@ -19,14 +19,19 @@ try
     //
     $rootDir = model\TheSystemPrxHelper::checkedCast($obj);
 
-    if(!$rootDir->obtenerVehiculo($patente)){
-        $vehiculo = new \model\Vehiculo($patente, $codigoLogo, $marca, $modelo, intval($anio), $observacion,
-            $responsable, $tipoLogo);
-        $rootDir->registrarVehiculo($vehiculo);
-        $imprimir = "Vehiculo agregado";
+    if($patente == ""){
+        $imprimir = "Patente invalida";
     }else{
-        $imprimir = "El vehiculo ya existe";
+        if(!$rootDir->obtenerVehiculo($patente)){
+            $vehiculo = new \model\Vehiculo($patente, $codigoLogo, $marca, $modelo, intval($anio), $observacion,
+                $responsable, $tipoLogo);
+            $rootDir->registrarVehiculo($vehiculo);
+            $imprimir = "Vehiculo agregado";
+        }else{
+            $imprimir = "El vehiculo ya existe";
+        }
     }
+
 
 
 

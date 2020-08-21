@@ -19,14 +19,20 @@ try
     //
     $rootDir = model\TheSystemPrxHelper::checkedCast($obj);
 
-    if(!$rootDir->obtenerPersona($rut)){
-        $persona = new \model\Persona(0, $nombre, $rut, $cargo, $unidad, $direccion,
-            $sexo, $telefono, $oficina, $email, $localidad);
-        $rootDir->registrarPersona($persona);
-        $imprimir = "Persona agregada";
+    if($rut == ""  || $nombre == ""){
+        $imprimir = "Rut o nombre invalido";
     }else{
-        $imprimir = "La persona ya existe";
+        if(!$rootDir->obtenerPersona($rut)){
+            $persona = new \model\Persona(0, $nombre, $rut, $cargo, $unidad, $direccion,
+                $sexo, $telefono, $oficina, $email, $localidad);
+            $rootDir->registrarPersona($persona);
+            $imprimir = "Persona agregada";
+        }else{
+            $imprimir = "La persona ya existe";
+        }
     }
+
+
 
 
 

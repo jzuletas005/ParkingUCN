@@ -13,7 +13,7 @@
         </select><br>
         <input name="marca" placeholder="Marca del Vehiculo"><br>
         <input name="modelo" placeholder="Modelo"><br>
-        <input name="anio" placeholder="Anio"><br>
+        <input name="anio" placeholder="Año"><br>
         <input name="responsable" placeholder="Responsable"><br>
         <textarea name="observacion" placeholder="Observacion"></textarea><br>
         <button>Ingresar</button>
