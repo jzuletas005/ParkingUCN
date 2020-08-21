@@ -31,19 +31,19 @@
             android:label="@string/app_name">
         </activity>
         <activity
-            android:name=".Registrar"
+            android:name=".crud.Registrar"
             android:label="@string/app_name">
         </activity>
         <activity
-            android:name=".Buscar"
+            android:name=".crud.Buscar"
             android:label="@string/app_name">
         </activity>
         <activity
-            android:name=".Eliminar"
+            android:name=".crud.Eliminar"
             android:label="@string/app_name">
         </activity>
         <activity
-            android:name=".Actualizar"
+            android:name=".crud.Actualizar"
             android:label="@string/app_name">
         </activity>
     </application>

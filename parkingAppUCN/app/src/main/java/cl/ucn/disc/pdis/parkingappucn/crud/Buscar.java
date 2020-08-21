@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package cl.ucn.disc.pdis.parkingappucn;
+package cl.ucn.disc.pdis.parkingappucn.crud;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,7 +29,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +38,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import cl.ucn.disc.pdis.parkingappucn.R;
+import cl.ucn.disc.pdis.parkingappucn.connection.ZeroIce;
 import cl.ucn.disc.pdis.scrapper.zeroice.model.ContratosPrx;
 import cl.ucn.disc.pdis.scrapper.zeroice.model.Persona;
 import cl.ucn.disc.pdis.scrapper.zeroice.model.TheSystemPrx;

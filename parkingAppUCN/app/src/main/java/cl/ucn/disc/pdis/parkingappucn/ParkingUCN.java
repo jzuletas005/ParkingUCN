@@ -31,8 +31,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import cl.ucn.disc.pdis.parkingappucn.connection.ZeroIce;
+import cl.ucn.disc.pdis.parkingappucn.crud.Buscar;
+import cl.ucn.disc.pdis.parkingappucn.crud.Registrar;
 import cl.ucn.disc.pdis.scrapper.zeroice.model.ContratosPrx;
-import cl.ucn.disc.pdis.scrapper.zeroice.model.TheSystemPrx;
 
 public class ParkingUCN extends AppCompatActivity {
 
