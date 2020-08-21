@@ -73,11 +73,25 @@ namespace serverParkingUCN
         /// <param name="contratos"></param>
         public ServerParkingUCNService(ILogger<ServerParkingUCNService> logger, TheSystemDisp_ theSystem, ContratosDisp_ contratos)
         {
+
+                IPHostEntry host;
+                string localIP = "";
+                host = Dns.GetHostEntry(Dns.GetHostName());
+                foreach (IPAddress ip in host.AddressList)
+                    {
+                        if (ip.AddressFamily.ToString() == "InterNetwork")
+                    {
+                    localIP = ip.ToString();
+                    }
+                }
             _logger = logger;
             _logger.LogDebug("Building ServerParkingUCNService ..");
+            _logger.LogDebug(localIP);
+            _logger.LogDebug("dato"+ _port);
             _theSystem = theSystem;
             _contratos = contratos;
             _communicator = buildComunicator();
+
         }
 
         /// <summary>
@@ -85,7 +99,7 @@ namespace serverParkingUCN
         /// </summary>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public Task StartAsync(CancellationToken cancellationToken)
+public Task StartAsync(CancellationToken cancellationToken)
         {
 
              IPHostEntry host;
@@ -107,33 +121,34 @@ namespace serverParkingUCN
 
             // The adapter
             var adapter = _communicator.createObjectAdapterWithEndpoints("ParkingUCN", "tcp -z -t 15000 -p " + _port);
+            var adapterC = _communicator.createObjectAdapterWithEndpoints("ParkingUCNA", "tcp -z -t 15000 -p 4000");
 
             // Register in the communicator
             adapter.add(_theSystem, Util.stringToIdentity("TheSystem"));
+            adapterC.add(_contratos, Util.stringToIdentity("Contratos"));
 
             //Activation
             adapter.activate();
+            adapterC.activate();
 
             //_theSystem.getDelay(0);
 
             return Task.CompletedTask;
         }
 
-        /// <summary>
-        /// Triggered when the application host is performing a graceful shutdown.
-        /// </summary>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
         public Task StopAsync(CancellationToken cancellationToken)
-        {
-            _logger.LogDebug("Stoping the ServerParkingUCNService ..");
+            {
+
+                _logger.LogDebug("Stoping the ServerParkingUCNService ..");
 
             _communicator.shutdown();
 
             _logger.LogDebug("Communication Stoped");
 
             return Task.CompletedTask;
-        }
+
+             throw new NotImplementedException();
+                }
 
         private Communicator buildComunicator()
         {
@@ -155,6 +170,7 @@ namespace serverParkingUCN
         {
             _communicator.destroy();
         }
+
     }
 
 }
