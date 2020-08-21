@@ -28,22 +28,6 @@ module model
 {
 
     /**
-    *The Sexo
-    */
-        enum Sexo {
-        MASCULINO,
-        FEMENINO,
-	    INDETERMINADO
-        }
-     /**
-     *The Tipo Logo
-     */
-        enum TipoLogo{
-             ROJO,
-             AZUL
-         }
-
-    /**
     * Clase persona
     */
         ["cs:property"]
@@ -82,7 +66,7 @@ module model
             /**
             *Sexo
             */
-            Sexo sexo; 
+            string sexo; 
 
             /**
             * Telefono
@@ -107,7 +91,7 @@ module model
              /**
              *Tipo Logo
             */
-            TipoLogo tipoLogo;
+            string tipoLogo;
             }
 
 
@@ -157,7 +141,7 @@ module model
         *Tipo de Logo
         *
         */
-        TipoLogo tipoLogo;
+        string tipoLogo;
 
 
         }
