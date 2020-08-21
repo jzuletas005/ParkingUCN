@@ -296,6 +296,7 @@ namespace model
     IcePHP_defineOperation($model__t_ContratosPrx, 'vehiculosGate', 0, 0, 0, array(array($IcePHP__t_string)), null, array($IcePHP__t_int), null);
     IcePHP_defineOperation($model__t_ContratosPrx, 'totalRegion', 0, 0, 0, array(array($IcePHP__t_string)), null, array($IcePHP__t_int), null);
     IcePHP_defineOperation($model__t_ContratosPrx, 'datosEstadisticos', 0, 0, 0, array(array($IcePHP__t_string)), null, array($IcePHP__t_int), null);
+    IcePHP_defineOperation($model__t_ContratosPrx, 'formatearRut', 0, 0, 0, array(array($IcePHP__t_string)), null, array($IcePHP__t_string), null);
 }
 
 namespace model
