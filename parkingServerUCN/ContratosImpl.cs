@@ -127,12 +127,13 @@ namespace ServerParkingUCN.ZeroIce
        
         
         // Method count cars into the university
-        public override int  vehiculosInterior(int estadoVehiculo ,string fecha, Current current)
+        public override int  vehiculosInterior(int estadoVehiculo, Current current)
         {
             using (var scope = _serviceScopeFactory.CreateScope())
             {
                 ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
-                int dato = pc.Circulaciones.Where(w => w.estadoVehiculo == 1).Where(o=> o.fechaIngreso == fecha).Count();  
+                string fecha = DateTime.Now.ToString("dd-M-yyyy");
+                int dato = pc.Circulaciones.Where(w => w.estadoVehiculo == 1).Where(w=> w.fechaIngreso == fecha).Count();
                 pc.SaveChanges();
 
                 return dato;
