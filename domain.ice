@@ -28,17 +28,19 @@ module model
 {
 
     /**
+    *
     * Clase persona
     */
         ["cs:property"]
         class Persona{
+
             /**
-            *
+            *PrimaryKey
             */
             int uid;
 
             /**
-            * Nombre;
+            *Nombre de la persona;
             */
             string nombre;
 
@@ -55,7 +57,7 @@ module model
 
 
             /**
-            * wPosition corresponde al cargo del trabajor
+            *wPosition corresponde al cargo del trabajor
             */
             string wposition;
 
@@ -77,10 +79,10 @@ module model
             /**
             *Oficina
             */
-             string oficina;
+            string oficina;
 
             /**
-            * Direccion
+            *Direccion
             */
             string direccion;
 
@@ -88,7 +90,6 @@ module model
             *País
             */
             string country;
-            
             }
 
 
@@ -105,7 +106,7 @@ module model
         string patente;
 
         /**
-        * codigo LogoUCN.
+        *codigo del LogoUCN.
         */
         string codigoLogo;
 
@@ -119,27 +120,26 @@ module model
         */
         string modelo;
 
-         /**
-         * Año
-         */
-         int anio;
+        /**
+        * Año
+        */
+        int anio;
 
-         /**
-         *Observación
-         */
-         string observacion;
+        /**
+        *Observación
+        */
+        string observacion;
 
-         /**
-         * Responsable (asociado con la entidad persona)
-         */
-         string responsable;
+        /**
+        * Responsable (asociado con la entidad persona)
+        */
+        string responsable;
 
         /**
         *Tipo de Logo
         *
         */
         string tipoLogo;
-
 
         }
 
@@ -155,16 +155,15 @@ module model
          int uid;
 
          /**
-        *Fecha de Ingreso del vehiculo
-        *Format: ISO_ZONED_DATE_TIME
-        */
-        string fechaIngreso;
+         *Fecha de Ingreso del vehiculo
+         *Format: ISO_ZONED_DATE_TIME
+         */
+         string fechaIngreso;
 
-        /**
-        *Hora de ingreso del vehiculo
-        */
-
-        string horaIngreso;
+         /**
+         *Hora de ingreso del vehiculo
+         */
+         string horaIngreso;
 
          /**
          * Fecha de salida del vehiculo
@@ -173,7 +172,7 @@ module model
          string fechaSalida;
 
          /**
-         * Hora de salida del vehiculo
+         *Hora de salida del vehiculo
          */
          string horaSalida;
 
@@ -183,26 +182,24 @@ module model
          string patente;
 
          /**
-         *Entrada
+         *Acceso a la universidad
          */
          string puertaEntrada;
 
-        /**
-        *Salida
-        */
-        string puertaSalida;
+         /**
+         *Corresponde a por donde sale el vehículo registrado.
+         */
+         string puertaSalida;
 
-        /**
-        *Observaciones
-        */
-          
-        string observacion;
+         /**
+         *Observaciones
+         */
+         string observacion;
 
 
          /**
-        *Estado del Vehiculo
-        */
-
+         *Estado del Vehiculo
+         */
         int estadoVehiculo;
 
      }
@@ -219,64 +216,72 @@ module model
         }
 
         /**
-         * The Contratos
+         * Interface de los contratos
          */
         interface Contratos{
 
         /**
-        *Enter vehicle
+        *Método que registra el ingreso del vehículo.
         *
-        *@param codigo del logo
-        *@return Circulacion del vehiculo
+        *@param patente del vehículo
+        *@param puerta de acceso a la univerisdad 
+        *@param Observaciones
+        *@return Ingreso del vehículo previamente registrado y autorizado por el guardia de seguridad.
         */
         Circulacion ingresoVehiculo(string patente, string puertaEntrada, string observacion);
 
         /**
-        *Exit vehicle
+        *Método que registra la Salida del Vehículo. 
         *
-        *@param codigo del logo
-        *@return Circulacion del vehiculo
+        *@param patente del vehículo
+        *@param Puerta por dónde sale el vehículo
+        *@return La salida del vehículo previamente autorizada y registrada por el guardia de seguridad. 
         */
         Circulacion salidaVehiculo(string patente, string puertaSalida);
 
          /**
-        *Exit vehicle
+         *Método que busca el estado del vehículo. 
          *
-         *@param Fecha de Busqueda
-         *@return circulacion 
+         *@param patente del vehículo
+         *@return Los datos del Vehoculo ingresado y su estado.
         */
-
         Circulacion busquedaVehiculoBackend(string patente);
 
         /**
-        *
-        *@param Estado del Vehiculo
-        *@return estadoVehiculo
-        */
-              
+        *Método que entrega la cantidad de vehiculos estacionados dentro de la universidad. 
+        *@param estado del vehiculo
+        *@return la cantidad de vehiculo que han ingresado al recinto
+        */     
         int vehiculosInterior(int estadoVehiculo);
 
         /**
-        *
-        *@param Estado del vehiculo
-        *@return la puerta de acceso o salida del Vehículo 
+        *Método que retorna la puerta por la cuál el vehículo entra o sale de la universidad. 
+        *@param Puerta
+        *@return la puerta de acceso o salida del Vehículo.
         */
-
        int vehiculosGate(string puerta);
 
         /**
-        *@param region 
-        *@return el total en la region
+        *Método que contabiliza a las personas en determinada región 
+        *@param region del pais
+        *@return el total personas que existen la región que se marca. 
         */
-
         int totalRegion(string region);
 
         /**
-        *@param busqueda Dato
-        *@return las estadisticas
+        *Método que contabiliza y retornas las estadisticas de la aplicacion
+        *@param datos a buscar
+        *@return Datos estadisticos. 
         */
-
         int datosEstadisticos(string busquedaDato);
+
+        /**
+        *
+        *Método que da formato al rut, con punto y guión. 
+        *@param rut de la persona
+        *@return el rut en el formato "1.111.111-1"
+        */ 
+        string formatearRut(string rut);
     }
 
      /**
@@ -285,36 +290,37 @@ module model
     interface TheSystem {
 
         /**
-         * @return the diference in time between client and server.
+         *
+         * @return la diferencia de tiempo entre el cliente y el servidor.
          */
         long getDelay(long clientTime);
 
          /**
-         * register a Persona with a persona instance.
+         * registrar una Persona con una instancia de persona.
          * 
-         * @param persona to create
-         * @return Persona created
+         * @param persona a crear
+         * @return Persona creada
          */
         Persona registrarPersona(Persona persona);
 
 		/**
-         * Register a Vehiculo with a vehiculo instanc
+         * Registrar un vehículo con una instancia de vehículo 
          *
-         * @param vehiculo to create
-         * @return Vehiculo created
+         * @param vehiculo a 
+         * @return Vehiculo creado
          */
         Vehiculo registrarVehiculo(Vehiculo vehiculo);
       
         /**
-         * Search a Persona with a rut.
+         * Busca a una Persona por el rut.
          *
          * @param rut de la persona a buscar.
-         * @return Persona buscado.
+         * @return Persona buscada.
          */
         Persona obtenerPersona(string rut);
 
 		/**
-         * Search a Vehiculo with a patente.
+         * Busca un vehiculo por la patente
 		 *
          * @param patente del vehiculo a buscar.
          * @return Vehiculo buscado.
@@ -322,7 +328,7 @@ module model
         Vehiculo obtenerVehiculo(string patente);
 
         /**
-        * Erase a persona with a rut
+        * Elimina a una persona por medio del rut;
         *
         * @param rut del vehiculo a buscar.
         * @return persona buscada a eliminar.
@@ -331,27 +337,27 @@ module model
         
 
         /**
-        *Search a Vehiculo with a patente.
+        *Elimina un Vehiculo por medio de la patente
         *
         *@param patente del vehiculo a buscar.
-        *@return Vehiculo eliminar.
+        *@return Vehiculo buscado a eliminar.
         */
         Vehiculo eliminarVehiculo(string patente);
 
 
         /**
-        *editing a persona with a persona instance.
+        *Edita a una persona
         *
-        * @param persona to editing
-        * @return persona edited.
+        * @param persona a editar.
+        * @return persona editada.
         */
         Persona editarPersona(Persona persona);
 
         /**
         *
-        *editing a vehiculo
-        *@param vehiculo to editing
-        *@return vehiculo edited.
+        *Edita a un vehículo. 
+        *@param vehiculo a editar 
+        *@return vehiculo editado
         */
         Vehiculo editarVehiculo(Vehiculo vehiculo);
 
