@@ -1,3 +1,26 @@
+/*
+ * MIT License
+ *
+ *  Copyright (c) 2020 Javier Zuleta Silva, Beatriz Alvarez Rojas, Gonzalo Nieto Berrios
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 package cl.ucn.disc.pdis.parkingappucn;
 
 import android.content.Intent;
@@ -13,21 +36,33 @@ import cl.ucn.disc.pdis.scrapper.zeroice.model.TheSystemPrx;
 
 public class ParkingUCN extends AppCompatActivity {
 
+    /**
+     * onCreate
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parking);
 
+        //we link the buttons with their respective ids
         Button bucarbtn = findViewById(R.id.Buscar);
         Button registrarbtn = findViewById(R.id.Registrar);
 
+        //transition on search or register
         uiTransition(bucarbtn,registrarbtn);
 
     }
 
+    /**
+     * uiTransition
+     * @param bucarbtn
+     * @param registrarbtn
+     */
     private void uiTransition(Button bucarbtn, Button registrarbtn) {
 
+        //when clicked buscarbtn we move on Buscar.class
         bucarbtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -36,6 +71,7 @@ public class ParkingUCN extends AppCompatActivity {
             }
         });
 
+        //when clicked registrarbtn we move on Registrar.class
         registrarbtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -44,10 +80,12 @@ public class ParkingUCN extends AppCompatActivity {
             }
         });
 
+        //call Zero Ice connections
         ZeroIce ice = new ZeroIce();
         ice.start();
         ContratosPrx contratosPrx = ice.getContratos();
 
+        //this provides a communication with their respective ids
         TextView globalAnfta =(TextView) findViewById(R.id.AntofaNumber);
         TextView globalCoquimbo =(TextView) findViewById(R.id.CoquimboNumber);
         TextView numb1 = (TextView) findViewById(R.id.Number1);
@@ -57,16 +95,17 @@ public class ParkingUCN extends AppCompatActivity {
         TextView numb5 = (TextView) findViewById(R.id.Number5);
         TextView numb6 = (TextView) findViewById(R.id.Number6);
 
+        //perform a count as needed
         int datoAfta = contratosPrx.totalRegion("Antofagasta - Chile");
         int datoCoq = contratosPrx.totalRegion("Coquimbo - Chile");
-        int n1 =  contratosPrx.datosEstadisticos("Facultal de Ingenieria y Ciencias Geológicas");
+        int n1 =  contratosPrx.datosEstadisticos("Facultad de Ingeniería y Ciencias Geológicas");
         int n2 = contratosPrx.datosEstadisticos("Facultad de Ciencias de Ingeniería y Construcción");
         int n3 =  contratosPrx.datosEstadisticos("Facultad de Ciencias del Mar");
         int n4 = contratosPrx.datosEstadisticos("Facultad de Ciencias");
         int n5 =  contratosPrx.datosEstadisticos("Facultad de Humanidades");
         int n6 = contratosPrx.datosEstadisticos("Facultad de Economía y Administración");
 
-
+        //shows and orders the data obtained
         globalAnfta.setText(String.valueOf(datoAfta));
         globalCoquimbo.setText(String.valueOf(datoCoq));
         numb1.setText(String.valueOf(n1));
