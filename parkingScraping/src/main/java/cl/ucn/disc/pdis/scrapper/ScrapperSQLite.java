@@ -154,6 +154,7 @@ public class ScrapperSQLite {
                         theSystemPrx.registrarPersona(person);
                     }
                 }
+                ice.stop();
                 log.debug("Persons Table created !");
             }catch (Exception e){
                 log.error("Error: ", e);
