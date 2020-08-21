@@ -116,7 +116,7 @@ namespace ServerParkingUCN.ZeroIce
                 {
                     ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
                     Circulacion salida = new Circulacion();
-                    salida = pc.Circulaciones.Where(w => w.patente == patente).Where(a => a.estadoVehiculo == estado).LastOrDefault();
+                    salida = pc.Circulaciones.Where(w => w.patente == patente).Where(a => a.estadoVehiculo == estado).FirstOrDefault();
                     pc.SaveChanges();
                     return salida;
 
