@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package cl.ucn.disc.pdis.parkingappucn;
+package cl.ucn.disc.pdis.parkingappucn.connection;
 
 import com.zeroc.Ice.Communicator;
 import com.zeroc.Ice.ConnectionRefusedException;
@@ -33,10 +33,7 @@ import com.zeroc.Ice.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.lang.String;
-
 import cl.ucn.disc.pdis.scrapper.zeroice.model.ContratosPrx;
-import cl.ucn.disc.pdis.scrapper.zeroice.model.TheSystem;
 import cl.ucn.disc.pdis.scrapper.zeroice.model.TheSystemPrx;
 
 @SuppressWarnings("Singleton")
@@ -137,6 +134,7 @@ public class ZeroIce {
             log.debug("Proxying <TheSystem> ..");
             log.debug("Proxying <Contratos> ..");
 
+            //to connect to the server we use your ip
             ObjectPrx theProxy = this.theCommunicator.stringToProxy("TheSystem:tcp -h 192.168.0.22 -p 8080");
             ObjectPrx theProxyC = this.theCommunicator.stringToProxy("Contratos:tcp -h 192.168.0.22 -p 4000");
 
