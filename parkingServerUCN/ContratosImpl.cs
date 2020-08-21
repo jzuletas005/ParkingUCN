@@ -140,12 +140,13 @@ namespace ServerParkingUCN.ZeroIce
             throw new System.NotImplementedException();
         }
 
-        public override int  vehiculosGatePrincipal(int estadoVehiculo,string fecha, Current current)
+        public override int  vehiculosGate(string puerta, Current current)
         {
             using (var scope = _serviceScopeFactory.CreateScope())
             {
                 ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
-                int dato = pc.Circulaciones.Where(w => w.estadoVehiculo == 1).Where(p=> p.puertaEntrada == "Principal").Count();
+                string fecha = DateTime.Now.ToString("dd-M-yyyy");
+                int dato = pc.Circulaciones.Where(w => w.estadoVehiculo == 1).Where(p=> p.puertaEntrada == puerta).Where(w=> w.fechaIngreso == fecha).Count();
                 pc.SaveChanges();
 
                 return dato;
@@ -153,31 +154,6 @@ namespace ServerParkingUCN.ZeroIce
             throw new System.NotImplementedException();
         }
 
-        public override int  vehiculosGateSur(int estadoVehiculo,string fecha ,Current current)
-        {
-            using (var scope = _serviceScopeFactory.CreateScope())
-            {
-                ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
-                int dato = pc.Circulaciones.Where(w => w.estadoVehiculo == 1).Where(p=> p.puertaEntrada == "Sur").Count();
-                pc.SaveChanges();
-
-                return dato;
-            }
-            throw new System.NotImplementedException();
-        }
-
-        public override int  vehiculosGateAngamos(int estadoVehiculo,string fecha, Current current)
-        {
-            using (var scope = _serviceScopeFactory.CreateScope())
-            {
-                ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
-                int dato = pc.Circulaciones.Where(w => w.estadoVehiculo == 1).Where(p=> p.puertaEntrada == "Angamos").Count();
-                pc.SaveChanges();
-
-                return dato;
-            }
-            throw new System.NotImplementedException();
-        }
 
 
         public override int totalRegion(string region, Current current)
