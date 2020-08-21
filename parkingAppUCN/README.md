@@ -7,6 +7,12 @@
 
 ## Libraries
 
+- ZeroIce 3.7.4
+- SLF4J   1.7.30
+- Logback 1.3.0
+- Compression 1.20
+- AppCompact 1.1.0
+- JUnit 5.7.0
 
 ## UML
 
