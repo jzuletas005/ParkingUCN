@@ -67,7 +67,7 @@ namespace ServerParkingUCN.ZeroIce
 
             _logger.LogDebug("Done.");
         }
-                   //Method that records the entry of the vehicle 
+            //Method that records the entry of the vehicle 
             public override Circulacion ingresoVehiculo(string patente, string puertaEntrada,string observacion, Current current)
             {
                 using(var scope = _serviceScopeFactory.CreateScope())
@@ -109,7 +109,7 @@ namespace ServerParkingUCN.ZeroIce
                 throw new System.NotImplementedException();
                 
                 }
-
+            //Method that searches for a vehicle entered in the university 
             public override Circulacion busquedaVehiculoBackend(string patente, Current current)
             {
                  using(var scope = _serviceScopeFactory.CreateScope())
@@ -141,7 +141,7 @@ namespace ServerParkingUCN.ZeroIce
             }
             throw new System.NotImplementedException();
         }
-
+            //Method that returns the door of access and exit of the vehicle 
         public override int  vehiculosGate(string puerta, Current current)
         {
             using (var scope = _serviceScopeFactory.CreateScope())
@@ -157,7 +157,7 @@ namespace ServerParkingUCN.ZeroIce
         }
 
 
-
+        //Method that accounts for people in a certain region 
         public override int totalRegion(string region, Current current)
         { 
              using (var scope = _serviceScopeFactory.CreateScope())
@@ -170,7 +170,7 @@ namespace ServerParkingUCN.ZeroIce
             }
             throw new System.NotImplementedException();
         } 
-
+        //Method that accounts and returns the statistics of the application
         public override int datosEstadisticos(string busquedaDato, Current current)
         {
 
@@ -184,6 +184,33 @@ namespace ServerParkingUCN.ZeroIce
             }
             throw new System.NotImplementedException();
         }
+        public override string formatearRut(string rut, Current current)
+        {
+            int cont = 0;
+            string format;
+            if (rut.Length == 0)
+            {
+                return "";
+            }
+            else
+            {
+                rut = rut.Replace(".", "");
+                rut = rut.Replace("-", "");
+                format = "-" + rut.Substring(rut.Length - 1);
+                for (int i = rut.Length - 2; i >= 0; i--)
+                {
+                    format = rut.Substring(i, 1) + format;
+                    cont++;
+                    if (cont == 3 && i != 0)
+                    {
+                        format = "." + format;
+                        cont = 0;
+                    }
+                }
+                return format;
+                }
+        }
+
     }
 }
 
