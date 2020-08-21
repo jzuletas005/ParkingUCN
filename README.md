@@ -33,7 +33,7 @@ java, zeroIce y android para su desarrollo.
 
 ## UML
 
-![Screenshot](img/global.png)  
+![Screenshot](img/globalfinal.png)  
 
 <!--
 @startuml
