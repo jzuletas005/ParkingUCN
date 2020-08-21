@@ -99,6 +99,8 @@ namespace serverParkingUCN
         /// </summary>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
+
+        //Start the comunication of server
 public Task StartAsync(CancellationToken cancellationToken)
         {
 
@@ -135,7 +137,7 @@ public Task StartAsync(CancellationToken cancellationToken)
 
             return Task.CompletedTask;
         }
-
+        //Stopping conextion of server
         public Task StopAsync(CancellationToken cancellationToken)
             {
 
@@ -150,6 +152,7 @@ public Task StartAsync(CancellationToken cancellationToken)
              throw new NotImplementedException();
                 }
 
+        //build the comunicator
         private Communicator buildComunicator()
         {
             _logger.LogDebug("Initializing Communicator v{0} ({1}) ..", Ice.Util.stringVersion(), Ice.Util.intVersion());
