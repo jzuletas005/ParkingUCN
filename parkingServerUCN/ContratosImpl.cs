@@ -86,28 +86,19 @@ namespace ServerParkingUCN.ZeroIce
                 
                 }
 
-                public override  Circulacion busquedaVehiculo(string fechadeBusqueda, Current current)
+            public override Circulacion busquedaVehiculoBackend(string patente, int estado, Current current)
             {
                  using(var scope = _serviceScopeFactory.CreateScope())
                 {
                     ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
-                    Circulacion busqueda = new Circulacion();
-                    string patente = pc.Circulaciones.Where(w=> w.fechaIngreso == fechadeBusqueda).Select(s=> s.patente).FirstOrDefault();
-                    string horaIn = pc.Circulaciones.Where(w=> w.fechaIngreso == fechadeBusqueda).Select(s=> s.horaIngreso).FirstOrDefault();
-                    string horaSal = pc.Circulaciones.Where(w=> w.fechaIngreso == fechadeBusqueda).Select(s=> s.horaSalida).FirstOrDefault();
-                    string observa  = pc.Circulaciones.Where(w=> w.fechaIngreso == fechadeBusqueda).Select(s=> s.observacion).FirstOrDefault();
-
-                    busqueda.patente = patente;
-                    busqueda.horaIngreso = horaIn;
-                    busqueda.horaSalida = horaSal;
-                    busqueda.observacion = observa;
+                    Circulacion salida = new Circulacion();
+                    salida = pc.Circulaciones.Where(w => w.patente == patente).Where(a => a.estadoVehiculo == estado).LastOrDefault();
                     pc.SaveChanges();
+                    return salida;
 
-                     Console.WriteLine("{0} is in {1}", busqueda.horaIngreso, busqueda.horaSalida);
-                    return busqueda;
                 }
                 throw new System.NotImplementedException();
-                
+
             }
        
         
