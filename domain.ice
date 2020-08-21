@@ -265,7 +265,7 @@ module model
          *@return circulacion 
         */
 
-        Circulacion busquedaVehiculo(string fechadeBusqueda);
+        Circulacion busquedaVehiculoBackend(string patente, int estado);
 
         /**
         *
