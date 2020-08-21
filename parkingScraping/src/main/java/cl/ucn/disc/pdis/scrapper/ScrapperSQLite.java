@@ -27,6 +27,10 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.SQLException;
+
+import cl.ucn.disc.pdis.scrapper.zeroice.model.ContratosPrx;
+import cl.ucn.disc.pdis.scrapper.zeroice.model.Persona;
+import cl.ucn.disc.pdis.scrapper.zeroice.model.TheSystemPrx;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.j256.ormlite.dao.Dao;
@@ -50,27 +54,19 @@ public class ScrapperSQLite {
      */
     public static void main (String[] args) throws IOException {
 
-
-        //  URL to DataBase
-        String databaseUrl = "jdbc:sqlite:../parkingServerUCN/parking.db";
-
         // Create an object of file reader class with CSV file as a parameter.
         FileReader csvFile = new FileReader("./datos.csv");
 
         //  Buffer that read CSV file
         BufferedReader br = new BufferedReader(csvFile);
 
+        ZeroIce ice = new ZeroIce();
+
         //  Check if CSV file exists
         if (csvFile == null){
             log.debug("Error locating CSV file");
         } else {
-            try (ConnectionSource connectionSource = new JdbcConnectionSource(databaseUrl)){
-
-                //  Create data table
-                TableUtils.createTableIfNotExists(connectionSource, Person.class);
-
-                //  Create Dao
-                Dao<Person, Long> personDao = DaoManager.createDao(connectionSource, Person.class);
+            try {
 
                 //  Buffer that read CSV file
                 BufferedReader bufferedReader = new BufferedReader(csvFile);
@@ -105,7 +101,7 @@ public class ScrapperSQLite {
 
                                 //  It checks if the next char is not a whitespace,
                                 //  to ensure that is an end of the current data
-                                if (!String.valueOf(line.charAt(i + 1)).isBlank()) {
+                                if (!String.valueOf(line.charAt(i + 1)).isEmpty()) {
 
                                     //  avoid null sex
                                     if (dataNumber == 3 && charCollector.length() == 0){
@@ -121,7 +117,7 @@ public class ScrapperSQLite {
                                     }
                                     dataNumber = dataNumber + 1;
                                 }else{
-                                    if(String.valueOf(line.charAt(i + 1)).isBlank() && dataNumber == 9){
+                                    if(String.valueOf(line.charAt(i + 1)).isEmpty() && dataNumber == 9){
 
                                         //  It checks if a data is empty to prevent record a whitespace
                                         if (charCollector.length() != 0) {
@@ -143,18 +139,23 @@ public class ScrapperSQLite {
                     log.debug("Person: "+Integer.parseInt(data[0])+", "+data[1]+", "+data[2]+", "+data[3]
                             +", "+data[4]+", "+data[5]+", "+data[6]+", "+data[7]+", "+data[8]+", "+data[9]
                             +", "+data[10]);
+                    ice.start();
+
+                    TheSystemPrx theSystemPrx = ice.getTheSystem();
 
                     if(data[2] == null){
                         log.debug("Person ignored !");
                     }else{
                         //  Add new person to database
-                        personDao.createIfNotExists(new Person(Integer.parseInt(data[0]), data[1], data[2], data[3],
-                                data[4], data[5], data[6], data[7], data[8], data[9], data[10]));
+                        Persona person  = new Persona(Integer.parseInt(data[0]), data[1], data[2], data[3],
+                                data[4], data[5], data[6], data[7], data[8], data[9], data[10]);
                         log.debug("Person added !");
+
+                        theSystemPrx.registrarPersona(person);
                     }
                 }
                 log.debug("Persons Table created !");
-            }catch (SQLException e){
+            }catch (Exception e){
                 log.error("Error: ", e);
             }
         }
