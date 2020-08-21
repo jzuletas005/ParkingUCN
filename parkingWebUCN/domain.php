@@ -17,46 +17,21 @@
 
 namespace model
 {
-    global $model__t_Sexo;
-    class Sexo
-    {
-        const MASCULINO = 0;
-        const FEMENINO = 1;
-        const INDETERMINADO = 2;
-    }
-
-    $model__t_Sexo = IcePHP_defineEnum('::model::Sexo', array('MASCULINO', 0, 'FEMENINO', 1, 'INDETERMINADO', 2));
-}
-
-namespace model
-{
-    global $model__t_TipoLogo;
-    class TipoLogo
-    {
-        const ROJO = 0;
-        const AZUL = 1;
-    }
-
-    $model__t_TipoLogo = IcePHP_defineEnum('::model::TipoLogo', array('ROJO', 0, 'AZUL', 1));
-}
-
-namespace model
-{
     global $model__t_Persona;
     class Persona extends \Ice\Value
     {
-        public function __construct($uid=0, $nombre='', $rut='', $wposition='', $unit='', $direccion='', $sexo=\model\Sexo::MASCULINO, $telefono='', $oficina='', $email='', $country='')
+        public function __construct($uid=0, $nombre='', $rut='', $sexo='', $wposition='', $unit='', $email='', $telefono='', $oficina='', $direccion='', $country='')
         {
             $this->uid = $uid;
             $this->nombre = $nombre;
             $this->rut = $rut;
+            $this->sexo = $sexo;
             $this->wposition = $wposition;
             $this->unit = $unit;
-            $this->direccion = $direccion;
-            $this->sexo = $sexo;
+            $this->email = $email;
             $this->telefono = $telefono;
             $this->oficina = $oficina;
-            $this->email = $email;
+            $this->direccion = $direccion;
             $this->country = $country;
         }
 
@@ -79,31 +54,30 @@ namespace model
         public $uid;
         public $nombre;
         public $rut;
+        public $sexo;
         public $wposition;
         public $unit;
-        public $direccion;
-        public $sexo;
+        public $email;
         public $telefono;
         public $oficina;
-        public $email;
+        public $direccion;
         public $country;
     }
 
     global $Ice__t_Value;
     global $IcePHP__t_int;
     global $IcePHP__t_string;
-    global $model__t_Sexo;
     $model__t_Persona = IcePHP_defineClass('::model::Persona', '\\model\\Persona', -1, false, false, $Ice__t_Value, array(
         array('uid', $IcePHP__t_int, false, 0),
         array('nombre', $IcePHP__t_string, false, 0),
         array('rut', $IcePHP__t_string, false, 0),
+        array('sexo', $IcePHP__t_string, false, 0),
         array('wposition', $IcePHP__t_string, false, 0),
         array('unit', $IcePHP__t_string, false, 0),
-        array('direccion', $IcePHP__t_string, false, 0),
-        array('sexo', $model__t_Sexo, false, 0),
+        array('email', $IcePHP__t_string, false, 0),
         array('telefono', $IcePHP__t_string, false, 0),
         array('oficina', $IcePHP__t_string, false, 0),
-        array('email', $IcePHP__t_string, false, 0),
+        array('direccion', $IcePHP__t_string, false, 0),
         array('country', $IcePHP__t_string, false, 0)));
 }
 
@@ -112,7 +86,7 @@ namespace model
     global $model__t_Vehiculo;
     class Vehiculo extends \Ice\Value
     {
-        public function __construct($patente='', $codigoLogo='', $marca='', $modelo='', $anio=0, $observacion='', $responsable='')
+        public function __construct($patente='', $codigoLogo='', $marca='', $modelo='', $anio=0, $observacion='', $responsable='', $tipoLogo='')
         {
             $this->patente = $patente;
             $this->codigoLogo = $codigoLogo;
@@ -121,6 +95,7 @@ namespace model
             $this->anio = $anio;
             $this->observacion = $observacion;
             $this->responsable = $responsable;
+            $this->tipoLogo = $tipoLogo;
         }
 
         public function ice_id()
@@ -146,6 +121,7 @@ namespace model
         public $anio;
         public $observacion;
         public $responsable;
+        public $tipoLogo;
     }
 
     global $Ice__t_Value;
@@ -158,7 +134,8 @@ namespace model
         array('modelo', $IcePHP__t_string, false, 0),
         array('anio', $IcePHP__t_int, false, 0),
         array('observacion', $IcePHP__t_string, false, 0),
-        array('responsable', $IcePHP__t_string, false, 0)));
+        array('responsable', $IcePHP__t_string, false, 0),
+        array('tipoLogo', $IcePHP__t_string, false, 0)));
 }
 
 namespace model
@@ -166,14 +143,18 @@ namespace model
     global $model__t_Circulacion;
     class Circulacion extends \Ice\Value
     {
-        public function __construct($uid=0, $fechaIngreso='', $fechaSalida='', $patente='', $puertaEntrada='', $puertaSalida='')
+        public function __construct($uid=0, $fechaIngreso='', $horaIngreso='', $fechaSalida='', $horaSalida='', $patente='', $puertaEntrada='', $puertaSalida='', $observacion='', $estadoVehiculo=0)
         {
             $this->uid = $uid;
             $this->fechaIngreso = $fechaIngreso;
+            $this->horaIngreso = $horaIngreso;
             $this->fechaSalida = $fechaSalida;
+            $this->horaSalida = $horaSalida;
             $this->patente = $patente;
             $this->puertaEntrada = $puertaEntrada;
             $this->puertaSalida = $puertaSalida;
+            $this->observacion = $observacion;
+            $this->estadoVehiculo = $estadoVehiculo;
         }
 
         public function ice_id()
@@ -194,10 +175,14 @@ namespace model
 
         public $uid;
         public $fechaIngreso;
+        public $horaIngreso;
         public $fechaSalida;
+        public $horaSalida;
         public $patente;
         public $puertaEntrada;
         public $puertaSalida;
+        public $observacion;
+        public $estadoVehiculo;
     }
 
     global $Ice__t_Value;
@@ -206,55 +191,72 @@ namespace model
     $model__t_Circulacion = IcePHP_defineClass('::model::Circulacion', '\\model\\Circulacion', -1, false, false, $Ice__t_Value, array(
         array('uid', $IcePHP__t_int, false, 0),
         array('fechaIngreso', $IcePHP__t_string, false, 0),
+        array('horaIngreso', $IcePHP__t_string, false, 0),
         array('fechaSalida', $IcePHP__t_string, false, 0),
+        array('horaSalida', $IcePHP__t_string, false, 0),
         array('patente', $IcePHP__t_string, false, 0),
         array('puertaEntrada', $IcePHP__t_string, false, 0),
-        array('puertaSalida', $IcePHP__t_string, false, 0)));
+        array('puertaSalida', $IcePHP__t_string, false, 0),
+        array('observacion', $IcePHP__t_string, false, 0),
+        array('estadoVehiculo', $IcePHP__t_int, false, 0)));
 }
 
 namespace model
 {
-    global $model__t_Identificacion;
-    class Identificacion extends \Ice\Value
+    global $model__t_DBnoEncontrada;
+    class DBnoEncontrada extends \Ice\UserException
     {
-        public function __construct($codigoLogo='', $patente='', $rut='', $tipoLogo=\model\TipoLogo::ROJO)
+        public function __construct($mensaje="No se encuentra en la base de datos")
         {
-            $this->codigoLogo = $codigoLogo;
-            $this->patente = $patente;
-            $this->rut = $rut;
-            $this->tipoLogo = $tipoLogo;
+            $this->mensaje = $mensaje;
         }
 
         public function ice_id()
         {
-            return '::model::Identificacion';
-        }
-
-        public static function ice_staticId()
-        {
-            return '::model::Identificacion';
+            return '::model::DBnoEncontrada';
         }
 
         public function __toString()
         {
-            global $model__t_Identificacion;
-            return IcePHP_stringify($this, $model__t_Identificacion);
+            global $model__t_DBnoEncontrada;
+            return IcePHP_stringifyException($this, $model__t_DBnoEncontrada);
         }
 
-        public $codigoLogo;
-        public $patente;
-        public $rut;
-        public $tipoLogo;
+        public $mensaje;
     }
-
-    global $Ice__t_Value;
     global $IcePHP__t_string;
-    global $model__t_TipoLogo;
-    $model__t_Identificacion = IcePHP_defineClass('::model::Identificacion', '\\model\\Identificacion', -1, false, false, $Ice__t_Value, array(
-        array('codigoLogo', $IcePHP__t_string, false, 0),
-        array('patente', $IcePHP__t_string, false, 0),
-        array('rut', $IcePHP__t_string, false, 0),
-        array('tipoLogo', $model__t_TipoLogo, false, 0)));
+
+    $model__t_DBnoEncontrada = IcePHP_defineException('::model::DBnoEncontrada', '\\model\\DBnoEncontrada', false, null, array(
+        array('mensaje', $IcePHP__t_string, false, 0)));
+}
+
+namespace model
+{
+    global $model__t_ErrorDeServidor;
+    class ErrorDeServidor extends \Ice\UserException
+    {
+        public function __construct($mensaje="No se puede conectar con el servidor")
+        {
+            $this->mensaje = $mensaje;
+        }
+
+        public function ice_id()
+        {
+            return '::model::ErrorDeServidor';
+        }
+
+        public function __toString()
+        {
+            global $model__t_ErrorDeServidor;
+            return IcePHP_stringifyException($this, $model__t_ErrorDeServidor);
+        }
+
+        public $mensaje;
+    }
+    global $IcePHP__t_string;
+
+    $model__t_ErrorDeServidor = IcePHP_defineException('::model::ErrorDeServidor', '\\model\\ErrorDeServidor', false, null, array(
+        array('mensaje', $IcePHP__t_string, false, 0)));
 }
 
 namespace model
@@ -285,9 +287,15 @@ namespace model
     $model__t_ContratosPrx = IcePHP_defineProxy('::model::Contratos', $Ice__t_ObjectPrx, null);
 
     global $IcePHP__t_string;
-    global $IcePHP__t_bool;
-    IcePHP_defineOperation($model__t_ContratosPrx, 'verificarPatenteLogo', 0, 0, 0, array(array($IcePHP__t_string), array($IcePHP__t_string)), null, array($IcePHP__t_bool), null);
-    IcePHP_defineOperation($model__t_ContratosPrx, 'verificarLogoPatente', 0, 0, 0, array(array($IcePHP__t_string), array($IcePHP__t_string)), null, array($IcePHP__t_bool), null);
+    global $model__t_Circulacion;
+    global $IcePHP__t_int;
+    IcePHP_defineOperation($model__t_ContratosPrx, 'ingresoVehiculo', 0, 0, 0, array(array($IcePHP__t_string), array($IcePHP__t_string), array($IcePHP__t_string)), null, array($model__t_Circulacion), null);
+    IcePHP_defineOperation($model__t_ContratosPrx, 'salidaVehiculo', 0, 0, 0, array(array($IcePHP__t_string), array($IcePHP__t_string)), null, array($model__t_Circulacion), null);
+    IcePHP_defineOperation($model__t_ContratosPrx, 'busquedaVehiculoBackend', 0, 0, 0, array(array($IcePHP__t_string)), null, array($model__t_Circulacion), null);
+    IcePHP_defineOperation($model__t_ContratosPrx, 'vehiculosInterior', 0, 0, 0, array(array($IcePHP__t_int)), null, array($IcePHP__t_int), null);
+    IcePHP_defineOperation($model__t_ContratosPrx, 'vehiculosGate', 0, 0, 0, array(array($IcePHP__t_string)), null, array($IcePHP__t_int), null);
+    IcePHP_defineOperation($model__t_ContratosPrx, 'totalRegion', 0, 0, 0, array(array($IcePHP__t_string)), null, array($IcePHP__t_int), null);
+    IcePHP_defineOperation($model__t_ContratosPrx, 'datosEstadisticos', 0, 0, 0, array(array($IcePHP__t_string)), null, array($IcePHP__t_int), null);
 }
 
 namespace model
