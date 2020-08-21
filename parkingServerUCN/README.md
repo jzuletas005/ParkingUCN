@@ -28,34 +28,47 @@
 <!--
 @startuml
 interface TheSystem{
-- getDelay(long clientTime): long
-}
-interface Contratos{
+-getDelay(long clientTime): long
 +Persona registrarPersona(Persona persona);
 +Vehiculo registrarVehiculo(Vehiculo vehiculo);
 +Persona obtenerPersona(string rut);
 +Vehiculo obtenerVehiculo(string patente);
 +Vehiculo eliminarVehiculo(string patente);
-+Persona eliminarPersona(string rut); 
++Persona eliminarPersona(string rut);
++Vehiculo editarVehiculo(Vehiculo vehiculo);
++Persona editarPersona(Persona persona);
+}
+interface Contratos{
++Circulacion ingresoVehiculo(string patente, string puertaEntrada, string observacion);
++Circulacion salidaVehiculo(string patente, string puertaSalida);
++Circulacion busquedaVehiculoBackend(string patente);
++int vehiculosGate(string puerta);
++int vehiculosInterior(int estadoVehiculo);
++int totalRegion(string region);
++int datosEstadisticos(string busquedaDato);
++string formatearRut(string rut);
 }
 class Circulacion {
 - int uid;
 - string fechaIngreso;
+- string horaIngreso;
 - string fechaSalida;
+- string horaSalida;
 - string patente;
+- string puertaEntrada;
+- string puertaSalida;
+- string observacion;
+- int estadoVehiculo;
 }
 class Vehiculo{ 
--int uid;
 -string patente;
+-string codigoLogo;
 -string marca;
 -string modelo;
 -int anio;
 -string observacion;
 -string responsable;
-}
-enum Sexo{
-MASCULINO,
-FEMENINO
+-TipoLogo tipoLogo;
 }
 class Person{
 - int uid;
@@ -69,6 +82,7 @@ class Person{
 - string office; 
 - string address;
 - string country;
+- TipoLogo tipoLogo;
 }
 class ContratosImpl{
 }
@@ -78,13 +92,12 @@ class Program{
 +Main();
 +IHostBuilder CreateHostBuilder(string[] args):IHostBuilder
 }
-Program--TheSystemImpl: use
-Program--ContratosImpl: use
-ContratosImpl--"0..*"Person:use
-ContratosImpl--"0..*"Vehiculo:use
-ContratosImpl--"0..*"Circulacion:use
-TheSystem..TheSystemImpl:implement
-Contratos..ContratosImpl:implement
-Sexo--Person:use
+Program--|>TheSystemImpl: use
+Program--|>ContratosImpl: use
+TheSystemImpl--|>Person:use
+TheSystemImpl--|>Vehiculo:use
+ContratosImpl--|>Circulacion:use
+TheSystem..|>TheSystemImpl:implement
+Contratos..|>ContratosImpl:implement
 @enduml
 -->
