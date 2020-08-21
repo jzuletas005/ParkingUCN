@@ -140,4 +140,9 @@ class PageController extends Controller
         $puertaSalida = $request->get('puertaSalida');
         return view('saliendoVehiculo', ['patente' => $patente, 'puertaSalida' => $puertaSalida]);
     }
+
+    public function estadoVehiculo(Request $request){
+        $patente = $request->get('patente');
+        return view('estadoVehiculo', ['patente' => $patente]);
+    }
 }

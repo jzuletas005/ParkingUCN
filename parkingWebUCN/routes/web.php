@@ -37,6 +37,8 @@ Route::get('ingresoVehiculo', 'Web\PageController@ingresoVehiculo')->name('ingre
 
 Route::get('salidaVehiculo', 'Web\PageController@salidaVehiculo')->name('salidaVehiculo');
 
+Route::get('estadoVehiculo', 'Web\PageController@estadoVehiculo')->name('estadoVehiculo');
+
 Route::post('buscarPersona', 'Web\PageController@persona');
 
 Route::post('crearPersona', 'Web\PageController@creandoPersona');
