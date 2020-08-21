@@ -87,11 +87,6 @@ module model
             *País
             */
             string country;
-
-             /**
-             *Tipo Logo
-            */
-            string tipoLogo;
             }
 
 
