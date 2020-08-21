@@ -150,4 +150,13 @@ class PageController extends Controller
     public function vehiculosCirculando(){
         return view('vehiculosCirculando');
     }
+
+    public function personasCampus(){
+        return view('personasCampus');
+    }
+
+    public function contadorPersonasCampus(Request $request){
+        $campus = $request->get('campus');
+        return view('contadorPersonasCampus', ['campus' => $campus]);
+    }
 }
