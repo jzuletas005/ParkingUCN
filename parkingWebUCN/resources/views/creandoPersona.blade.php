@@ -14,15 +14,18 @@ try
     // Create a proxy
     //
     $obj = $ic->stringToProxy("TheSystem:tcp -z -t 15000 -p 8080");
+    $obj2 = $ic->stringToProxy("Contratos:tcp -z -t 15000 -p 4000");
 
     // Down-cast the proxy to a Directory proxy
     //
     $rootDir = model\TheSystemPrxHelper::checkedCast($obj);
+    $rootDir2 = model\ContratosPrxHelper::checkedCast($obj2);
 
     if($rut == ""  || $nombre == ""){
         $imprimir = "Rut o nombre invalido";
     }else{
         if(!$rootDir->obtenerPersona($rut)){
+            $rut = $rootDir2->formatearRut($rut);
             $persona = new \model\Persona(0, $nombre, $rut, $cargo, $unidad, $direccion,
                 $sexo, $telefono, $oficina, $email, $localidad);
             $rootDir->registrarPersona($persona);

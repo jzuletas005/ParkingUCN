@@ -146,4 +146,8 @@ class PageController extends Controller
         $patente = $request->get('patente');
         return view('estadoVehiculo', ['patente' => $patente]);
     }
+
+    public function vehiculosCirculando(){
+        return view('vehiculosCirculando');
+    }
 }
