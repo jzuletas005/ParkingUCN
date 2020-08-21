@@ -48,6 +48,11 @@ public class ZeroIce {
      * The Singleton
      */
     private static final ZeroIce ZERO_ICE = new ZeroIce();
+    
+    /**
+    * Server IP (MUST BE SETTED BY ADMINISTRATOR)
+    */
+    private String serverIP = "192.168.0.22";
 
     /**
      * The ZeroIce Communicator
@@ -135,8 +140,8 @@ public class ZeroIce {
             log.debug("Proxying <Contratos> ..");
 
             //to connect to the server we use your ip
-            ObjectPrx theProxy = this.theCommunicator.stringToProxy("TheSystem:tcp -h 192.168.0.22 -p 8080");
-            ObjectPrx theProxyC = this.theCommunicator.stringToProxy("Contratos:tcp -h 192.168.0.22 -p 4000");
+            ObjectPrx theProxy = this.theCommunicator.stringToProxy("TheSystem:tcp -h "+serverIP+" -t 15000 -p 8080");
+            ObjectPrx theProxyC = this.theCommunicator.stringToProxy("Contratos:tcp -h "+serverIP+" -t 15000  -p 4000");
 
             this.theSystem = TheSystemPrx.checkedCast(theProxy);
             this.theContratos = ContratosPrx.checkedCast(theProxyC);
