@@ -110,10 +110,11 @@ namespace ServerParkingUCN.ZeroIce
                 
                 }
 
-            public override Circulacion busquedaVehiculoBackend(string patente, int estado, Current current)
+            public override Circulacion busquedaVehiculoBackend(string patente, Current current)
             {
                  using(var scope = _serviceScopeFactory.CreateScope())
                 {
+                    int estado  = 1; 
                     ServerParkingUCNContext pc = scope.ServiceProvider.GetService<ServerParkingUCNContext>();
                     Circulacion salida = new Circulacion();
                     salida = pc.Circulaciones.Where(w => w.patente == patente).Where(a => a.estadoVehiculo == estado).FirstOrDefault();
