@@ -19,19 +19,18 @@ try
     //
     $rootDir = model\TheSystemPrxHelper::checkedCast($obj);
 
-    if($rut == ""  || $nombre == ""){
-        $imprimir = "Rut o nombre invalido";
+    if($patente == ""){
+        $imprimir = "Patente invalida";
     }else{
-        if(!$rootDir->obtenerPersona($rut)){
-            $persona = new \model\Persona(0, $nombre, $rut, $cargo, $unidad, $direccion,
-                $sexo, $telefono, $oficina, $email, $localidad);
-            $rootDir->registrarPersona($persona);
-            $imprimir = "Persona agregada";
+        if(!$rootDir->obtenerVehiculo($patente)){
+            $vehiculo = new \model\Vehiculo($patente, $codigoLogo, $marca, $modelo, intval($anio), $observacion,
+                $responsable, $tipoLogo);
+            $rootDir->registrarVehiculo($vehiculo);
+            $imprimir = "Vehiculo agregado";
         }else{
-            $imprimir = "La persona ya existe";
+            $imprimir = "El vehiculo ya existe";
         }
     }
-
 
 
 

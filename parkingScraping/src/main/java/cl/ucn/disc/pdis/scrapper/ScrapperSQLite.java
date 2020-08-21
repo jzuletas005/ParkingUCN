@@ -144,13 +144,16 @@ public class ScrapperSQLite {
                             +", "+data[4]+", "+data[5]+", "+data[6]+", "+data[7]+", "+data[8]+", "+data[9]
                             +", "+data[10]);
 
-                    //  Add new person to database
-                    personDao.createIfNotExists(new Person(Integer.parseInt(data[0]), data[1], data[2], data[3],
-                            data[4], data[5], data[6], data[7], data[8], data[9], data[10]));
-                    log.debug("Person added !");
+                    if(data[2] == null){
+                        log.debug("Person ignored !");
+                    }else{
+                        //  Add new person to database
+                        personDao.createIfNotExists(new Person(Integer.parseInt(data[0]), data[1], data[2], data[3],
+                                data[4], data[5], data[6], data[7], data[8], data[9], data[10]));
+                        log.debug("Person added !");
+                    }
                 }
                 log.debug("Persons Table created !");
-
             }catch (SQLException e){
                 log.error("Error: ", e);
             }

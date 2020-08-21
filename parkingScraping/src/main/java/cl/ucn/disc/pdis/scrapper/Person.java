@@ -30,13 +30,13 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "Personas")
 public final class Person {
 
-    @DatabaseField(id = true, canBeNull = false)
+    @DatabaseField(canBeNull = true)
     private int uid;
 
     @DatabaseField(canBeNull = false)
     private String nombre;
 
-    @DatabaseField(canBeNull = true)
+    @DatabaseField(id = true, canBeNull = false)
     private String rut;
 
     @DatabaseField(canBeNull = true)

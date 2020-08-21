@@ -1,6 +1,3 @@
-@extends('layouts.default')
-
-
 <?php
 require_once 'Ice.php';
 require_once(__DIR__ . '\..\..\..\domain.php');
@@ -18,24 +15,12 @@ try
     // Down-cast the proxy to a Directory proxy
     //
     $rootDir = model\TheSystemPrxHelper::checkedCast($obj);
-
-    if($rut == ""  || $nombre == ""){
-        $imprimir = "Rut o nombre invalido";
+    if($rut == ""){
+        $imprimir = "Rut invalido";
     }else{
-        if(!$rootDir->obtenerPersona($rut)){
-            $persona = new \model\Persona(0, $nombre, $rut, $cargo, $unidad, $direccion,
-                $sexo, $telefono, $oficina, $email, $localidad);
-            $rootDir->registrarPersona($persona);
-            $imprimir = "Persona agregada";
-        }else{
-            $imprimir = "La persona ya existe";
-        }
+        $rootDir->eliminarPersona($rut);
+        $imprimir = "Persona eliminada";
     }
-
-
-
-
-
 }
 catch(Ice\LocalException $ex)
 {
@@ -46,8 +31,9 @@ if($ic)
 {
     $ic->destroy();
 }
-
 ?>
+
+@extends('layouts.default')
 @section('content')
     <h4><?php echo $imprimir;?></h4><br>
 @endsection
