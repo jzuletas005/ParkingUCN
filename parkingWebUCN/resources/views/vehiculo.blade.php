@@ -53,6 +53,7 @@ if($ic)
     $ic->destroy();
 }
 
+
 ?>
 @section('content')
     <h4><?php echo $imprimir;?></h4><br>

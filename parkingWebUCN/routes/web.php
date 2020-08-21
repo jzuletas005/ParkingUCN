@@ -54,3 +54,4 @@ Route::post('editarVehiculo', 'Web\PageController@vehiculoEditado');
 Route::post('ingresoVehiculo', 'Web\PageController@ingresandoVehiculo');
 
 Route::post('salidaVehiculo', 'Web\PageController@saliendoVehiculo');
+

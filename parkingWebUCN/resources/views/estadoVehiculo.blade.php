@@ -28,6 +28,7 @@ try
             $estado = "Dentro de la universidad";
         }else{
             $estado = "Fuera de la universidad";
+
         }
     }
 }
