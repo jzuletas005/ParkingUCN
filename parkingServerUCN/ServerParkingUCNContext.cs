@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
- 
+
 using System.Reflection;
 using ServerParkingUCN.ZeroIce.model;
 using Microsoft.EntityFrameworkCore;
@@ -65,7 +65,7 @@ namespace ServerParkingUCN.Dao
 
         {
             // Using SQLite
-            optionsBuilder.UseSqlite("Data Source=parking.db", options =>
+            optionsBuilder.UseSqlite("Data Source=parkingUCN.db", options =>
             {
                 options.MigrationsAssembly(Assembly.GetExecutingAssembly().FullName);
             });
