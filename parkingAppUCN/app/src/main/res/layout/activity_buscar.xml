@@ -52,7 +52,8 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_weight="1"
-            android:background="@drawable/ic_baseline_face_24" />
+            android:background="@drawable/ic_baseline_face_24"
+            android:backgroundTint="@color/orange"/>
 
         <ImageView
             android:id="@+id/busquedaVehiculo"
@@ -62,7 +63,8 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_weight="1"
-            android:background="@drawable/ic_baseline_directions_car_24" />
+            android:background="@drawable/ic_baseline_directions_car_24"
+            android:backgroundTint="@color/orange"/>
     </LinearLayout>
 
 

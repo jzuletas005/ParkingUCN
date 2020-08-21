@@ -25,6 +25,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
         android:inputType="text"
         android:hint="PATENTE ..... Ej: GGWP10"
         app:layout_constraintTop_toBottomOf="@+id/newpersonicon"
@@ -38,6 +40,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
         android:inputType="text"
         android:hint="CODIGO DEL LOGO .... Ej: s1254789"
         app:layout_constraintTop_toBottomOf="@+id/rPatente"
@@ -51,6 +55,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
         android:inputType="text"
         android:hint="MARCA ..... Ej: HYUNDAI"
         app:layout_constraintTop_toBottomOf="@+id/rCodigoLogo"
@@ -64,6 +70,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
         android:inputType="text"
         android:hint="MODELO .... Ej: VELOSTER"
         app:layout_constraintTop_toBottomOf="@+id/rMarca"
@@ -76,6 +84,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
         android:hint="AÑO DEL VEHICULO .... Ej: 2015"
         app:layout_constraintTop_toBottomOf="@+id/rModelo"
         tools:layout_editor_absoluteX="28dp"
@@ -89,6 +99,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
         android:inputType="text"
         android:hint="OBSERVACIÓN .... Ej: Se estaciona mal"
         app:layout_constraintTop_toBottomOf="@+id/rAnio"
@@ -102,9 +114,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
         android:inputType="text"
         android:hint="RUT DEL RESPONSABLE .... Ej: 12.345.678-9"
         app:layout_constraintTop_toBottomOf="@+id/rObservacion"
+        tools:layout_editor_absoluteX="28dp"
+        android:textSize="10dp"
+        android:textAlignment="center"
+        android:gravity="center"/>
+
+    <EditText
+        android:id="@+id/rTipoLogo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:inputType="text"
+        android:hint="ROJO O AZUL"
+        app:layout_constraintTop_toBottomOf="@+id/rResponsable"
         tools:layout_editor_absoluteX="28dp"
         android:textSize="10dp"
         android:textAlignment="center"
@@ -115,7 +144,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rResponsable"
+        app:layout_constraintTop_toBottomOf="@+id/rTipoLogo"
         tools:layout_editor_absoluteX="16dp">
 
         <Button
@@ -125,7 +154,8 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_weight="1"
-            android:text="Guardar" />
+            android:text="Guardar"
+            android:backgroundTint="@color/orange"/>
 
         <Button
             android:id="@+id/cancel"
@@ -134,7 +164,8 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_weight="1"
-            android:text="Cancelar" />
+            android:text="Cancelar"
+            android:backgroundTint="@color/orange"/>
 
     </LinearLayout>
 
