@@ -49,44 +49,46 @@ module model
             string rut;
 
             /**
-            * wPosition;
+            *Sexo
             */
-            string wposition; // corresponde al cargo del trabajor
+            string sexo; 
+
 
             /**
-            * Unidad;
+            * wPosition corresponde al cargo del trabajor
             */
-            string unit; //En qué unidad trabaja.
+            string wposition;
+
+            /**
+            * Unidad corresponde a qué unidad pertenece el funcionario
+            */
+            string unit; 
+
+            /**
+            *Correo Electronico
+             */
+            string email;
+
+            /**
+            *Telefono 
+            */
+            string telefono;
+
+            /**
+            *Oficina
+            */
+             string oficina;
 
             /**
             * Direccion
             */
             string direccion;
 
-            /**
-            *Sexo
-            */
-            string sexo; 
-
-            /**
-            * Telefono
-            */
-            string telefono;
-
-	    /**
-	    * Oficina
-	    */
-            string oficina;
-
-            /**
-            *Correo Electronico
-            */
-            string email;
-
              /**
             *País
             */
             string country;
+            
             }
 
 
@@ -244,7 +246,7 @@ module model
          *@return circulacion 
         */
 
-        Circulacion busquedaVehiculoBackend(string patente, int estado);
+        Circulacion busquedaVehiculoBackend(string patente);
 
         /**
         *
